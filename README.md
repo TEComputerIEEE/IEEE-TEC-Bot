@@ -1,6 +1,6 @@
 IEEE-TEC-Bot
 ==================
-![Some informative photo goes here](photo.png)![photo](photo.png)
+![Some informative photo goes here](photo.png)![photo](photo.png)   
 [![Github All Releases](https://img.shields.io/github/release/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)
 [![Github All Releases](https://img.shields.io/travis/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)   
 Telegram Bot for the TEC's Branch of the IEEE. With this bot you can......**Features go here**.......
@@ -36,7 +36,7 @@ Please read [CONTRIBUTING.md](heregoesthelink) for details on our code of conduc
  
 
 ## Authors
-The leading developers involved in this project can be found in this list. For further details, you can go to the [contributors graph](https://github.com/TEComputerIEEE/IEEE-TEC-Bot/graphs/contributors)
+The leading developers involved in this project can be found in this list. For further details, you can go to the [contributors graph](https://github.com/TEComputerIEEE/IEEE-TEC-Bot/graphs/contributors).
 * [**Full Name**](Github Profile Link) - *Role* - [IEEE-TEC-Bot](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)
 
 ## License
