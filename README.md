@@ -13,15 +13,18 @@ git clone https://github.com/TEComputerIEEE/IEEE-TEC-Bot.git
 ```
 
 ### Prerequisites
-**Here goes the Prerequisites notes**    
-#### If more than one prerequisite is needed and/or the installation process of this prerequisite is complex, a subtitle needs to be added
+If you wish to develop or test your own version of the bot, you'll have to install the following prerequisites. **Pd: installation notes are for debian based systems with apt installed, but you can use your own package manager**.     
+#### Python 3 and Pip
+If you don't have python installed you can install it by typing into a terminal:
 ```
-Here goes some example code to install the prerequisites
+sudo apt get install python3 python-pip
+pip install --upgrade pip
 ```
-### Installing
-**The installation notes goes here**
+#### Python-telegram-bot wrapper
+This bot is based on [python-telegram-bot wrapper](https://github.com/python-telegram-bot/python-telegram-bot), you can install it with:
 ```
-step by step installation process
+sudo pip install setuptools
+sudo pip install python-telegram-bot --upgrade
 ```
 
 ## Running the tests
