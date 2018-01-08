@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 #Bot Config
-.config.sh
+config.py
