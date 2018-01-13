@@ -18,11 +18,22 @@ import logging
 import config
 import telegram #necessary for Keyboards
 
+
 #Keyboards
-membership_keyboard= [['¿Cómo ser miembro de IEEE?'],
-                      ['¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?'],
-                      ['Solicitar Asistencia'],
-                      ['Regresar']]
+#customKeboards[0] = homeKeyboard
+#customKeboards[1] = infoScreen
+#customKeboards[2] = benefitScreen
+#customKeboards[3] = guideScreen
+customKeyboards =  [[["Actividades"], ["Informacion"], ["Notificaciones"], ["Contactos"]],
+                    [["Beneficios Membresía IEEE"], ["Guías de Inscripción"], ["Acerca del Bot"], ["🔙 Regresar"]],
+                    [["Beneficios IEEE"], ["Beneficios Capítulos Técnicos"], ["Beneficios Grupos de Afinidad"], ["🔙 Regresar"]],
+                    [["¿Cómo ser miembro de IEEE?"], ["¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?"], ["Solicitar Asistencia"], ["🔙 Regresar"]]]
+
+#Constant Values do not Change
+homeScreen = 0
+infoScreen = 1
+benefitScreen = 2
+guideScreen = 3
 
 # Enable logging if defined on config
 def log():
@@ -57,7 +68,7 @@ def notify(bot, update):
 
 def membershipInfoMenu(bot,update):
     bot.send_message(chat_id= update.message.chat_id,text='Seleccione la opción correspondiente',
-                     reply_markup=telegram.ReplyKeyboardMarkup(membership_keyboard,resize_keyboard=True))
+                     reply_markup=telegram.ReplyKeyboardMarkup(customKeyboards[guideScreen],resize_keyboard=True))
 
 def sentIEEEMembershipInfo(bot,update):
     membership_info= open("MembresíaIEEE.pdf","rb")
