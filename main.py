@@ -59,27 +59,33 @@ def log():
 logger = log()
 
 
-#Helper Funcion
+#Helper Functions
 '''
-Funcion to show a keyboard, it also sends a message if required
+Function to show a keyboard, it also sends a message if required
 '''
 def openKeyboard(bot, update, keys, message="", resize=True):
     bot.send_message(chat_id= update.message.chat_id,text=message,
         reply_markup=telegram.ReplyKeyboardMarkup(keys,resize_keyboard=resize))
 '''
-Funcion to close a keyboard, it also sends a message if required
+Function to close a keyboard, it also sends a message if required
 '''
 def closeKeyboard(bot, update, message=""):
     bot.send_message(chat_id= update.message.chat_id,text=message,
                      reply_markup=telegram.ReplyKeyboardRemove())
 
 # Command handlers
+'''
+Bot start command, will return a welcome message and the home screen keyboard
+'''
 def start(bot, update):
     #Adds the user to the user state hash
     userState.update({update.message.chat_id : 0})
     #Start reply
     openKeyboard(bot, update, customKeyboards[homeScreen], message=config.startReply)
 
+'''
+Bot help command, will return a hel message and the home screen keyboard
+'''
 def help(bot, update):
     pass
 
@@ -89,6 +95,9 @@ def info(bot, update):
 def contact(bot, update):
     pass
 
+'''
+Bot help command, will remove the data of the user and stop sending messages to them
+'''
 def stop(bot, update):
     pass
 
@@ -115,6 +124,10 @@ def sentChapterMembershipInfo(bot,update):
 def requestAssistance(bot,update):
     pass
 
+'''
+Function to handle text messages depending on which screen the user is, this will only pre-clasify the queries, but the actual handling will happen on each
+helper method that will parse the message and look for the required info
+'''
 def handleMessage(bot, update):
     #If the user is registered
     if not(update.message.chat_id in userState):
@@ -133,20 +146,25 @@ def handleMessage(bot, update):
         userState.update({update.message.chat_id : 0})
         unrecognized(bot, update)
 
-"""
+'''
 Unrecognized is a method so when natural language processing
 is implemented. will be easier to incorporate to the actual code
-"""
+'''
 def unrecognized(bot, update):
     update.message.reply_text(config.unrecognizedReply)
 
+'''
+
+'''
 def error(bot, update, error):
     #Log errors
     logger.warning('Update "%s" caused error "%s"', update, error)
 
 
 
-
+'''
+Bot main flow function
+'''
 def main():
     # Making the bot work
     # Create the EventHandler and pass it your bot's token.
@@ -178,6 +196,8 @@ def main():
     updater.idle()
 
 
-
+''' 
+If this file is run as main call the main method 
+'''
 if __name__ == '__main__':
     main()
