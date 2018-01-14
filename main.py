@@ -276,6 +276,7 @@ def informationHandler(bot, update):
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
             #replyText=info.membershipSteps() 
+            replyText = "Mostrando pasos para pertenecer a IEEE"
             goToScreen(bot, update, message=replyText)#if a photo or document needs to be added , just add the parameter photo=the photo or document= the document
 
         elif update.message.text in customKeyboards[guideScreen][1]:
