@@ -317,26 +317,6 @@ Bot help command, will remove the data of the user and stop sending messages to 
 def stop(bot, update):
     pass
 
-def membershipInfoMenu(bot,update):
-    bot.send_message(chat_id= update.message.chat_id,text='Seleccione la opción correspondiente',
-                     reply_markup=telegram.ReplyKeyboardMarkup(customKeyboards[guideScreen],resize_keyboard=True))
-
-def sentIEEEMembershipInfo(bot,update):
-    membership_info= open("MembresíaIEEE.pdf","rb")
-    bot.send_document(chat_id= update.message.chat_id, document= membership_info)
-    membership_info.close()
-    bot.send_message(chat_id= update.message.chat_id,
-                     text='También puede encontrar la guía en la siguiente'+
-                     'dirección:\n bit.ly/IEEE-Guia-Inscripcion')
-
-def sentChapterMembershipInfo(bot,update):
-    membership_info= open("MembresíaIEEE.pdf","rb")
-    bot.send_document(chat_id= update.message.chat_id, document= membership_info)
-    membership_info.close()
-    bot.send_message(chat_id= update.message.chat_id,
-                     text='También puede encontrar la guía en la siguiente'+
-                     'dirección:\n bit.ly/IEEE-Guia-Inscripcion')
-
 '''
 Function to handle text messages depending on which screen the user is, this will only pre-clasify the queries, but the actual handling will happen on each
 helper method that will parse the message and look for the required info
