@@ -29,11 +29,22 @@ customKeyboards =  [[["Actividades"], ["Informacion"], ["Notificaciones"], ["Con
                     [["Beneficios IEEE"], ["Beneficios Capítulos Técnicos"], ["Beneficios Grupos de Afinidad"], ["🔙 Regresar"]],
                     [["¿Cómo ser miembro de IEEE?"], ["¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?"], ["Solicitar Asistencia"], ["🔙 Regresar"]]]
 
-#Constant Values do not Change
+#Constant Values do not Change them
 homeScreen = 0
 infoScreen = 1
 benefitScreen = 2
 guideScreen = 3
+branchActivities = 4
+chapterActivities = 5
+branchNotifications = 6
+chapterNotifications = 7
+branchContacts = 8
+chapterContacts = 9
+
+#A hash(it's actually a dictionary but since python implements dictionaries as hash tables... see https://mail.python.org/pipermail/python-list/2000-March/048085.html)
+#to handle each user reply depending on their state(in which screen they are).
+userState = {}
+
 
 # Enable logging if defined on config
 def log():
@@ -60,10 +71,7 @@ def info(bot, update):
 def contact(bot, update):
     pass
 
-def subs(bot, update):
-    pass
-
-def notify(bot, update):
+def stop(bot, update):
     pass
 
 def membershipInfoMenu(bot,update):
@@ -93,6 +101,12 @@ def closeKeyboard(bot,update):
     bot.send_message(chat_id= update.message.chat_id,text='Listo',
                      reply_markup=telegram.ReplyKeyboardRemove())
 
+def handleMessage(bot, update):
+    #If the user is registered
+    if not(update.message.chat_id in userState):
+        userState.update({update.message.chat_id : 0})
+    #If not then
+
 """
 Unrecognized is a method so when natural language processing
 is implemented. will be easier to incorporate to the actual code
@@ -116,20 +130,14 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("info", info))
-    dp.add_handler(CommandHandler("contact", contact))
-    dp.add_handler(CommandHandler("subs", subs))
-    dp.add_handler(CommandHandler("notify", notify))
-    dp.add_handler(CommandHandler('membership',membershipInfoMenu))
-
-    #on a command given by the actual keyboard
-    dp.add_handler(RegexHandler('¿Cómo ser miembro de IEEE?', sentIEEEMembershipInfo))
-    dp.add_handler(RegexHandler('¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?', sentChapterMembershipInfo))
-    dp.add_handler(RegexHandler('Regresar',closeKeyboard))
-    dp.add_handler(RegexHandler('Solicitar Asistencia',requestAssistance))
+    dp.add_handler(CommandHandler("stop", stop))
+    # inline commands to be implemented later on
+    #("info", info)
+    #("contact", contact))
+    #("activities", activities))
 
     # on noncommand i.e message - return error
-    dp.add_handler(MessageHandler(Filters.text, unrecognized))
+    dp.add_handler(MessageHandler(Filters.text, handleMessage))
 
     # log errors if enabled
     if(config.Logging):
