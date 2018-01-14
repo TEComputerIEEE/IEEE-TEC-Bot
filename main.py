@@ -146,6 +146,7 @@ def homeHandler(bot, update):
 
 '''
 Function to handle Activities Screens
+Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
 '''
 def activitiesHandler(bot, update):
     if userState[update.message.chat_id][0]==branchActivities:
@@ -163,11 +164,11 @@ def activitiesHandler(bot, update):
             userState.update({update.message.chat_id : [branchActivities, update.message.text]})
             openKeyboard(bot, update, getKeys(branchActivities))
         elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
-            #Calls the activities module to get the activities for that chapter, maybe a help method to format the reply message as the mockup
+            #Calls the activities module to get the activities of that chapter, maybe a help method to format the reply message as the mockup
             goHome(bot, update)
             closeKeyboard(bot, update);
         elif branchActivitiesKey in update.message.text:
-            #Calls the activities module to get the activities for that chapter, maybe a help method to format the reply message as the mockup
+            #Calls the activities module to get the activities of that branch, maybe a help method to format the reply message as the mockup
             goHome(bot, update)
             closeKeyboard(bot, update);
         else:
@@ -175,6 +176,76 @@ def activitiesHandler(bot, update):
     else:
         #Log the error
         logger.warning('Something went wrong reaching activities handler screen code: "%d".', userState[update.message.chat_id][0])
+        unrecognized(bot, update);
+        goHome(bot, update)
+
+'''
+Function to handle Contacts Screens
+Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
+'''
+def contactsHandler(bot, update):
+    if userState[update.message.chat_id][0]==branchContacts:
+        if update.message.text == returnKey:
+            goHome(bot, update)
+            return
+        elif update.message.text in info.listBranches():
+            userState.update({update.message.chat_id : [chapterContacts, update.message.text]})
+            openKeyboard(bot, update, getKeys(chapterContacts, update.message.text))
+        else:
+            unrecognized(bot, update)
+
+    elif userState[update.message.chat_id][0]==chapterContacts:
+        if update.message.text == returnKey:
+            userState.update({update.message.chat_id : [branchContacts, update.message.text]})
+            openKeyboard(bot, update, getKeys(branchContacts))
+        elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
+            #Calls the contacts module to get the contacts of that chapter, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        elif branchContactsKey in update.message.text:
+            #Calls the contacts module to get the contacts of that branch, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        else:
+            unrecognized(bot, update)
+    else:
+        #Log the error
+        logger.warning('Something went wrong reaching contacts handler screen code: "%d".', userState[update.message.chat_id][0])
+        unrecognized(bot, update);
+        goHome(bot, update)
+
+'''
+Function to handle Notifications Screens
+Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
+'''
+def notificationsHandler(bot, update):
+    if userState[update.message.chat_id][0]==branchNotifications:
+        if update.message.text == returnKey:
+            goHome(bot, update)
+            return
+        elif update.message.text in info.listBranches():
+            userState.update({update.message.chat_id : [chapterNotifications, update.message.text]})
+            openKeyboard(bot, update, getKeys(chapterNotifications, update.message.text))
+        else:
+            unrecognized(bot, update)
+
+    elif userState[update.message.chat_id][0]==chapterNotifications:
+        if update.message.text == returnKey:
+            userState.update({update.message.chat_id : [branchNotifications, update.message.text]})
+            openKeyboard(bot, update, getKeys(branchNotifications))
+        elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
+            #Calls the notifications module to get the notifications of that chapter, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        elif branchNotificationsKey in update.message.text:
+            #Calls the notifications module to get the notifications of that branch, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        else:
+            unrecognized(bot, update)
+    else:
+        #Log the error
+        logger.warning('Something went wrong reaching contacts handler screen code: "%d".', userState[update.message.chat_id][0])
         unrecognized(bot, update);
         goHome(bot, update)
 
@@ -235,9 +306,9 @@ def handleMessage(bot, update):
     elif userState[update.message.chat_id][0] == branchActivities or userState[update.message.chat_id][0] == chapterActivities:
         activitiesHandler(bot, update)
     elif userState[update.message.chat_id][0] == branchNotifications or userState[update.message.chat_id][0] == chapterNotifications:
-        pass
+        notificationsHandler(bot, update)
     elif userState[update.message.chat_id][0] == branchContacts or userState[update.message.chat_id][0] == chapterContacts:
-        pass
+        contactsHandler(bot, update)
     else:
         #Log the error
         logger.warning('Error on getkeys, "%d" inserted.', screenNumber)
