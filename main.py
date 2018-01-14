@@ -145,115 +145,74 @@ def homeHandler(bot, update):
         #If is not any valid option
         openKeyboard(bot, update, getKeys(homeScreen), config.unrecognizedReply)
 
-
 '''
-Function to handle Activities Screens
-Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
+Function to encapsulate the common handler steps so the activities, contacts and notifications handlers don't have so many lines of repeated code
+screens is a list with the level 2 and level 3 screen numbers e.g [(branch activities or notifications or contacts), (chapter activities or notifications or contacts)]
+customMethods is a list with the methods that will be called to get the required information e.g [info.listBranchContacts, info.listChapterContacts]
 '''
-def activitiesHandler(bot, update):
-    if userState[update.message.chat_id][0]==branchActivities:
+def commonHandler(bot, update, screens, customMethods):
+    if userState[update.message.chat_id][0]==screens[0]:
         if update.message.text == returnKey:
             #If return key is pressed then go to home screen
             goToScreen(bot, update)
             return
         elif update.message.text in info.listBranches():
-            #if a branch is selected then show the chapter activities screen
-            goToScreen(bot, update, screenNumber=chapterActivities, branchName=update.message.text)
+            #if a branch is selected then show the level 3 screen (chapter notifications, activities or contacts)
+            goToScreen(bot, update, screenNumber=screens[1], branchName=update.message.text)
         else:
             #If is not any valid option
-            goToScreen(bot, update, screenNumber=branchActivities, message=config.unrecognizedReply)
+            goToScreen(bot, update, screenNumber=screens[0], message=config.unrecognizedReply)
 
-    elif userState[update.message.chat_id][0]==chapterActivities:
+    elif userState[update.message.chat_id][0]==screens[1]:
         if update.message.text == returnKey:
-            goToScreen(bot, update, screenNumber=branchActivities)
+            #If return key is pressed then go to the previous screen
+            goToScreen(bot, update, screenNumber=screens[0])
         elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
-            #Calls the activities module to get the activities of that chapter, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de las actividades del capítulo"
+            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
+            #replyText=customMethods[1](chapterName=update.message.text, branchName=userState[update.message.chat_id][1])
+            replyText="Esta es la informacion del capítulo que solicitó"
             goToScreen(bot, update, message=replyText)
         elif branchActivitiesKey in update.message.text:
-            #Calls the activities module to get the activities of that branch, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de las actividades de la rama"
+            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
+            #replyText=customMethods[0](branchName=userState[update.message.chat_id][1])
+            replyText="Esta es la informacion de la rama que solicitó"
             goToScreen(bot, update, message=replyText)
         else:
             #If is not any valid option
-            openKeyboard(bot, update, getKeys(chapterActivities), message=config.unrecognizedReply)
+            openKeyboard(bot, update, getKeys(screens[1]), message=config.unrecognizedReply)
     else:
         #Log the error
-        logger.warning('Something went wrong reaching activities handler screen code: "%d".', userState[update.message.chat_id][0])
+        logger.warning('Something went wrong reaching common handler screen code: "%d".', userState[update.message.chat_id][0])
         goToScreen(bot, update, message=config.unrecognizedReply)
+'''
+Function to handle Activities Screens
+'''
+def activitiesHandler(bot, update):
+    #Set the screens to show for this handler
+    screens=[branchActivities, chapterActivities]
+    #Set the custom functions/methods to be called if the info is required
+    customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
+    commonHandler(bot, update, screens, customMethods)
 
 '''
 Function to handle Contacts Screens
-Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
 '''
 def contactsHandler(bot, update):
-    if userState[update.message.chat_id][0]==branchContacts:
-        if update.message.text == returnKey:
-            #If return key is pressed then go to home screen
-            goToScreen(bot, update)
-            return
-        elif update.message.text in info.listBranches():
-            #if a branch is selected then show the chapter contacts screen
-            goToScreen(bot, update, screenNumber=chapterContacts, branchName=update.message.text)
-        else:
-            #If is not any valid option
-            goToScreen(bot, update, screenNumber=branchContacts, message=config.unrecognizedReply)
-
-    elif userState[update.message.chat_id][0]==chapterContacts:
-        if update.message.text == returnKey:
-            #if return key is pressed
-            goToScreen(bot, update, screenNumber=branchContacts)
-        elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
-            #Calls the contacts module to get the contacts of that chapter, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de los contactos del capítulo"
-            goToScreen(bot, update, message=replyText)
-        elif branchContactsKey in update.message.text:
-            #Calls the contacts module to get the contacts of that branch, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de los contactos de la rama"
-            goToScreen(bot, update, message=replyText)
-        else:
-            #If is not any valid option
-            openKeyboard(bot, update, getKeys(chapterContacts), message=config.unrecognizedReply)
-    else:
-        #Log the error and return home 
-        logger.warning('Something went wrong reaching contacts handler screen code: "%d".', userState[update.message.chat_id][0])
-        goToScreen(bot, update, message=config.unrecognizedReply)
+    #Set the screens to show for this handler
+    screens=[branchContacts, chapterContacts]
+    #Set the custom functions/methods to be called if the info is required
+    customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
+    commonHandler(bot, update, screens, customMethods)
 
 '''
 Function to handle Notifications Screens
-Since the activities, contacts and notifications handlers are so similart probably in the future they'll be refactored as one.
 '''
 def notificationsHandler(bot, update):
-    if userState[update.message.chat_id][0]==branchNotifications:
-        if update.message.text == returnKey:
-            #If return key is pressed then go to home screen
-            goToScreen(bot, update)
-            return
-        elif update.message.text in info.listBranches():
-            #if a branch is selected then show the chapter notifications screen
-            goToScreen(bot, update, screenNumber=chapterNotifications, branchName=update.message.text)
-        else:
-            #If is not any valid option
-            goToScreen(bot, update, screenNumber=branchNotifications, message=config.unrecognizedReply)
-
-    elif userState[update.message.chat_id][0]==chapterNotifications:
-        if update.message.text == returnKey:
-            goToScreen(bot, update, screenNumber=branchNotifications)
-        elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
-            #Calls the notifications module to get the notifications of that chapter, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de las notificaciones del capítulo"
-            goToScreen(bot, update, message=replyText)
-        elif branchNotificationsKey in update.message.text:
-            #Calls the notifications module to get the notifications of that branch, maybe a help method to format the reply message as the mockup
-            replyText="Esta es la informacion de las notificaciones de la rama"
-            goToScreen(bot, update, message=replyText)
-        else:
-            #If is not any valid option
-            openKeyboard(bot, update, getKeys(chapterNotifications), message=config.unrecognizedReply)
-    else:
-        #Log the error and return home 
-        logger.warning('Something went wrong reaching notification handler screen code: "%d".', userState[update.message.chat_id][0])
-        goToScreen(bot, update, message=config.unrecognizedReply)
+    #Set the screens to show for this handler
+    screens=[branchNotifications, chapterNotifications]
+    #Set the custom functions/methods to be called if the info is required
+    customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
+    commonHandler(bot, update, screens, customMethods)
 
 '''
 Function to handle Info Screens
