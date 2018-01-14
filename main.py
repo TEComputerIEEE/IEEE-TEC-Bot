@@ -41,8 +41,10 @@ chapterNotifications = 7
 branchContacts = 8
 chapterContacts = 9
 
-#A hash(it's actually a dictionary but since python implements dictionaries as hash tables... see https://mail.python.org/pipermail/python-list/2000-March/048085.html)
-#to handle each user reply depending on their state(in which screen they are).
+'''
+A hash(it's actually a dictionary but since python implements dictionaries as hash tables... see https://mail.python.org/pipermail/python-list/2000-March/048085.html)
+to handle each user reply depending on their state(in which screen they are).
+'''
 userState = {}
 
 
@@ -57,10 +59,26 @@ def log():
 logger = log()
 
 
+#Helper Funcion
+'''
+Funcion to show a keyboard, it also sends a message if required
+'''
+def openKeyboard(bot, update, keys, message="", resize=True):
+    bot.send_message(chat_id= update.message.chat_id,text=message,
+        reply_markup=telegram.ReplyKeyboardMarkup(keys,resize_keyboard=resize))
+'''
+Funcion to close a keyboard, it also sends a message if required
+'''
+def closeKeyboard(bot, update, message=""):
+    bot.send_message(chat_id= update.message.chat_id,text=message,
+                     reply_markup=telegram.ReplyKeyboardRemove())
+
 # Command handlers
 def start(bot, update):
+    #Adds the user to the user state hash
+    userState.update({update.message.chat_id : 0})
     #Start reply
-    update.message.reply_text(config.startReply)
+    openKeyboard(bot, update, customKeyboards[homeScreen], message=config.startReply)
 
 def help(bot, update):
     pass
@@ -97,15 +115,23 @@ def sentChapterMembershipInfo(bot,update):
 def requestAssistance(bot,update):
     pass
 
-def closeKeyboard(bot,update):
-    bot.send_message(chat_id= update.message.chat_id,text='Listo',
-                     reply_markup=telegram.ReplyKeyboardRemove())
-
 def handleMessage(bot, update):
     #If the user is registered
     if not(update.message.chat_id in userState):
         userState.update({update.message.chat_id : 0})
-    #If not then
+    if userState[update.message.chat_id] == homeScreen:
+        pass
+    elif userState[update.message.chat_id] == infoScreen or userState[update.message.chat_id] == benefitScreen or userState[update.message.chat_id] == guideScreen:
+        pass
+    elif userState[update.message.chat_id] == branchActivities or userState[update.message.chat_id] == chapterActivities:
+        pass
+    elif userState[update.message.chat_id] == branchNotifications or userState[update.message.chat_id] == chapterNotifications:
+        pass
+    elif userState[update.message.chat_id] == branchContacts or userState[update.message.chat_id] == chapterContacts:
+        pass
+    else:
+        userState.update({update.message.chat_id : 0})
+        unrecognized(bot, update)
 
 """
 Unrecognized is a method so when natural language processing
@@ -117,6 +143,8 @@ def unrecognized(bot, update):
 def error(bot, update, error):
     #Log errors
     logger.warning('Update "%s" caused error "%s"', update, error)
+
+
 
 
 def main():
