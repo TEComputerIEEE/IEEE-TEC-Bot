@@ -20,15 +20,20 @@ import information as info
 import telegram #necessary for Keyboards
 
 
+#Const keys text
+returnKey = u"🔙 Regresar"
+branchActivitiesKey = u"Actividades de la Rama "
+branchNotificationsKey = u"Notificaciones de la Rama "
+branchContactsKey = u"Contactos de la Rama "
 #Static Keyboards
 #customKeboards[0] = homeKeyboard
 #customKeboards[1] = infoScreen
 #customKeboards[2] = benefitScreen
 #customKeboards[3] = guideScreen
-customKeyboards =  [[["Actividades"], ["Informacion"], ["Notificaciones"], ["Contactos"]],
-                    [["Beneficios Membresía IEEE"], ["Guías de Inscripción"], ["Acerca del Bot"], ["🔙 Regresar"]],
-                    [["Beneficios IEEE"], ["Beneficios Capítulos Técnicos"], ["Beneficios Grupos de Afinidad"], ["🔙 Regresar"]],
-                    [["¿Cómo ser miembro de IEEE?"], ["¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?"], ["Solicitar Asistencia"], ["🔙 Regresar"]]]
+customKeyboards =  [[[u"Actividades"], [u"Información"], [u"Notificaciones"], [u"Contactos"]],
+                    [[u"Beneficios Membresía IEEE"], [u"Guías de Inscripción"], [u"Acerca del Bot"], [returnKey]],
+                    [[u"Beneficios IEEE"], [u"Beneficios Capítulos Técnicos"], [u"Beneficios Grupos de Afinidad"], [returnKey]],
+                    [[u"¿Cómo ser miembro de IEEE?"], [u"¿Cómo afiliarme a un Capítulo Técnico o Grupo de Afinidad?"], [u"Solicitar Asistencia"], [returnKey]]]
 
 #Constant Values do not Change them
 homeScreen = 0
@@ -41,6 +46,7 @@ branchNotifications = 6
 chapterNotifications = 7
 branchContacts = 8
 chapterContacts = 9
+
 
 '''
 A hash(it's actually a dictionary but since python implements dictionaries as hash tables... see https://mail.python.org/pipermail/python-list/2000-March/048085.html)
@@ -72,7 +78,7 @@ def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", resize=Tru
 '''
 Function to close a keyboard, it also sends a message if required
 '''
-def closeKeyboard(bot, update, message=""):
+def closeKeyboard(bot, update, message="Aquí tiene su información:"):
     bot.send_message(chat_id= update.message.chat_id,text=message,
                      reply_markup=telegram.ReplyKeyboardRemove())
 
@@ -91,20 +97,28 @@ def getKeys(screenNumber, branchName=""):
         try:#Since a API search call will be made and the result is needed in order to continue
             abbreviation=info.getBranchAbbreviation(branchName)
             if screenNumber == chapterActivities:
-                keys+=[["Actividades de la Rama"+abbreviation]]
+                keys+=[[branchActivitiesKey+abbreviation]]
             elif screenNumber == chapterNotifications:
-                keys+=[["Notificaciones de la Rama"+abbreviation]]
+                keys+=[[branchNotificationsKey+abbreviation]]
             else:
-                keys+=[["Contactos de la Rama"+abbreviation]]
-            keys+=[ [chapter] for chapter in info.listChaters() ]
+                keys+=[[branchContactsKey+abbreviation]]
+            keys+=[ [chapter] for chapter in info.listChapters(branchName) ]
         except Exception, e:
             #Log the error
-            logger.warning('Something went wrong searching for "%s" branch.', branchName)
+            logger.warning('Something went wrong searching for "%s" branch. Error "%s"', branchName, e)
             return customKeyboards[homeScreen]
     else:
         #Log the error
         logger.warning('Error on getkeys, "%d" inserted.', screenNumber)
-    return keys+[["🔙 Regresar"]]
+    return keys+[[returnKey]]
+
+'''
+Since the return and other functions use the same lines to go home this method is implemented
+'''
+def goHome(bot, update):
+    userState.update({update.message.chat_id : [homeScreen, ""]})
+    openKeyboard(bot, update, getKeys(homeScreen))
+
 
 '''
 Function to handle the home screen
@@ -113,6 +127,7 @@ def homeHandler(bot, update):
     if update.message.text in customKeyboards[homeScreen][0]:
         userState.update({update.message.chat_id : [branchActivities, update.message.text]})
         openKeyboard(bot, update, getKeys(branchActivities))
+
     elif update.message.text in customKeyboards[homeScreen][1]:
         userState.update({update.message.chat_id : [infoScreen, update.message.text]})
         openKeyboard(bot, update, getKeys(infoScreen))
@@ -126,7 +141,42 @@ def homeHandler(bot, update):
         openKeyboard(bot, update, getKeys(branchContacts))
 
     else:
+        openKeyboard(bot, update, getKeys(homeScreen), config.unrecognizedReply)
+
+
+'''
+Function to handle Activities Screens
+'''
+def activitiesHandler(bot, update):
+    if userState[update.message.chat_id][0]==branchActivities:
+        if update.message.text == returnKey:
+            goHome(bot, update)
+            return
+        elif update.message.text in info.listBranches():
+            userState.update({update.message.chat_id : [chapterActivities, update.message.text]})
+            openKeyboard(bot, update, getKeys(chapterActivities, update.message.text))
+        else:
+            unrecognized(bot, update)
+
+    elif userState[update.message.chat_id][0]==chapterActivities:
+        if update.message.text == returnKey:
+            userState.update({update.message.chat_id : [branchActivities, update.message.text]})
+            openKeyboard(bot, update, getKeys(branchActivities))
+        elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
+            #Calls the activities module to get the activities for that chapter, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        elif branchActivitiesKey in update.message.text:
+            #Calls the activities module to get the activities for that chapter, maybe a help method to format the reply message as the mockup
+            goHome(bot, update)
+            closeKeyboard(bot, update);
+        else:
+            unrecognized(bot, update)
+    else:
+        #Log the error
+        logger.warning('Something went wrong reaching activities handler screen code: "%d".', userState[update.message.chat_id][0])
         unrecognized(bot, update);
+        goHome(bot, update)
 
 # Command handlers
 '''
@@ -183,7 +233,7 @@ def handleMessage(bot, update):
     elif userState[update.message.chat_id][0] == infoScreen or userState[update.message.chat_id][0] == benefitScreen or userState[update.message.chat_id][0] == guideScreen:
         pass
     elif userState[update.message.chat_id][0] == branchActivities or userState[update.message.chat_id][0] == chapterActivities:
-        pass
+        activitiesHandler(bot, update)
     elif userState[update.message.chat_id][0] == branchNotifications or userState[update.message.chat_id][0] == chapterNotifications:
         pass
     elif userState[update.message.chat_id][0] == branchContacts or userState[update.message.chat_id][0] == chapterContacts:
@@ -191,9 +241,7 @@ def handleMessage(bot, update):
     else:
         #Log the error
         logger.warning('Error on getkeys, "%d" inserted.', screenNumber)
-        userState.update({update.message.chat_id : [homeScreen, ""]})
-        openKeyboard(bot, update, getKeys(homeScreen))
-
+        goHome(bot, update)
 '''
 Unrecognized is a method so when natural language processing
 is implemented. will be easier to incorporate to the actual code
