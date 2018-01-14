@@ -71,9 +71,14 @@ logger = log()
 '''
 Function to show a keyboard, it also sends a message if required
 '''
-def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", resize=True):
+def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", document=None, photo=None,resize=True):
+    if document != None:
+        print("Sending document")
+        bot.send_document(chat_id=update.message.chat_id, document=document)
+    if photo != None:
+        bot.send_photo(chat_id=update.message.chat_id, photo=photo)
     bot.send_message(parse_mode='HTML',chat_id= update.message.chat_id,text=message,
-        reply_markup=telegram.ReplyKeyboardMarkup(keys,resize_keyboard=resize))
+        reply_markup=telegram.ReplyKeyboardMarkup(keys, resize_keyboard=resize))
 
 '''
 Function to close a keyboard, it also sends a message if required
@@ -116,9 +121,9 @@ def getKeys(screenNumber, branchName=""):
 Since the return and other functions use the same lines to go home 
 or other screens this method is implemented, the default screen is the home screen
 '''
-def goToScreen(bot, update, screenNumber=homeScreen, message="Seleccione una Opcion:", branchName=""):
+def goToScreen(bot, update, screenNumber=homeScreen, message="Seleccione una Opcion:", document=None, photo=None, branchName=""):
     userState.update({update.message.chat_id : [screenNumber, ""]})
-    openKeyboard(bot, update, getKeys(screenNumber, branchName),message)
+    openKeyboard(bot, update, getKeys(screenNumber, branchName),message, document=document, photo=photo)
 
 
 '''
@@ -270,9 +275,8 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == guideScreen:
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
-            #replyText=info.membershipSteps()
-            replyText ="Mostrando pasos para pertenecer a IEEE"
-            goToScreen(bot, update, message=replyText)
+            #replyText=info.membershipSteps() 
+            goToScreen(bot, update, message=replyText)#if a photo or document needs to be added , just add the parameter photo=the photo or document= the document
 
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
