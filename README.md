@@ -25,17 +25,39 @@ This bot is based on [python-telegram-bot wrapper](https://github.com/python-tel
 ```
 sudo pip3 install python-telegram-bot --upgrade
 ```
+Also as we're using our own API, you'll have to make a API. See [IEEE-TEC-WebAPI](https://github.com/TEComputerIEEE/IEEE-TEC-WebAPI) if you need a example.
 
 ## Running the tests
 **Unit test howto**
 
+## Deployment
+To deploy your own version of the bot. You need to follow the telegram bot creation [steps](https://core.telegram.org/bots#3-how-do-i-create-a-bot). And create a config.py file with your private info, as this one:
+
+```
+#API KEYs
+TELAPIKEY = ""
+WEBAPIKEY = ""
+#Config parameters
+Logging = True
+#Default Messages
+startReply = "Bienvenido al Bot de IEEE Computer Society TEC"
+unrecognizedReply = "Comando invalido, por favor utilice el teclado especial."
+```
+
+This is not the [best way](https://medium.freecodecamp.org/how-to-securely-store-api-keys-4ff3ea19ebda) to handle your key, but for now it will do.
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](heregoesthelink) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
- 
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+* MAJOR version when you make incompatible API changes,
+* MINOR version when you add functionality in a backwards-compatible manner, and
+* PATCH version when you make backwards-compatible bug fixes.
+
+For the versions available, see the [tags on this repository](https://github.com/TEComputerIEEE/IEEE-TEC-Bot/tags). 
 
 ## Authors
 The leading developers involved in this project can be found in this list. For further details, you can go to the [contributors graph](https://github.com/TEComputerIEEE/IEEE-TEC-Bot/graphs/contributors).
