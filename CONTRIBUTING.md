@@ -1,5 +1,7 @@
 ## How to contribute to IEEE-TEC-Bot
 
+This is a contributing file inspired by [How to contribute to Ruby on Rails](https://github.com/rails/rails/blob/master/CONTRIBUTING.md).
+
 #### **Did you find a bug?**
 
 * **Do not open up a GitHub issue if the bug is a security vulnerability
@@ -16,6 +18,8 @@
 
 * Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
 
+* Ensure to use the [style guide](style-guide.md).
+
 
 #### **Did you fix whitespace, format code, or make a purely cosmetic patch?**
 
@@ -30,11 +34,11 @@ Depending on the change we will evaluate to accept or not the PR.
 
 * Ask any question about how to use the bot to anyone on @TEComputerIEE.
 
-#### **Do you want to contribute to the Rails documentation?**
+#### **Do you want to contribute to the IEEE-TEC-BOT documentation?**
 
 * Make the changes you consider necessary and then make a pull request with your PR.
 
-IEEE-TEC-Bot is a volunteer effort. We encourage you to pitch in and [join the team](http://contributors.rubyonrails.org)!
+IEEE-TEC-Bot is a volunteer effort.
 
 Thanks! :heart: :heart: :heart:
 
