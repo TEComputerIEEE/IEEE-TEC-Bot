@@ -17,14 +17,13 @@ If you wish to develop or test your own version of the bot, you'll have to insta
 #### Python 3 and Pip
 If you don't have python installed you can install it by typing into a terminal:
 ```
-sudo apt get install python3 python-pip
-pip install --upgrade pip
+sudo apt get install python3 python3-pip
+pip3 install --upgrade pip setuptools
 ```
 #### Python-telegram-bot wrapper
 This bot is based on [python-telegram-bot wrapper](https://github.com/python-telegram-bot/python-telegram-bot), you can install it with:
 ```
-sudo pip install setuptools
-sudo pip install python-telegram-bot --upgrade
+sudo pip3 install python-telegram-bot --upgrade
 ```
 
 ## Running the tests
