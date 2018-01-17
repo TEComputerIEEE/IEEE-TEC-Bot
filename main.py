@@ -108,7 +108,7 @@ def getKeys(screenNumber, branchName=""):
             else:
                 keys+=[[branchContactsKey+abbreviation]]
             keys+=[ [chapter] for chapter in info.listChapters(branchName) ]
-        except Exception, e:
+        except (Exception, e):
             #Log the error
             logger.warning('Something went wrong searching for "%s" branch. Error "%s"', branchName, e)
             return customKeyboards[homeScreen]
