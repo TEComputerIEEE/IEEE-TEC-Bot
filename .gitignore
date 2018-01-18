@@ -102,3 +102,6 @@ ENV/
 
 #Bot Config
 config.py
+
+#Databases
+*.sqlite
