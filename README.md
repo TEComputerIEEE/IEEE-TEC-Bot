@@ -23,8 +23,19 @@ pip3 install --upgrade pip setuptools
 #### Python-telegram-bot wrapper
 This bot is based on [python-telegram-bot wrapper](https://github.com/python-telegram-bot/python-telegram-bot), you can install it with:
 ```
-sudo pip3 install python-telegram-bot --upgrade
+pip3 install python-telegram-bot --upgrade --user
 ```
+#### Request-Cache
+To improve response time, the request responses are [cached](https://github.com/reclosedev/requests-cache/blob/master/docs/user_guide.rst):
+```
+pip3 install requests-cache --upgrade --user
+```
+#### Schedule
+To do task periodically this bot uses [schedule](https://github.com/dbader/schedule):
+```
+pip3 install schedule --upgrade --user
+```
+
 Also as we're using our own API, you'll have to make a API. See [IEEE-TEC-WebAPI](https://github.com/TEComputerIEEE/IEEE-TEC-WebAPI) if you need a example.
 
 ## Running the tests
