@@ -1,7 +1,7 @@
 branches = {"branches" : [{
   "branchID": 1,
-  "college": "Vitz",
-  "acronym": "dynamic",
+  "college": "Tecnológico de Costa Rica",
+  "acronym": "TEC",
   "activities": [
     {
       "activityID": 1,
@@ -499,9 +499,9 @@ branches = {"branches" : [{
   "contacts": [
     {
       "contactID": 1,
-      "name": "Curt Hazeup",
-      "userName": "chazeup0",
-      "role": "Administrative Assistant IV"
+      "name": "Malcolm Davis",
+      "userName": "@malkam03",
+      "role": "Chair de la Rama Estudiantil"
     }
   ]
 }, {
@@ -783,37 +783,37 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Gannon Fransemai",
-      "userName": "gfransemai0",
+      "userName": "@gfransemai0",
       "role": "Systems Administrator II"
     },
     {
       "contactID": 2,
       "name": "Cinderella Alliston",
-      "userName": "calliston1",
+      "userName": "@calliston1",
       "role": "Senior Editor"
     },
     {
       "contactID": 3,
       "name": "Alfie Ferrettino",
-      "userName": "aferrettino2",
+      "userName": "@aferrettino2",
       "role": "Senior Financial Analyst"
     },
     {
       "contactID": 4,
       "name": "Maxine McIlwraith",
-      "userName": "mmcilwraith3",
+      "userName": "@mmcilwraith3",
       "role": "Staff Scientist"
     },
     {
       "contactID": 5,
       "name": "Ezekiel Fortoun",
-      "userName": "efortoun4",
+      "userName": "@efortoun4",
       "role": "Account Representative III"
     },
     {
       "contactID": 6,
       "name": "Jannelle Vaulkhard",
-      "userName": "jvaulkhard5",
+      "userName": "@jvaulkhard5",
       "role": "Director of Sales"
     }
   ]
@@ -1312,55 +1312,55 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Eileen Disbrow",
-      "userName": "edisbrow0",
+      "userName": "@edisbrow0",
       "role": "Paralegal"
     },
     {
       "contactID": 2,
       "name": "Mellie Bonome",
-      "userName": "mbonome1",
+      "userName": "@mbonome1",
       "role": "Assistant Professor"
     },
     {
       "contactID": 3,
       "name": "Clarice Larwood",
-      "userName": "clarwood2",
+      "userName": "@clarwood2",
       "role": "Programmer Analyst III"
     },
     {
       "contactID": 4,
       "name": "Jess Wilfing",
-      "userName": "jwilfing3",
+      "userName": "@jwilfing3",
       "role": "Geologist IV"
     },
     {
       "contactID": 5,
       "name": "Jeane Songest",
-      "userName": "jsongest4",
+      "userName": "@jsongest4",
       "role": "Financial Advisor"
     },
     {
       "contactID": 6,
       "name": "Michel Baudry",
-      "userName": "mbaudry5",
+      "userName": "@mbaudry5",
       "role": "Environmental Tech"
     },
     {
       "contactID": 7,
       "name": "Haily Escudier",
-      "userName": "hescudier6",
+      "userName": "@hescudier6",
       "role": "Mechanical Systems Engineer"
     },
     {
       "contactID": 8,
       "name": "Pietrek Seide",
-      "userName": "pseide7",
+      "userName": "@pseide7",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 9,
       "name": "Astrix Bullard",
-      "userName": "abullard8",
+      "userName": "@abullard8",
       "role": "Design Engineer"
     }
   ]
@@ -1903,31 +1903,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Alexio Shorto",
-      "userName": "ashorto0",
+      "userName": "@ashorto0",
       "role": "Environmental Specialist"
     },
     {
       "contactID": 2,
       "name": "Khalil Swindle",
-      "userName": "kswindle1",
+      "userName": "@kswindle1",
       "role": "Operator"
     },
     {
       "contactID": 3,
       "name": "Bobbye Lumbley",
-      "userName": "blumbley2",
+      "userName": "@blumbley2",
       "role": "Data Coordiator"
     },
     {
       "contactID": 4,
       "name": "Hobart Arlet",
-      "userName": "harlet3",
+      "userName": "@harlet3",
       "role": "Research Assistant IV"
     },
     {
       "contactID": 5,
       "name": "Emmalynn Taynton",
-      "userName": "etaynton4",
+      "userName": "@etaynton4",
       "role": "Pharmacist"
     }
   ]
@@ -2241,31 +2241,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Aileen Blaisdell",
-      "userName": "ablaisdell0",
+      "userName": "@ablaisdell0",
       "role": "Paralegal"
     },
     {
       "contactID": 2,
       "name": "Gibby Lockart",
-      "userName": "glockart1",
+      "userName": "@glockart1",
       "role": "Marketing Manager"
     },
     {
       "contactID": 3,
       "name": "Corry Cowpertwait",
-      "userName": "ccowpertwait2",
+      "userName": "@ccowpertwait2",
       "role": "Assistant Manager"
     },
     {
       "contactID": 4,
       "name": "Ewart Purkis",
-      "userName": "epurkis3",
+      "userName": "@epurkis3",
       "role": "Quality Engineer"
     },
     {
       "contactID": 5,
       "name": "Pauly Gruszecki",
-      "userName": "pgruszecki4",
+      "userName": "@pgruszecki4",
       "role": "Biostatistician III"
     }
   ]
@@ -2527,31 +2527,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Colline Trundler",
-      "userName": "ctrundler0",
+      "userName": "@ctrundler0",
       "role": "Senior Sales Associate"
     },
     {
       "contactID": 2,
       "name": "Anselma Ledner",
-      "userName": "aledner1",
+      "userName": "@aledner1",
       "role": "Legal Assistant"
     },
     {
       "contactID": 3,
       "name": "Barton Learmount",
-      "userName": "blearmount2",
+      "userName": "@blearmount2",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 4,
       "name": "Kyle Doog",
-      "userName": "kdoog3",
+      "userName": "@kdoog3",
       "role": "Health Coach II"
     },
     {
       "contactID": 5,
       "name": "Ollie Iwanicki",
-      "userName": "oiwanicki4",
+      "userName": "@oiwanicki4",
       "role": "Senior Financial Analyst"
     }
   ]
@@ -2565,13 +2565,13 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Lauren Saur",
-      "userName": "lsaur0",
+      "userName": "@lsaur0",
       "role": "Budget/Accounting Analyst III"
     },
     {
       "contactID": 2,
       "name": "Lev Carrabot",
-      "userName": "lcarrabot1",
+      "userName": "@lcarrabot1",
       "role": "Sales Associate"
     }
   ]
@@ -3093,31 +3093,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Tyrone Grissett",
-      "userName": "tgrissett0",
+      "userName": "@tgrissett0",
       "role": "Marketing Manager"
     },
     {
       "contactID": 2,
       "name": "Sabra McAw",
-      "userName": "smcaw1",
+      "userName": "@smcaw1",
       "role": "Analyst Programmer"
     },
     {
       "contactID": 3,
       "name": "Sullivan Poppleston",
-      "userName": "spoppleston2",
+      "userName": "@spoppleston2",
       "role": "Geologist IV"
     },
     {
       "contactID": 4,
       "name": "Selinda Babber",
-      "userName": "sbabber3",
+      "userName": "@sbabber3",
       "role": "Office Assistant II"
     },
     {
       "contactID": 5,
       "name": "Rikki Stanion",
-      "userName": "rstanion4",
+      "userName": "@rstanion4",
       "role": "Speech Pathologist"
     }
   ]
@@ -3131,19 +3131,19 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Damon Iczokvitz",
-      "userName": "diczokvitz0",
+      "userName": "@diczokvitz0",
       "role": "Systems Administrator I"
     },
     {
       "contactID": 2,
       "name": "Bonny Wesker",
-      "userName": "bwesker1",
+      "userName": "@bwesker1",
       "role": "Accountant II"
     },
     {
       "contactID": 3,
       "name": "Alisun de Mendoza",
-      "userName": "ade2",
+      "userName": "@ade2",
       "role": "Data Coordiator"
     }
   ]
@@ -3234,37 +3234,37 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Nobie Sibray",
-      "userName": "nsibray0",
+      "userName": "@nsibray0",
       "role": "Operator"
     },
     {
       "contactID": 2,
       "name": "Cassaundra Pedrielli",
-      "userName": "cpedrielli1",
+      "userName": "@cpedrielli1",
       "role": "Pharmacist"
     },
     {
       "contactID": 3,
       "name": "Kalvin Faughey",
-      "userName": "kfaughey2",
+      "userName": "@kfaughey2",
       "role": "Sales Associate"
     },
     {
       "contactID": 4,
       "name": "Meredithe Meece",
-      "userName": "mmeece3",
+      "userName": "@mmeece3",
       "role": "Environmental Tech"
     },
     {
       "contactID": 5,
       "name": "Sylvia Pouck",
-      "userName": "spouck4",
+      "userName": "@spouck4",
       "role": "Operator"
     },
     {
       "contactID": 6,
       "name": "Hesther Sewart",
-      "userName": "hsewart5",
+      "userName": "@hsewart5",
       "role": "Geological Engineer"
     }
   ]
@@ -3396,7 +3396,7 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Darin Forseith",
-      "userName": "dforseith0",
+      "userName": "@dforseith0",
       "role": "Software Test Engineer IV"
     }
   ]
@@ -3797,13 +3797,13 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Man Doerr",
-      "userName": "mdoerr0",
+      "userName": "@mdoerr0",
       "role": "Professor"
     },
     {
       "contactID": 2,
       "name": "Arda Ensley",
-      "userName": "aensley1",
+      "userName": "@aensley1",
       "role": "VP Quality Control"
     }
   ]
@@ -3817,61 +3817,61 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Yvonne Dobrowolski",
-      "userName": "ydobrowolski0",
+      "userName": "@ydobrowolski0",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 2,
       "name": "Rosella MacMichael",
-      "userName": "rmacmichael1",
+      "userName": "@rmacmichael1",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 3,
       "name": "Tera Leopard",
-      "userName": "tleopard2",
+      "userName": "@tleopard2",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 4,
       "name": "Elysee Dimblebee",
-      "userName": "edimblebee3",
+      "userName": "@edimblebee3",
       "role": "Engineer II"
     },
     {
       "contactID": 5,
       "name": "Letizia Mulhall",
-      "userName": "lmulhall4",
+      "userName": "@lmulhall4",
       "role": "Account Executive"
     },
     {
       "contactID": 6,
       "name": "Alessandra Pergens",
-      "userName": "apergens5",
+      "userName": "@apergens5",
       "role": "Physical Therapy Assistant"
     },
     {
       "contactID": 7,
       "name": "Trip Manthorpe",
-      "userName": "tmanthorpe6",
+      "userName": "@tmanthorpe6",
       "role": "Senior Cost Accountant"
     },
     {
       "contactID": 8,
       "name": "Barbabas Kinane",
-      "userName": "bkinane7",
+      "userName": "@bkinane7",
       "role": "VP Accounting"
     },
     {
       "contactID": 9,
       "name": "Harmonie Scottrell",
-      "userName": "hscottrell8",
+      "userName": "@hscottrell8",
       "role": "Biostatistician I"
     },
     {
       "contactID": 10,
       "name": "Malorie Baggalley",
-      "userName": "mbaggalley9",
+      "userName": "@mbaggalley9",
       "role": "VP Marketing"
     }
   ]
@@ -4240,61 +4240,61 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Creight Lightbown",
-      "userName": "clightbown0",
+      "userName": "@clightbown0",
       "role": "Accounting Assistant III"
     },
     {
       "contactID": 2,
       "name": "Loren Cavan",
-      "userName": "lcavan1",
+      "userName": "@lcavan1",
       "role": "Civil Engineer"
     },
     {
       "contactID": 3,
       "name": "Gav Gipp",
-      "userName": "ggipp2",
+      "userName": "@ggipp2",
       "role": "Civil Engineer"
     },
     {
       "contactID": 4,
       "name": "Eb Meadows",
-      "userName": "emeadows3",
+      "userName": "@emeadows3",
       "role": "Human Resources Assistant II"
     },
     {
       "contactID": 5,
       "name": "Donal Rohloff",
-      "userName": "drohloff4",
+      "userName": "@drohloff4",
       "role": "Web Designer III"
     },
     {
       "contactID": 6,
       "name": "Del Dugget",
-      "userName": "ddugget5",
+      "userName": "@ddugget5",
       "role": "Social Worker"
     },
     {
       "contactID": 7,
       "name": "Griffy Tumielli",
-      "userName": "gtumielli6",
+      "userName": "@gtumielli6",
       "role": "Quality Control Specialist"
     },
     {
       "contactID": 8,
       "name": "Stavros Moffatt",
-      "userName": "smoffatt7",
+      "userName": "@smoffatt7",
       "role": "Research Associate"
     },
     {
       "contactID": 9,
       "name": "Goldarina Orans",
-      "userName": "gorans8",
+      "userName": "@gorans8",
       "role": "Occupational Therapist"
     },
     {
       "contactID": 10,
       "name": "Caralie Eastup",
-      "userName": "ceastup9",
+      "userName": "@ceastup9",
       "role": "Civil Engineer"
     }
   ]
@@ -4481,13 +4481,13 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Julieta Tessyman",
-      "userName": "jtessyman0",
+      "userName": "@jtessyman0",
       "role": "Structural Analysis Engineer"
     },
     {
       "contactID": 2,
       "name": "Micheline Faloon",
-      "userName": "mfaloon1",
+      "userName": "@mfaloon1",
       "role": "Environmental Tech"
     }
   ]
@@ -4868,31 +4868,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Agneta Pellingar",
-      "userName": "apellingar0",
+      "userName": "@apellingar0",
       "role": "Internal Auditor"
     },
     {
       "contactID": 2,
       "name": "Nickie Koubek",
-      "userName": "nkoubek1",
+      "userName": "@nkoubek1",
       "role": "Sales Associate"
     },
     {
       "contactID": 3,
       "name": "Lee Snead",
-      "userName": "lsnead2",
+      "userName": "@lsnead2",
       "role": "Actuary"
     },
     {
       "contactID": 4,
       "name": "Keelia Bourton",
-      "userName": "kbourton3",
+      "userName": "@kbourton3",
       "role": "Analyst Programmer"
     },
     {
       "contactID": 5,
       "name": "Bernardo Mobbs",
-      "userName": "bmobbs4",
+      "userName": "@bmobbs4",
       "role": "Biostatistician III"
     }
   ]
@@ -5024,49 +5024,49 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Ruddy Cornbill",
-      "userName": "rcornbill0",
+      "userName": "@rcornbill0",
       "role": "Junior Executive"
     },
     {
       "contactID": 2,
       "name": "Sal Moyers",
-      "userName": "smoyers1",
+      "userName": "@smoyers1",
       "role": "Human Resources Assistant III"
     },
     {
       "contactID": 3,
       "name": "Inga Emeney",
-      "userName": "iemeney2",
+      "userName": "@iemeney2",
       "role": "Software Test Engineer I"
     },
     {
       "contactID": 4,
       "name": "Saunderson Easlea",
-      "userName": "seaslea3",
+      "userName": "@seaslea3",
       "role": "Web Designer I"
     },
     {
       "contactID": 5,
       "name": "Pavel Shevlane",
-      "userName": "pshevlane4",
+      "userName": "@pshevlane4",
       "role": "Civil Engineer"
     },
     {
       "contactID": 6,
       "name": "Odette Nason",
-      "userName": "onason5",
+      "userName": "@onason5",
       "role": "Associate Professor"
     },
     {
       "contactID": 7,
       "name": "Mischa Ghidini",
-      "userName": "mghidini6",
+      "userName": "@mghidini6",
       "role": "VP Product Management"
     },
     {
       "contactID": 8,
       "name": "Ingeborg McEttigen",
-      "userName": "imcettigen7",
+      "userName": "@imcettigen7",
       "role": "Account Representative IV"
     }
   ]
@@ -5629,61 +5629,61 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Court Olkowicz",
-      "userName": "colkowicz0",
+      "userName": "@colkowicz0",
       "role": "Account Coordinator"
     },
     {
       "contactID": 2,
       "name": "Raychel Castilljo",
-      "userName": "rcastilljo1",
+      "userName": "@rcastilljo1",
       "role": "Account Executive"
     },
     {
       "contactID": 3,
       "name": "Heloise Chenery",
-      "userName": "hchenery2",
+      "userName": "@hchenery2",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 4,
       "name": "Byrom Saltman",
-      "userName": "bsaltman3",
+      "userName": "@bsaltman3",
       "role": "Structural Analysis Engineer"
     },
     {
       "contactID": 5,
       "name": "Gherardo Gallemore",
-      "userName": "ggallemore4",
+      "userName": "@ggallemore4",
       "role": "Librarian"
     },
     {
       "contactID": 6,
       "name": "Torrence McLay",
-      "userName": "tmclay5",
+      "userName": "@tmclay5",
       "role": "Assistant Manager"
     },
     {
       "contactID": 7,
       "name": "Travers Fairtlough",
-      "userName": "tfairtlough6",
+      "userName": "@tfairtlough6",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 8,
       "name": "Langston Feighney",
-      "userName": "lfeighney7",
+      "userName": "@lfeighney7",
       "role": "Senior Financial Analyst"
     },
     {
       "contactID": 9,
       "name": "Alissa Leupoldt",
-      "userName": "aleupoldt8",
+      "userName": "@aleupoldt8",
       "role": "Actuary"
     },
     {
       "contactID": 10,
       "name": "Kelsey Silbersak",
-      "userName": "ksilbersak9",
+      "userName": "@ksilbersak9",
       "role": "Human Resources Manager"
     }
   ]
@@ -6004,13 +6004,13 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Jacquelyn O Sullivan",
-      "userName": "jo0",
+      "userName": "@jo0",
       "role": "Senior Sales Associate"
     },
     {
       "contactID": 2,
       "name": "Ealasaid Levi",
-      "userName": "elevi1",
+      "userName": "@elevi1",
       "role": "Senior Financial Analyst"
     }
   ]
@@ -6024,31 +6024,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Wallie Poletto",
-      "userName": "wpoletto0",
+      "userName": "@wpoletto0",
       "role": "Budget/Accounting Analyst IV"
     },
     {
       "contactID": 2,
       "name": "Courtney Yakubovich",
-      "userName": "cyakubovich1",
+      "userName": "@cyakubovich1",
       "role": "Accountant I"
     },
     {
       "contactID": 3,
       "name": "Linc Huton",
-      "userName": "lhuton2",
+      "userName": "@lhuton2",
       "role": "Human Resources Manager"
     },
     {
       "contactID": 4,
       "name": "Garald Spalls",
-      "userName": "gspalls3",
+      "userName": "@gspalls3",
       "role": "Environmental Tech"
     },
     {
       "contactID": 5,
       "name": "Rafaelia Loughlin",
-      "userName": "rloughlin4",
+      "userName": "@rloughlin4",
       "role": "Help Desk Operator"
     }
   ]
@@ -6062,7 +6062,7 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Mehetabel Pridmore",
-      "userName": "mpridmore0",
+      "userName": "@mpridmore0",
       "role": "Analog Circuit Design manager"
     }
   ]
@@ -6340,61 +6340,61 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Rafael Baudacci",
-      "userName": "rbaudacci0",
+      "userName": "@rbaudacci0",
       "role": "Analog Circuit Design manager"
     },
     {
       "contactID": 2,
       "name": "Rod Stubbes",
-      "userName": "rstubbes1",
+      "userName": "@rstubbes1",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 3,
       "name": "Eugenio Strowther",
-      "userName": "estrowther2",
+      "userName": "@estrowther2",
       "role": "Database Administrator IV"
     },
     {
       "contactID": 4,
       "name": "Cathi Umpleby",
-      "userName": "cumpleby3",
+      "userName": "@cumpleby3",
       "role": "Sales Associate"
     },
     {
       "contactID": 5,
       "name": "Alexandr Skene",
-      "userName": "askene4",
+      "userName": "@askene4",
       "role": "Social Worker"
     },
     {
       "contactID": 6,
       "name": "Olenolin Arkcoll",
-      "userName": "oarkcoll5",
+      "userName": "@oarkcoll5",
       "role": "Quality Engineer"
     },
     {
       "contactID": 7,
       "name": "Mirabella Eccleston",
-      "userName": "meccleston6",
+      "userName": "@meccleston6",
       "role": "Assistant Media Planner"
     },
     {
       "contactID": 8,
       "name": "Flory Preuvost",
-      "userName": "fpreuvost7",
+      "userName": "@fpreuvost7",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 9,
       "name": "Maren Curnick",
-      "userName": "mcurnick8",
+      "userName": "@mcurnick8",
       "role": "Librarian"
     },
     {
       "contactID": 10,
       "name": "Dorey Willis",
-      "userName": "dwillis9",
+      "userName": "@dwillis9",
       "role": "Media Manager II"
     }
   ]
@@ -6468,37 +6468,37 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Lynette Castiblanco",
-      "userName": "lcastiblanco0",
+      "userName": "@lcastiblanco0",
       "role": "Nurse Practicioner"
     },
     {
       "contactID": 2,
       "name": "Damiano Eastabrook",
-      "userName": "deastabrook1",
+      "userName": "@deastabrook1",
       "role": "Editor"
     },
     {
       "contactID": 3,
       "name": "Nisse Lehrer",
-      "userName": "nlehrer2",
+      "userName": "@nlehrer2",
       "role": "Marketing Manager"
     },
     {
       "contactID": 4,
       "name": "Livvie Wildish",
-      "userName": "lwildish3",
+      "userName": "@lwildish3",
       "role": "Executive Secretary"
     },
     {
       "contactID": 5,
       "name": "Mariellen Edgeller",
-      "userName": "medgeller4",
+      "userName": "@medgeller4",
       "role": "Structural Analysis Engineer"
     },
     {
       "contactID": 6,
       "name": "Jessey Neil",
-      "userName": "jneil5",
+      "userName": "@jneil5",
       "role": "VP Marketing"
     }
   ]
@@ -6512,25 +6512,25 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Solomon Killimister",
-      "userName": "skillimister0",
+      "userName": "@skillimister0",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 2,
       "name": "Juliana McGreil",
-      "userName": "jmcgreil1",
+      "userName": "@jmcgreil1",
       "role": "Computer Systems Analyst III"
     },
     {
       "contactID": 3,
       "name": "Dorene Macias",
-      "userName": "dmacias2",
+      "userName": "@dmacias2",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 4,
       "name": "Carlen Isard",
-      "userName": "cisard3",
+      "userName": "@cisard3",
       "role": "Database Administrator I"
     }
   ]
@@ -6932,7 +6932,7 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Annamaria Olligan",
-      "userName": "aolligan0",
+      "userName": "@aolligan0",
       "role": "Help Desk Operator"
     }
   ]
@@ -7017,37 +7017,37 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Dennis Corp",
-      "userName": "dcorp0",
+      "userName": "@dcorp0",
       "role": "Information Systems Manager"
     },
     {
       "contactID": 2,
       "name": "Evangeline Gepson",
-      "userName": "egepson1",
+      "userName": "@egepson1",
       "role": "Assistant Media Planner"
     },
     {
       "contactID": 3,
       "name": "Gerhard Steinor",
-      "userName": "gsteinor2",
+      "userName": "@gsteinor2",
       "role": "Help Desk Technician"
     },
     {
       "contactID": 4,
       "name": "Kiele Rudland",
-      "userName": "krudland3",
+      "userName": "@krudland3",
       "role": "Sales Associate"
     },
     {
       "contactID": 5,
       "name": "Janot Jessen",
-      "userName": "jjessen4",
+      "userName": "@jjessen4",
       "role": "Structural Analysis Engineer"
     },
     {
       "contactID": 6,
       "name": "Modestine Roskams",
-      "userName": "mroskams5",
+      "userName": "@mroskams5",
       "role": "Help Desk Operator"
     }
   ]
@@ -7392,37 +7392,37 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Gard De Courtney",
-      "userName": "gde0",
+      "userName": "@gde0",
       "role": "Software Test Engineer I"
     },
     {
       "contactID": 2,
       "name": "Cherie Fricker",
-      "userName": "cfricker1",
+      "userName": "@cfricker1",
       "role": "Statistician II"
     },
     {
       "contactID": 3,
       "name": "Charmion Karchewski",
-      "userName": "ckarchewski2",
+      "userName": "@ckarchewski2",
       "role": "Programmer IV"
     },
     {
       "contactID": 4,
       "name": "Noak Baudou",
-      "userName": "nbaudou3",
+      "userName": "@nbaudou3",
       "role": "Registered Nurse"
     },
     {
       "contactID": 5,
       "name": "Waldo Brendish",
-      "userName": "wbrendish4",
+      "userName": "@wbrendish4",
       "role": "Developer III"
     },
     {
       "contactID": 6,
       "name": "Nettie Kellogg",
-      "userName": "nkellogg5",
+      "userName": "@nkellogg5",
       "role": "Business Systems Development Analyst"
     }
   ]
@@ -7436,31 +7436,31 @@ branches = {"branches" : [{
     {
       "contactID": 1,
       "name": "Ailis Bickerstaff",
-      "userName": "abickerstaff0",
+      "userName": "@abickerstaff0",
       "role": "Food Chemist"
     },
     {
       "contactID": 2,
       "name": "Redford Romei",
-      "userName": "rromei1",
+      "userName": "@rromei1",
       "role": "Executive Secretary"
     },
     {
       "contactID": 3,
       "name": "Hasty Tomasek",
-      "userName": "htomasek2",
+      "userName": "@htomasek2",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 4,
       "name": "Toddy Leathlay",
-      "userName": "tleathlay3",
+      "userName": "@tleathlay3",
       "role": "Staff Scientist"
     },
     {
       "contactID": 5,
       "name": "Clay Grinvalds",
-      "userName": "cgrinvalds4",
+      "userName": "@cgrinvalds4",
       "role": "VP Sales"
     }
   ]
@@ -7468,7 +7468,7 @@ branches = {"branches" : [{
 chapters = {"chapters" : [{
   "chapterID": 1,
   "branchID": 1,
-  "name": "Stand-alone real-time framework",
+  "name": "Capítulo Computer",
   "activities": [
     {
       "activityID": 1,
@@ -7586,61 +7586,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "solution-oriented",
-      "name": "Coriss Gaughan",
-      "role": "Payment Adjustment Coordinator"
+      "userName": "@ddelgadoJS",
+      "name": "Daniel Delgado",
+      "role": "Chair del Capítulo"
     },
     {
       "contactID": 2,
-      "userName": "global",
-      "name": "Zak Brownsill",
-      "role": "Research Assistant III"
+      "userName": "@malkam03",
+      "name": "Malcolm Davis",
+      "role": "Vice Chair del Capítulo"
     },
     {
       "contactID": 3,
-      "userName": "high-level",
+      "userName": "@high-level",
       "name": "Adrea Cubley",
       "role": "Account Representative I"
     },
     {
       "contactID": 4,
-      "userName": "challenge",
+      "userName": "@challenge",
       "name": "Burton Zambon",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 5,
-      "userName": "Secured",
+      "userName": "@Secured",
       "name": "Grayce O'Nolan",
       "role": "Account Coordinator"
     },
     {
       "contactID": 6,
-      "userName": "access",
+      "userName": "@access",
       "name": "Ashlee Batter",
       "role": "Systems Administrator IV"
     },
     {
       "contactID": 7,
-      "userName": "system-worthy",
+      "userName": "@system-worthy",
       "name": "Tresa Giorgietto",
       "role": "Web Developer III"
     },
     {
       "contactID": 8,
-      "userName": "middleware",
+      "userName": "@middleware",
       "name": "Maxie Nason",
       "role": "VP Product Management"
     },
     {
       "contactID": 9,
-      "userName": "framework",
+      "userName": "@framework",
       "name": "Virge Lukianov",
       "role": "Programmer I"
     },
     {
       "contactID": 10,
-      "userName": "access",
+      "userName": "@access",
       "name": "Audre Marrow",
       "role": "Research Nurse"
     }
@@ -7654,49 +7654,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "standardization",
+      "userName": "@standardization",
       "name": "Horatia Finlason",
       "role": "Account Representative I"
     },
     {
       "contactID": 2,
-      "userName": "intermediate",
+      "userName": "@intermediate",
       "name": "Estella Draco",
       "role": "Food Chemist"
     },
     {
       "contactID": 3,
-      "userName": "core",
+      "userName": "@core",
       "name": "Kory Bolino",
       "role": "Design Engineer"
     },
     {
       "contactID": 4,
-      "userName": "Cross-platform",
+      "userName": "@Cross-platform",
       "name": "Consolata Kapelhoff",
       "role": "Statistician II"
     },
     {
       "contactID": 5,
-      "userName": "hub",
+      "userName": "@hub",
       "name": "Sam Gerhardt",
       "role": "Accounting Assistant II"
     },
     {
       "contactID": 6,
-      "userName": "Visionary",
+      "userName": "@Visionary",
       "name": "Pebrook Churching",
       "role": "Programmer IV"
     },
     {
       "contactID": 7,
-      "userName": "standardization",
+      "userName": "@standardization",
       "name": "Lorena Grimwood",
       "role": "Automation Specialist I"
     },
     {
       "contactID": 8,
-      "userName": "incremental",
+      "userName": "@incremental",
       "name": "Duffie Turton",
       "role": "Registered Nurse"
     }
@@ -7837,25 +7837,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "even-keeled",
+      "userName": "@even-keeled",
       "name": "Magdalene Shilston",
       "role": "Civil Engineer"
     },
     {
       "contactID": 2,
-      "userName": "local",
+      "userName": "@local",
       "name": "Francisco Sumner",
       "role": "Professor"
     },
     {
       "contactID": 3,
-      "userName": "bifurcated",
+      "userName": "@bifurcated",
       "name": "Ximenez Bluett",
       "role": "Human Resources Assistant III"
     },
     {
       "contactID": 4,
-      "userName": "non-volatile",
+      "userName": "@non-volatile",
       "name": "Gussie Thurling",
       "role": "Biostatistician III"
     }
@@ -8096,61 +8096,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Upgradable",
+      "userName": "@Upgradable",
       "name": "Greta Rubenovic",
       "role": "Data Coordiator"
     },
     {
       "contactID": 2,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Padget Gaythor",
       "role": "Account Coordinator"
     },
     {
       "contactID": 3,
-      "userName": "client-server",
+      "userName": "@client-server",
       "name": "Dulcia Sarah",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 4,
-      "userName": "Face to face",
+      "userName": "@Face to face",
       "name": "Matty Hartnup",
       "role": "VP Sales"
     },
     {
       "contactID": 5,
-      "userName": "Enterprise-wide",
+      "userName": "@Enterprise-wide",
       "name": "Pace Mill",
       "role": "Programmer IV"
     },
     {
       "contactID": 6,
-      "userName": "Profit-focused",
+      "userName": "@Profit-focused",
       "name": "Kelsy Haldin",
       "role": "Assistant Professor"
     },
     {
       "contactID": 7,
-      "userName": "Optional",
+      "userName": "@Optional",
       "name": "Shane Scimone",
       "role": "Project Manager"
     },
     {
       "contactID": 8,
-      "userName": "toolset",
+      "userName": "@toolset",
       "name": "Rochester Ellinor",
       "role": "Analyst Programmer"
     },
     {
       "contactID": 9,
-      "userName": "disintermediate",
+      "userName": "@disintermediate",
       "name": "Marietta Balogun",
       "role": "Electrical Engineer"
     },
     {
       "contactID": 10,
-      "userName": "zero tolerance",
+      "userName": "@zero tolerance",
       "name": "Mitzi Ferreo",
       "role": "General Manager"
     }
@@ -8588,25 +8588,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "directional",
+      "userName": "@directional",
       "name": "Brittaney Moorfield",
       "role": "Librarian"
     },
     {
       "contactID": 2,
-      "userName": "application",
+      "userName": "@application",
       "name": "Brigida Rishbrook",
       "role": "Tax Accountant"
     },
     {
       "contactID": 3,
-      "userName": "infrastructure",
+      "userName": "@infrastructure",
       "name": "Alano Duckworth",
       "role": "Financial Advisor"
     },
     {
       "contactID": 4,
-      "userName": "Multi-channelled",
+      "userName": "@Multi-channelled",
       "name": "Elinore Janu",
       "role": "Librarian"
     }
@@ -8725,7 +8725,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "ability",
+      "userName": "@ability",
       "name": "Annora Hoyland",
       "role": "Associate Professor"
     }
@@ -9218,43 +9218,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "success",
+      "userName": "@success",
       "name": "Abba Ducarne",
       "role": "Programmer Analyst I"
     },
     {
       "contactID": 2,
-      "userName": "mission-critical",
+      "userName": "@mission-critical",
       "name": "Krissie Fairlem",
       "role": "Nurse"
     },
     {
       "contactID": 3,
-      "userName": "regional",
+      "userName": "@regional",
       "name": "Jasmine Matejic",
       "role": "Research Associate"
     },
     {
       "contactID": 4,
-      "userName": "Right-sized",
+      "userName": "@Right-sized",
       "name": "Lyman Wylder",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 5,
-      "userName": "groupware",
+      "userName": "@groupware",
       "name": "Deanne Lally",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 6,
-      "userName": "Innovative",
+      "userName": "@Innovative",
       "name": "Kimberli Askin",
       "role": "Paralegal"
     },
     {
       "contactID": 7,
-      "userName": "encoding",
+      "userName": "@encoding",
       "name": "Doug Malpas",
       "role": "Electrical Engineer"
     }
@@ -9703,19 +9703,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "contextually-based",
+      "userName": "@contextually-based",
       "name": "Padriac McCumskay",
       "role": "Dental Hygienist"
     },
     {
       "contactID": 2,
-      "userName": "systemic",
+      "userName": "@systemic",
       "name": "Wynn Killingbeck",
       "role": "Programmer Analyst II"
     },
     {
       "contactID": 3,
-      "userName": "Monitored",
+      "userName": "@Monitored",
       "name": "Gayel Toland",
       "role": "Web Designer I"
     }
@@ -10357,13 +10357,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "definition",
+      "userName": "@definition",
       "name": "Marcille Dmisek",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 2,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Sadella Cottee",
       "role": "VP Accounting"
     }
@@ -10970,37 +10970,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Future-proofed",
+      "userName": "@Future-proofed",
       "name": "Hester Dudbridge",
       "role": "Developer II"
     },
     {
       "contactID": 2,
-      "userName": "core",
+      "userName": "@core",
       "name": "Shermy Hacon",
       "role": "Junior Executive"
     },
     {
       "contactID": 3,
-      "userName": "toolset",
+      "userName": "@toolset",
       "name": "Derril Beeckx",
       "role": "Junior Executive"
     },
     {
       "contactID": 4,
-      "userName": "Graphic Interface",
+      "userName": "@Graphic Interface",
       "name": "Cherice Dawks",
       "role": "Accounting Assistant II"
     },
     {
       "contactID": 5,
-      "userName": "interface",
+      "userName": "@interface",
       "name": "Lezlie Thombleson",
       "role": "Database Administrator I"
     },
     {
       "contactID": 6,
-      "userName": "Graphical User Interface",
+      "userName": "@Graphical User Interface",
       "name": "Eachelle Cleminson",
       "role": "Mechanical Systems Engineer"
     }
@@ -11530,61 +11530,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "mission-critical",
+      "userName": "@mission-critical",
       "name": "Philly Ellyatt",
       "role": "Associate Professor"
     },
     {
       "contactID": 2,
-      "userName": "extranet",
+      "userName": "@extranet",
       "name": "Meridel Vanichkin",
       "role": "Physical Therapy Assistant"
     },
     {
       "contactID": 3,
-      "userName": "strategy",
+      "userName": "@strategy",
       "name": "Chandra Grisedale",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 4,
-      "userName": "groupware",
+      "userName": "@groupware",
       "name": "Chrysler Bonallack",
       "role": "Senior Financial Analyst"
     },
     {
       "contactID": 5,
-      "userName": "infrastructure",
+      "userName": "@infrastructure",
       "name": "Reamonn Ramshaw",
       "role": "Graphic Designer"
     },
     {
       "contactID": 6,
-      "userName": "encompassing",
+      "userName": "@encompassing",
       "name": "Janette Sowersby",
       "role": "Sales Associate"
     },
     {
       "contactID": 7,
-      "userName": "coherent",
+      "userName": "@coherent",
       "name": "Mona Panther",
       "role": "Software Engineer III"
     },
     {
       "contactID": 8,
-      "userName": "info-mediaries",
+      "userName": "@info-mediaries",
       "name": "Karly Clink",
       "role": "Editor"
     },
     {
       "contactID": 9,
-      "userName": "Distributed",
+      "userName": "@Distributed",
       "name": "Ethelda Ellard",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 10,
-      "userName": "throughput",
+      "userName": "@throughput",
       "name": "Jamil Tirrell",
       "role": "Speech Pathologist"
     }
@@ -11799,19 +11799,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "pricing structure",
+      "userName": "@pricing structure",
       "name": "Harriet Ausello",
       "role": "Quality Control Specialist"
     },
     {
       "contactID": 2,
-      "userName": "object-oriented",
+      "userName": "@object-oriented",
       "name": "Raff Litchfield",
       "role": "Pharmacist"
     },
     {
       "contactID": 3,
-      "userName": "archive",
+      "userName": "@archive",
       "name": "Nannette Tidridge",
       "role": "GIS Technical Architect"
     }
@@ -12082,25 +12082,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "system engine",
+      "userName": "@system engine",
       "name": "Maurizio Heddy",
       "role": "Registered Nurse"
     },
     {
       "contactID": 2,
-      "userName": "Re-engineered",
+      "userName": "@Re-engineered",
       "name": "Dalt Auguste",
       "role": "Chemical Engineer"
     },
     {
       "contactID": 3,
-      "userName": "Assimilated",
+      "userName": "@Assimilated",
       "name": "Inglebert Braunes",
       "role": "Database Administrator IV"
     },
     {
       "contactID": 4,
-      "userName": "product",
+      "userName": "@product",
       "name": "Theresa Triswell",
       "role": "Internal Auditor"
     }
@@ -12404,7 +12404,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Streamlined",
+      "userName": "@Streamlined",
       "name": "Kacy Murfin",
       "role": "Graphic Designer"
     }
@@ -12418,7 +12418,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "hardware",
+      "userName": "@hardware",
       "name": "Karl Freddi",
       "role": "Safety Technician IV"
     }
@@ -12795,31 +12795,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "installation",
+      "userName": "@installation",
       "name": "Sanderson Wreak",
       "role": "Human Resources Assistant III"
     },
     {
       "contactID": 2,
-      "userName": "Realigned",
+      "userName": "@Realigned",
       "name": "Ibby Rochelle",
       "role": "Programmer I"
     },
     {
       "contactID": 3,
-      "userName": "3rd generation",
+      "userName": "@3rd generation",
       "name": "Corrine Yglesia",
       "role": "VP Sales"
     },
     {
       "contactID": 4,
-      "userName": "explicit",
+      "userName": "@explicit",
       "name": "Wendeline Whittaker",
       "role": "VP Accounting"
     },
     {
       "contactID": 5,
-      "userName": "6th generation",
+      "userName": "@6th generation",
       "name": "Nathan Mosten",
       "role": "Account Representative III"
     }
@@ -12884,31 +12884,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "background",
+      "userName": "@background",
       "name": "Zita Deeman",
       "role": "Systems Administrator III"
     },
     {
       "contactID": 2,
-      "userName": "Vision-oriented",
+      "userName": "@Vision-oriented",
       "name": "Gaspar Bendall",
       "role": "Geologist I"
     },
     {
       "contactID": 3,
-      "userName": "Persistent",
+      "userName": "@Persistent",
       "name": "Alyson Beeching",
       "role": "VP Marketing"
     },
     {
       "contactID": 4,
-      "userName": "complexity",
+      "userName": "@complexity",
       "name": "Loraine Doick",
       "role": "Operator"
     },
     {
       "contactID": 5,
-      "userName": "matrix",
+      "userName": "@matrix",
       "name": "Arri Strangward",
       "role": "Clinical Specialist"
     }
@@ -13181,25 +13181,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "static",
+      "userName": "@static",
       "name": "Yuma Bartholomieu",
       "role": "Web Developer II"
     },
     {
       "contactID": 2,
-      "userName": "optimal",
+      "userName": "@optimal",
       "name": "Annabela Balleine",
       "role": "Media Manager II"
     },
     {
       "contactID": 3,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Frannie McCarter",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 4,
-      "userName": "dedicated",
+      "userName": "@dedicated",
       "name": "Elliot Geddes",
       "role": "Mechanical Systems Engineer"
     }
@@ -13533,25 +13533,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Up-sized",
+      "userName": "@Up-sized",
       "name": "Stepha Swyre",
       "role": "Database Administrator III"
     },
     {
       "contactID": 2,
-      "userName": "next generation",
+      "userName": "@next generation",
       "name": "Rollins Lait",
       "role": "Computer Systems Analyst I"
     },
     {
       "contactID": 3,
-      "userName": "Graphical User Interface",
+      "userName": "@Graphical User Interface",
       "name": "Fabien Ferri",
       "role": "Compensation Analyst"
     },
     {
       "contactID": 4,
-      "userName": "Visionary",
+      "userName": "@Visionary",
       "name": "Roselin Tebbs",
       "role": "Business Systems Development Analyst"
     }
@@ -13918,13 +13918,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Compatible",
+      "userName": "@Compatible",
       "name": "Blane Wheeler",
       "role": "Biostatistician II"
     },
     {
       "contactID": 2,
-      "userName": "local area network",
+      "userName": "@local area network",
       "name": "Winnifred Cliburn",
       "role": "Analog Circuit Design manager"
     }
@@ -14535,43 +14535,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "systematic",
+      "userName": "@systematic",
       "name": "Drusi Patrone",
       "role": "VP Accounting"
     },
     {
       "contactID": 2,
-      "userName": "local area network",
+      "userName": "@local area network",
       "name": "David Haffner",
       "role": "Community Outreach Specialist"
     },
     {
       "contactID": 3,
-      "userName": "groupware",
+      "userName": "@groupware",
       "name": "Lauralee Prendeguest",
       "role": "Editor"
     },
     {
       "contactID": 4,
-      "userName": "Customer-focused",
+      "userName": "@Customer-focused",
       "name": "Giovanni Beaconsall",
       "role": "Nurse"
     },
     {
       "contactID": 5,
-      "userName": "encoding",
+      "userName": "@encoding",
       "name": "Garfield Naulty",
       "role": "Librarian"
     },
     {
       "contactID": 6,
-      "userName": "toolset",
+      "userName": "@toolset",
       "name": "Jodi Bavridge",
       "role": "Research Nurse"
     },
     {
       "contactID": 7,
-      "userName": "Centralized",
+      "userName": "@Centralized",
       "name": "Ardith Willbraham",
       "role": "Registered Nurse"
     }
@@ -14585,31 +14585,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Cloned",
+      "userName": "@Cloned",
       "name": "Fletch McCurdy",
       "role": "Editor"
     },
     {
       "contactID": 2,
-      "userName": "Progressive",
+      "userName": "@Progressive",
       "name": "Emelen Gludor",
       "role": "Research Assistant III"
     },
     {
       "contactID": 3,
-      "userName": "implementation",
+      "userName": "@implementation",
       "name": "Jordain Realph",
       "role": "Software Test Engineer III"
     },
     {
       "contactID": 4,
-      "userName": "full-range",
+      "userName": "@full-range",
       "name": "Alfi Pickervance",
       "role": "Database Administrator IV"
     },
     {
       "contactID": 5,
-      "userName": "concept",
+      "userName": "@concept",
       "name": "Henry Satterthwaite",
       "role": "Physical Therapy Assistant"
     }
@@ -14623,7 +14623,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Total",
+      "userName": "@Total",
       "name": "Lissy Fidoe",
       "role": "Financial Advisor"
     }
@@ -15123,61 +15123,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "orchestration",
+      "userName": "@orchestration",
       "name": "Steffi Doge",
       "role": "Operator"
     },
     {
       "contactID": 2,
-      "userName": "full-range",
+      "userName": "@full-range",
       "name": "Harlan Alben",
       "role": "Design Engineer"
     },
     {
       "contactID": 3,
-      "userName": "Polarised",
+      "userName": "@Polarised",
       "name": "Drucill Seed",
       "role": "Data Coordiator"
     },
     {
       "contactID": 4,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Darnell McMurtyr",
       "role": "Software Test Engineer IV"
     },
     {
       "contactID": 5,
-      "userName": "open architecture",
+      "userName": "@open architecture",
       "name": "Cherin Urch",
       "role": "Financial Advisor"
     },
     {
       "contactID": 6,
-      "userName": "Reduced",
+      "userName": "@Reduced",
       "name": "Denys Trewhitt",
       "role": "Financial Analyst"
     },
     {
       "contactID": 7,
-      "userName": "Multi-lateral",
+      "userName": "@Multi-lateral",
       "name": "Hilary McEnery",
       "role": "Recruiter"
     },
     {
       "contactID": 8,
-      "userName": "data-warehouse",
+      "userName": "@data-warehouse",
       "name": "Coleman Greenaway",
       "role": "Software Test Engineer II"
     },
     {
       "contactID": 9,
-      "userName": "pricing structure",
+      "userName": "@pricing structure",
       "name": "Lin Gillopp",
       "role": "Physical Therapy Assistant"
     },
     {
       "contactID": 10,
-      "userName": "task-force",
+      "userName": "@task-force",
       "name": "Malinde Goghin",
       "role": "Paralegal"
     }
@@ -15332,13 +15332,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Graphic Interface",
+      "userName": "@Graphic Interface",
       "name": "Esmeralda Sibbson",
       "role": "Programmer I"
     },
     {
       "contactID": 2,
-      "userName": "system engine",
+      "userName": "@system engine",
       "name": "Dena Boliver",
       "role": "Junior Executive"
     }
@@ -15822,31 +15822,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "parallelism",
+      "userName": "@parallelism",
       "name": "Cornelle Stickels",
       "role": "Media Manager III"
     },
     {
       "contactID": 2,
-      "userName": "benchmark",
+      "userName": "@benchmark",
       "name": "Beltran Urian",
       "role": "Graphic Designer"
     },
     {
       "contactID": 3,
-      "userName": "Cross-group",
+      "userName": "@Cross-group",
       "name": "Andreana Horsted",
       "role": "Accounting Assistant II"
     },
     {
       "contactID": 4,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Marty Tattersfield",
       "role": "Administrative Officer"
     },
     {
       "contactID": 5,
-      "userName": "intranet",
+      "userName": "@intranet",
       "name": "Clarke Berresford",
       "role": "Account Coordinator"
     }
@@ -16181,25 +16181,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Intuitive",
+      "userName": "@Intuitive",
       "name": "Barb Londer",
       "role": "Chemical Engineer"
     },
     {
       "contactID": 2,
-      "userName": "matrices",
+      "userName": "@matrices",
       "name": "Cordell Arnot",
       "role": "Human Resources Manager"
     },
     {
       "contactID": 3,
-      "userName": "Stand-alone",
+      "userName": "@Stand-alone",
       "name": "Lin Northleigh",
       "role": "VP Sales"
     },
     {
       "contactID": 4,
-      "userName": "Multi-layered",
+      "userName": "@Multi-layered",
       "name": "Roseann Boatright",
       "role": "Sales Associate"
     }
@@ -17093,31 +17093,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "leverage",
+      "userName": "@leverage",
       "name": "Susanetta Hindhaugh",
       "role": "Web Designer IV"
     },
     {
       "contactID": 2,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Nester Croley",
       "role": "Staff Accountant I"
     },
     {
       "contactID": 3,
-      "userName": "interactive",
+      "userName": "@interactive",
       "name": "Fulvia Bauldrey",
       "role": "Programmer II"
     },
     {
       "contactID": 4,
-      "userName": "hub",
+      "userName": "@hub",
       "name": "Nicholas Routhorn",
       "role": "Quality Engineer"
     },
     {
       "contactID": 5,
-      "userName": "emulation",
+      "userName": "@emulation",
       "name": "Hartley Churching",
       "role": "Professor"
     }
@@ -17594,61 +17594,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "zero tolerance",
+      "userName": "@zero tolerance",
       "name": "Zoe Shipp",
       "role": "Environmental Tech"
     },
     {
       "contactID": 2,
-      "userName": "hybrid",
+      "userName": "@hybrid",
       "name": "Jeffry Figgs",
       "role": "Director of Sales"
     },
     {
       "contactID": 3,
-      "userName": "Right-sized",
+      "userName": "@Right-sized",
       "name": "Cindra Izod",
       "role": "Senior Sales Associate"
     },
     {
       "contactID": 4,
-      "userName": "needs-based",
+      "userName": "@needs-based",
       "name": "Demott Stoodale",
       "role": "Executive Secretary"
     },
     {
       "contactID": 5,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Martainn Genthner",
       "role": "Accountant II"
     },
     {
       "contactID": 6,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Georgianne Lampe",
       "role": "Chemical Engineer"
     },
     {
       "contactID": 7,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Kirsteni Salvador",
       "role": "Operator"
     },
     {
       "contactID": 8,
-      "userName": "Ameliorated",
+      "userName": "@Ameliorated",
       "name": "Jennette Rosenstein",
       "role": "Internal Auditor"
     },
     {
       "contactID": 9,
-      "userName": "application",
+      "userName": "@application",
       "name": "Nero Wince",
       "role": "Librarian"
     },
     {
       "contactID": 10,
-      "userName": "content-based",
+      "userName": "@content-based",
       "name": "Cornelia Tuckie",
       "role": "Director of Sales"
     }
@@ -17897,43 +17897,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Function-based",
+      "userName": "@Function-based",
       "name": "Shaylyn Crut",
       "role": "GIS Technical Architect"
     },
     {
       "contactID": 2,
-      "userName": "Optimized",
+      "userName": "@Optimized",
       "name": "Alejandrina Siveter",
       "role": "Senior Editor"
     },
     {
       "contactID": 3,
-      "userName": "adapter",
+      "userName": "@adapter",
       "name": "Bibby Waddoups",
       "role": "Systems Administrator III"
     },
     {
       "contactID": 4,
-      "userName": "paradigm",
+      "userName": "@paradigm",
       "name": "Corrie Daborn",
       "role": "VP Accounting"
     },
     {
       "contactID": 5,
-      "userName": "Synergistic",
+      "userName": "@Synergistic",
       "name": "Teador Sayers",
       "role": "Chemical Engineer"
     },
     {
       "contactID": 6,
-      "userName": "solution",
+      "userName": "@solution",
       "name": "Ermin Prettyjohns",
       "role": "Marketing Assistant"
     },
     {
       "contactID": 7,
-      "userName": "parallelism",
+      "userName": "@parallelism",
       "name": "Darleen Tzar",
       "role": "Chief Design Engineer"
     }
@@ -18315,13 +18315,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Team-oriented",
+      "userName": "@Team-oriented",
       "name": "Katrinka Stigger",
       "role": "Recruiter"
     },
     {
       "contactID": 2,
-      "userName": "executive",
+      "userName": "@executive",
       "name": "Faustine Canet",
       "role": "Social Worker"
     }
@@ -18335,19 +18335,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Inverse",
+      "userName": "@Inverse",
       "name": "Ced Thal",
       "role": "Paralegal"
     },
     {
       "contactID": 2,
-      "userName": "definition",
+      "userName": "@definition",
       "name": "Gus Dring",
       "role": "Junior Executive"
     },
     {
       "contactID": 3,
-      "userName": "collaboration",
+      "userName": "@collaboration",
       "name": "Pip Weond",
       "role": "Media Manager I"
     }
@@ -19016,61 +19016,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "strategy",
+      "userName": "@strategy",
       "name": "Maxine Geggie",
       "role": "Analog Circuit Design manager"
     },
     {
       "contactID": 2,
-      "userName": "emulation",
+      "userName": "@emulation",
       "name": "Blayne Airlie",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 3,
-      "userName": "Down-sized",
+      "userName": "@Down-sized",
       "name": "Alika Giraudoux",
       "role": "Assistant Manager"
     },
     {
       "contactID": 4,
-      "userName": "motivating",
+      "userName": "@motivating",
       "name": "Nealon Deviney",
       "role": "Senior Sales Associate"
     },
     {
       "contactID": 5,
-      "userName": "Configurable",
+      "userName": "@Configurable",
       "name": "Luca Elsmore",
       "role": "Research Associate"
     },
     {
       "contactID": 6,
-      "userName": "complexity",
+      "userName": "@complexity",
       "name": "Betty Omar",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 7,
-      "userName": "bifurcated",
+      "userName": "@bifurcated",
       "name": "Teodoro Schottli",
       "role": "Registered Nurse"
     },
     {
       "contactID": 8,
-      "userName": "migration",
+      "userName": "@migration",
       "name": "Fancy Challener",
       "role": "Structural Analysis Engineer"
     },
     {
       "contactID": 9,
-      "userName": "Extended",
+      "userName": "@Extended",
       "name": "Ekaterina Eldridge",
       "role": "Systems Administrator II"
     },
     {
       "contactID": 10,
-      "userName": "Cloned",
+      "userName": "@Cloned",
       "name": "Cirilo Grasser",
       "role": "Computer Systems Analyst I"
     }
@@ -19084,25 +19084,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Open-architected",
+      "userName": "@Open-architected",
       "name": "Laure Heard",
       "role": "Engineer II"
     },
     {
       "contactID": 2,
-      "userName": "product",
+      "userName": "@product",
       "name": "Harwell Bigmore",
       "role": "Assistant Media Planner"
     },
     {
       "contactID": 3,
-      "userName": "website",
+      "userName": "@website",
       "name": "Athene Bater",
       "role": "Sales Representative"
     },
     {
       "contactID": 4,
-      "userName": "implementation",
+      "userName": "@implementation",
       "name": "Conn McDonell",
       "role": "Compensation Analyst"
     }
@@ -19287,19 +19287,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "data-warehouse",
+      "userName": "@data-warehouse",
       "name": "Karolina Markushkin",
       "role": "Information Systems Manager"
     },
     {
       "contactID": 2,
-      "userName": "project",
+      "userName": "@project",
       "name": "Kari Cudihy",
       "role": "Computer Systems Analyst IV"
     },
     {
       "contactID": 3,
-      "userName": "policy",
+      "userName": "@policy",
       "name": "Jacqui Vereker",
       "role": "Account Executive"
     }
@@ -19478,19 +19478,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "analyzing",
+      "userName": "@analyzing",
       "name": "Llywellyn Warrack",
       "role": "Research Nurse"
     },
     {
       "contactID": 2,
-      "userName": "groupware",
+      "userName": "@groupware",
       "name": "Karel Haylett",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 3,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Hymie Dregan",
       "role": "Senior Cost Accountant"
     }
@@ -19504,37 +19504,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Operative",
+      "userName": "@Operative",
       "name": "Tasia Bremmell",
       "role": "Senior Developer"
     },
     {
       "contactID": 2,
-      "userName": "high-level",
+      "userName": "@high-level",
       "name": "Martie Fryett",
       "role": "Compensation Analyst"
     },
     {
       "contactID": 3,
-      "userName": "Enhanced",
+      "userName": "@Enhanced",
       "name": "Karim Pegrum",
       "role": "Biostatistician II"
     },
     {
       "contactID": 4,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Garfield Frift",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 5,
-      "userName": "Exclusive",
+      "userName": "@Exclusive",
       "name": "Annabell Giorgeschi",
       "role": "Teacher"
     },
     {
       "contactID": 6,
-      "userName": "Triple-buffered",
+      "userName": "@Triple-buffered",
       "name": "Leanora Galliver",
       "role": "Account Representative IV"
     }
@@ -19831,13 +19831,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Polarised",
+      "userName": "@Polarised",
       "name": "Rustin Shellard",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 2,
-      "userName": "Vision-oriented",
+      "userName": "@Vision-oriented",
       "name": "Danni Klimov",
       "role": "Assistant Media Planner"
     }
@@ -20032,55 +20032,55 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Multi-channelled",
+      "userName": "@Multi-channelled",
       "name": "Mignonne Beurich",
       "role": "Database Administrator IV"
     },
     {
       "contactID": 2,
-      "userName": "systematic",
+      "userName": "@systematic",
       "name": "Mycah Garlicke",
       "role": "Internal Auditor"
     },
     {
       "contactID": 3,
-      "userName": "background",
+      "userName": "@background",
       "name": "Earvin Spick",
       "role": "Recruiter"
     },
     {
       "contactID": 4,
-      "userName": "non-volatile",
+      "userName": "@non-volatile",
       "name": "Polly Jenkins",
       "role": "Product Engineer"
     },
     {
       "contactID": 5,
-      "userName": "Pre-emptive",
+      "userName": "@Pre-emptive",
       "name": "Emlyn Pottiphar",
       "role": "Pharmacist"
     },
     {
       "contactID": 6,
-      "userName": "policy",
+      "userName": "@policy",
       "name": "Allistir Gerrans",
       "role": "Media Manager II"
     },
     {
       "contactID": 7,
-      "userName": "Up-sized",
+      "userName": "@Up-sized",
       "name": "Janessa Fitzgerald",
       "role": "Software Test Engineer I"
     },
     {
       "contactID": 8,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Gifford Denison",
       "role": "Editor"
     },
     {
       "contactID": 9,
-      "userName": "Profound",
+      "userName": "@Profound",
       "name": "Brandtr Perigeaux",
       "role": "Accounting Assistant III"
     }
@@ -20387,49 +20387,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "analyzer",
+      "userName": "@analyzer",
       "name": "Natividad Holleworth",
       "role": "Developer II"
     },
     {
       "contactID": 2,
-      "userName": "system engine",
+      "userName": "@system engine",
       "name": "Avie Malinson",
       "role": "Account Executive"
     },
     {
       "contactID": 3,
-      "userName": "Upgradable",
+      "userName": "@Upgradable",
       "name": "Jory Carless",
       "role": "Safety Technician IV"
     },
     {
       "contactID": 4,
-      "userName": "global",
+      "userName": "@global",
       "name": "Carly Leroy",
       "role": "Research Assistant II"
     },
     {
       "contactID": 5,
-      "userName": "protocol",
+      "userName": "@protocol",
       "name": "Ethelred Patters",
       "role": "Budget/Accounting Analyst II"
     },
     {
       "contactID": 6,
-      "userName": "core",
+      "userName": "@core",
       "name": "Blinnie Ewers",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 7,
-      "userName": "holistic",
+      "userName": "@holistic",
       "name": "Meggie Percifull",
       "role": "Librarian"
     },
     {
       "contactID": 8,
-      "userName": "Organic",
+      "userName": "@Organic",
       "name": "Wang Duckitt",
       "role": "VP Marketing"
     }
@@ -20505,25 +20505,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Balanced",
+      "userName": "@Balanced",
       "name": "Gabriell Blowes",
       "role": "Analog Circuit Design manager"
     },
     {
       "contactID": 2,
-      "userName": "background",
+      "userName": "@background",
       "name": "Benedick Haestier",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 3,
-      "userName": "benchmark",
+      "userName": "@benchmark",
       "name": "Xymenes Amberg",
       "role": "Business Systems Development Analyst"
     },
     {
       "contactID": 4,
-      "userName": "approach",
+      "userName": "@approach",
       "name": "Vite Wardesworth",
       "role": "Automation Specialist IV"
     }
@@ -20987,13 +20987,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "reciprocal",
+      "userName": "@reciprocal",
       "name": "Danice Bonafant",
       "role": "Developer I"
     },
     {
       "contactID": 2,
-      "userName": "Managed",
+      "userName": "@Managed",
       "name": "Tess Toope",
       "role": "Operator"
     }
@@ -21220,49 +21220,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "local area network",
+      "userName": "@local area network",
       "name": "Moises Renshaw",
       "role": "Financial Advisor"
     },
     {
       "contactID": 2,
-      "userName": "Optional",
+      "userName": "@Optional",
       "name": "Thedrick Hasker",
       "role": "Administrative Assistant IV"
     },
     {
       "contactID": 3,
-      "userName": "global",
+      "userName": "@global",
       "name": "Marion Vardie",
       "role": "Web Designer IV"
     },
     {
       "contactID": 4,
-      "userName": "eco-centric",
+      "userName": "@eco-centric",
       "name": "Fina Probyn",
       "role": "Operator"
     },
     {
       "contactID": 5,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Thomasina Dumberrill",
       "role": "VP Quality Control"
     },
     {
       "contactID": 6,
-      "userName": "disintermediate",
+      "userName": "@disintermediate",
       "name": "Benetta Ellam",
       "role": "Administrative Assistant I"
     },
     {
       "contactID": 7,
-      "userName": "global",
+      "userName": "@global",
       "name": "Rudy Giraudoux",
       "role": "Pharmacist"
     },
     {
       "contactID": 8,
-      "userName": "orchestration",
+      "userName": "@orchestration",
       "name": "Henry Maskrey",
       "role": "Junior Executive"
     }
@@ -21597,25 +21597,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "human-resource",
+      "userName": "@human-resource",
       "name": "Rockwell Whittles",
       "role": "Teacher"
     },
     {
       "contactID": 2,
-      "userName": "initiative",
+      "userName": "@initiative",
       "name": "Garvy Dewhirst",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 3,
-      "userName": "archive",
+      "userName": "@archive",
       "name": "Garner Fulham",
       "role": "Accountant IV"
     },
     {
       "contactID": 4,
-      "userName": "extranet",
+      "userName": "@extranet",
       "name": "Ikey Dee",
       "role": "Nurse"
     }
@@ -22151,61 +22151,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Robin Josham",
       "role": "Staff Scientist"
     },
     {
       "contactID": 2,
-      "userName": "didactic",
+      "userName": "@didactic",
       "name": "Leilah Ambresin",
       "role": "VP Product Management"
     },
     {
       "contactID": 3,
-      "userName": "Balanced",
+      "userName": "@Balanced",
       "name": "Maudie Penhallurick",
       "role": "Automation Specialist II"
     },
     {
       "contactID": 4,
-      "userName": "algorithm",
+      "userName": "@algorithm",
       "name": "Nana Paulitschke",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 5,
-      "userName": "policy",
+      "userName": "@policy",
       "name": "Caro Horribine",
       "role": "Software Consultant"
     },
     {
       "contactID": 6,
-      "userName": "infrastructure",
+      "userName": "@infrastructure",
       "name": "Jefferey Willicott",
       "role": "Accountant I"
     },
     {
       "contactID": 7,
-      "userName": "Organized",
+      "userName": "@Organized",
       "name": "Art Gaffon",
       "role": "Programmer II"
     },
     {
       "contactID": 8,
-      "userName": "Upgradable",
+      "userName": "@Upgradable",
       "name": "Hildy Rabb",
       "role": "Nurse"
     },
     {
       "contactID": 9,
-      "userName": "Ergonomic",
+      "userName": "@Ergonomic",
       "name": "Duff Mitchall",
       "role": "Operator"
     },
     {
       "contactID": 10,
-      "userName": "system-worthy",
+      "userName": "@system-worthy",
       "name": "Jo-ann Winchester",
       "role": "Internal Auditor"
     }
@@ -22219,37 +22219,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "cohesive",
+      "userName": "@cohesive",
       "name": "Eleonore Alfonso",
       "role": "Assistant Professor"
     },
     {
       "contactID": 2,
-      "userName": "challenge",
+      "userName": "@challenge",
       "name": "Antin Hayler",
       "role": "Tax Accountant"
     },
     {
       "contactID": 3,
-      "userName": "moratorium",
+      "userName": "@moratorium",
       "name": "Ruthann Mayoh",
       "role": "Software Test Engineer III"
     },
     {
       "contactID": 4,
-      "userName": "service-desk",
+      "userName": "@service-desk",
       "name": "Ellie Eddins",
       "role": "Media Manager III"
     },
     {
       "contactID": 5,
-      "userName": "Customer-focused",
+      "userName": "@Customer-focused",
       "name": "Bettina Aubrun",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 6,
-      "userName": "upward-trending",
+      "userName": "@upward-trending",
       "name": "Jerry Pybus",
       "role": "Social Worker"
     }
@@ -22553,49 +22553,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "service-desk",
+      "userName": "@service-desk",
       "name": "Roch Yesenev",
       "role": "Software Consultant"
     },
     {
       "contactID": 2,
-      "userName": "analyzer",
+      "userName": "@analyzer",
       "name": "Bartram Jager",
       "role": "Staff Scientist"
     },
     {
       "contactID": 3,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Franciska Burdell",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 4,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Tannie Donner",
       "role": "Financial Advisor"
     },
     {
       "contactID": 5,
-      "userName": "forecast",
+      "userName": "@forecast",
       "name": "Lola Pearson",
       "role": "Statistician III"
     },
     {
       "contactID": 6,
-      "userName": "service-desk",
+      "userName": "@service-desk",
       "name": "Emily Hallatt",
       "role": "Office Assistant I"
     },
     {
       "contactID": 7,
-      "userName": "static",
+      "userName": "@static",
       "name": "Tuckie Humble",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 8,
-      "userName": "Phased",
+      "userName": "@Phased",
       "name": "Danyette Hattam",
       "role": "Health Coach I"
     }
@@ -22930,49 +22930,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "function",
+      "userName": "@function",
       "name": "Hal Ragdale",
       "role": "VP Quality Control"
     },
     {
       "contactID": 2,
-      "userName": "internet solution",
+      "userName": "@internet solution",
       "name": "Fran Ellett",
       "role": "Professor"
     },
     {
       "contactID": 3,
-      "userName": "Organized",
+      "userName": "@Organized",
       "name": "Carlita Pranger",
       "role": "Health Coach III"
     },
     {
       "contactID": 4,
-      "userName": "non-volatile",
+      "userName": "@non-volatile",
       "name": "Jo-ann Nicolson",
       "role": "Research Associate"
     },
     {
       "contactID": 5,
-      "userName": "Reactive",
+      "userName": "@Reactive",
       "name": "Robbert Edney",
       "role": "Analog Circuit Design manager"
     },
     {
       "contactID": 6,
-      "userName": "concept",
+      "userName": "@concept",
       "name": "Gideon Chillingsworth",
       "role": "VP Marketing"
     },
     {
       "contactID": 7,
-      "userName": "encryption",
+      "userName": "@encryption",
       "name": "Reagen Seatter",
       "role": "Senior Developer"
     },
     {
       "contactID": 8,
-      "userName": "multi-tasking",
+      "userName": "@multi-tasking",
       "name": "Roley Brim",
       "role": "Data Coordiator"
     }
@@ -23072,13 +23072,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Organized",
+      "userName": "@Organized",
       "name": "Ilyssa Greir",
       "role": "Tax Accountant"
     },
     {
       "contactID": 2,
-      "userName": "Re-contextualized",
+      "userName": "@Re-contextualized",
       "name": "Hartwell Darko",
       "role": "Programmer Analyst II"
     }
@@ -23215,7 +23215,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "logistical",
+      "userName": "@logistical",
       "name": "Eleanora Hutchings",
       "role": "Accounting Assistant IV"
     }
@@ -23799,13 +23799,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Innovative",
+      "userName": "@Innovative",
       "name": "Latisha Blanchflower",
       "role": "Developer II"
     },
     {
       "contactID": 2,
-      "userName": "database",
+      "userName": "@database",
       "name": "Herold Sowman",
       "role": "Recruiting Manager"
     }
@@ -24030,7 +24030,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "task-force",
+      "userName": "@task-force",
       "name": "Darius Arkow",
       "role": "Professor"
     }
@@ -24631,43 +24631,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Synergized",
+      "userName": "@Synergized",
       "name": "Colas Coggell",
       "role": "Sales Representative"
     },
     {
       "contactID": 2,
-      "userName": "stable",
+      "userName": "@stable",
       "name": "Lammond McGeever",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 3,
-      "userName": "Automated",
+      "userName": "@Automated",
       "name": "Vick Evenett",
       "role": "Assistant Professor"
     },
     {
       "contactID": 4,
-      "userName": "concept",
+      "userName": "@concept",
       "name": "Alexia Whitsey",
       "role": "Administrative Assistant IV"
     },
     {
       "contactID": 5,
-      "userName": "Polarised",
+      "userName": "@Polarised",
       "name": "Sascha Boick",
       "role": "Sales Associate"
     },
     {
       "contactID": 6,
-      "userName": "bi-directional",
+      "userName": "@bi-directional",
       "name": "Cos Papachristophorou",
       "role": "Administrative Assistant III"
     },
     {
       "contactID": 7,
-      "userName": "database",
+      "userName": "@database",
       "name": "Augustus Gutman",
       "role": "Senior Sales Associate"
     }
@@ -24937,19 +24937,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "application",
+      "userName": "@application",
       "name": "Alanna BURWIN",
       "role": "Data Coordiator"
     },
     {
       "contactID": 2,
-      "userName": "Enterprise-wide",
+      "userName": "@Enterprise-wide",
       "name": "Sorcha Marchbank",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 3,
-      "userName": "incremental",
+      "userName": "@incremental",
       "name": "Joella Gwatkins",
       "role": "Nuclear Power Engineer"
     }
@@ -25131,61 +25131,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "global",
+      "userName": "@global",
       "name": "Feliza Lamberton",
       "role": "Occupational Therapist"
     },
     {
       "contactID": 2,
-      "userName": "installation",
+      "userName": "@installation",
       "name": "Shanta Kasbye",
       "role": "Account Representative III"
     },
     {
       "contactID": 3,
-      "userName": "4th generation",
+      "userName": "@4th generation",
       "name": "Brig MacDiarmid",
       "role": "Sales Associate"
     },
     {
       "contactID": 4,
-      "userName": "directional",
+      "userName": "@directional",
       "name": "Alexi Rizzillo",
       "role": "Marketing Manager"
     },
     {
       "contactID": 5,
-      "userName": "impactful",
+      "userName": "@impactful",
       "name": "Kiley Bendik",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 6,
-      "userName": "Front-line",
+      "userName": "@Front-line",
       "name": "Nero Motion",
       "role": "Nurse"
     },
     {
       "contactID": 7,
-      "userName": "Graphical User Interface",
+      "userName": "@Graphical User Interface",
       "name": "Sheena Beart",
       "role": "Web Developer I"
     },
     {
       "contactID": 8,
-      "userName": "holistic",
+      "userName": "@holistic",
       "name": "Mario Simonett",
       "role": "Budget/Accounting Analyst I"
     },
     {
       "contactID": 9,
-      "userName": "orchestration",
+      "userName": "@orchestration",
       "name": "Flss Likely",
       "role": "Help Desk Technician"
     },
     {
       "contactID": 10,
-      "userName": "impactful",
+      "userName": "@impactful",
       "name": "Erinna Keyden",
       "role": "Help Desk Operator"
     }
@@ -25446,43 +25446,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Face to face",
+      "userName": "@Face to face",
       "name": "Wells Northwood",
       "role": "Operator"
     },
     {
       "contactID": 2,
-      "userName": "Secured",
+      "userName": "@Secured",
       "name": "Aguste McBratney",
       "role": "Sales Representative"
     },
     {
       "contactID": 3,
-      "userName": "Customizable",
+      "userName": "@Customizable",
       "name": "Noelle Buist",
       "role": "Financial Analyst"
     },
     {
       "contactID": 4,
-      "userName": "Multi-lateral",
+      "userName": "@Multi-lateral",
       "name": "Cal Duding",
       "role": "Account Representative III"
     },
     {
       "contactID": 5,
-      "userName": "next generation",
+      "userName": "@next generation",
       "name": "Barn McKeggie",
       "role": "Community Outreach Specialist"
     },
     {
       "contactID": 6,
-      "userName": "bi-directional",
+      "userName": "@bi-directional",
       "name": "Maribel Salvadore",
       "role": "Professor"
     },
     {
       "contactID": 7,
-      "userName": "Versatile",
+      "userName": "@Versatile",
       "name": "Vail Cullon",
       "role": "Web Designer I"
     }
@@ -25846,43 +25846,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "productivity",
+      "userName": "@productivity",
       "name": "Cally Morena",
       "role": "Sales Associate"
     },
     {
       "contactID": 2,
-      "userName": "architecture",
+      "userName": "@architecture",
       "name": "Tabb Van der Merwe",
       "role": "Research Associate"
     },
     {
       "contactID": 3,
-      "userName": "internet solution",
+      "userName": "@internet solution",
       "name": "Cris MacCook",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 4,
-      "userName": "Function-based",
+      "userName": "@Function-based",
       "name": "Russell Meneux",
       "role": "Director of Sales"
     },
     {
       "contactID": 5,
-      "userName": "logistical",
+      "userName": "@logistical",
       "name": "Renee Rawet",
       "role": "Associate Professor"
     },
     {
       "contactID": 6,
-      "userName": "composite",
+      "userName": "@composite",
       "name": "Justus Feaveryear",
       "role": "Biostatistician III"
     },
     {
       "contactID": 7,
-      "userName": "Vision-oriented",
+      "userName": "@Vision-oriented",
       "name": "Analise Kyndred",
       "role": "VP Marketing"
     }
@@ -26406,25 +26406,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "transitional",
+      "userName": "@transitional",
       "name": "Cherie Gabriel",
       "role": "Tax Accountant"
     },
     {
       "contactID": 2,
-      "userName": "Self-enabling",
+      "userName": "@Self-enabling",
       "name": "Donelle Gorling",
       "role": "Director of Sales"
     },
     {
       "contactID": 3,
-      "userName": "bottom-line",
+      "userName": "@bottom-line",
       "name": "Hurley Charrier",
       "role": "Structural Engineer"
     },
     {
       "contactID": 4,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Demott Poznan",
       "role": "Paralegal"
     }
@@ -27045,55 +27045,55 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "regional",
+      "userName": "@regional",
       "name": "Engracia Brecknock",
       "role": "Actuary"
     },
     {
       "contactID": 2,
-      "userName": "homogeneous",
+      "userName": "@homogeneous",
       "name": "Tommy Nend",
       "role": "Nurse Practicioner"
     },
     {
       "contactID": 3,
-      "userName": "Persevering",
+      "userName": "@Persevering",
       "name": "Josee Sheehan",
       "role": "Junior Executive"
     },
     {
       "contactID": 4,
-      "userName": "value-added",
+      "userName": "@value-added",
       "name": "Parke Loosley",
       "role": "Help Desk Technician"
     },
     {
       "contactID": 5,
-      "userName": "Distributed",
+      "userName": "@Distributed",
       "name": "Myrilla McCleod",
       "role": "Executive Secretary"
     },
     {
       "contactID": 6,
-      "userName": "website",
+      "userName": "@website",
       "name": "Ashlin Fiddler",
       "role": "Operator"
     },
     {
       "contactID": 7,
-      "userName": "synergy",
+      "userName": "@synergy",
       "name": "Amara Giannotti",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 8,
-      "userName": "emulation",
+      "userName": "@emulation",
       "name": "Shem Goldthorpe",
       "role": "Senior Cost Accountant"
     },
     {
       "contactID": 9,
-      "userName": "system-worthy",
+      "userName": "@system-worthy",
       "name": "Issi Lewknor",
       "role": "Operator"
     }
@@ -27107,13 +27107,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "interactive",
+      "userName": "@interactive",
       "name": "Lisha Alekseicik",
       "role": "Chemical Engineer"
     },
     {
       "contactID": 2,
-      "userName": "neural-net",
+      "userName": "@neural-net",
       "name": "Ebonee Paris",
       "role": "Help Desk Operator"
     }
@@ -27513,7 +27513,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Optional",
+      "userName": "@Optional",
       "name": "Charla Feldhorn",
       "role": "Assistant Media Planner"
     }
@@ -27527,7 +27527,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "solution",
+      "userName": "@solution",
       "name": "Carmel Bilbrooke",
       "role": "Associate Professor"
     }
@@ -28396,37 +28396,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "emulation",
+      "userName": "@emulation",
       "name": "Laverne Truckell",
       "role": "Associate Professor"
     },
     {
       "contactID": 2,
-      "userName": "attitude-oriented",
+      "userName": "@attitude-oriented",
       "name": "Katina De Freitas",
       "role": "Web Developer I"
     },
     {
       "contactID": 3,
-      "userName": "utilisation",
+      "userName": "@utilisation",
       "name": "Laurent todor",
       "role": "Paralegal"
     },
     {
       "contactID": 4,
-      "userName": "Adaptive",
+      "userName": "@Adaptive",
       "name": "Danie Powdrill",
       "role": "Registered Nurse"
     },
     {
       "contactID": 5,
-      "userName": "function",
+      "userName": "@function",
       "name": "Celene Burker",
       "role": "Cost Accountant"
     },
     {
       "contactID": 6,
-      "userName": "Object-based",
+      "userName": "@Object-based",
       "name": "Merl Joules",
       "role": "Graphic Designer"
     }
@@ -29011,43 +29011,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "zero administration",
+      "userName": "@zero administration",
       "name": "Jolyn Colum",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 2,
-      "userName": "disintermediate",
+      "userName": "@disintermediate",
       "name": "Felicity Emptage",
       "role": "Operator"
     },
     {
       "contactID": 3,
-      "userName": "alliance",
+      "userName": "@alliance",
       "name": "Sully Augustus",
       "role": "VP Sales"
     },
     {
       "contactID": 4,
-      "userName": "needs-based",
+      "userName": "@needs-based",
       "name": "Joey Checketts",
       "role": "Tax Accountant"
     },
     {
       "contactID": 5,
-      "userName": "Fundamental",
+      "userName": "@Fundamental",
       "name": "Ernest Ramsay",
       "role": "Account Executive"
     },
     {
       "contactID": 6,
-      "userName": "challenge",
+      "userName": "@challenge",
       "name": "Melly Thorouggood",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 7,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Sibley Skyram",
       "role": "Software Engineer II"
     }
@@ -29543,43 +29543,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "encryption",
+      "userName": "@encryption",
       "name": "Link Alban",
       "role": "Graphic Designer"
     },
     {
       "contactID": 2,
-      "userName": "firmware",
+      "userName": "@firmware",
       "name": "Athene O' Donohue",
       "role": "Software Test Engineer I"
     },
     {
       "contactID": 3,
-      "userName": "system engine",
+      "userName": "@system engine",
       "name": "Sky Dennitts",
       "role": "Clinical Specialist"
     },
     {
       "contactID": 4,
-      "userName": "optimizing",
+      "userName": "@optimizing",
       "name": "Hatti Ginie",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 5,
-      "userName": "systemic",
+      "userName": "@systemic",
       "name": "Arvin Barthelemy",
       "role": "Data Coordiator"
     },
     {
       "contactID": 6,
-      "userName": "Switchable",
+      "userName": "@Switchable",
       "name": "Vern Roycroft",
       "role": "Statistician III"
     },
     {
       "contactID": 7,
-      "userName": "empowering",
+      "userName": "@empowering",
       "name": "Kellsie Welman",
       "role": "Safety Technician I"
     }
@@ -29942,43 +29942,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "solution",
+      "userName": "@solution",
       "name": "Shae Kainz",
       "role": "VP Sales"
     },
     {
       "contactID": 2,
-      "userName": "Monitored",
+      "userName": "@Monitored",
       "name": "Damiano Drillot",
       "role": "Clinical Specialist"
     },
     {
       "contactID": 3,
-      "userName": "Multi-tiered",
+      "userName": "@Multi-tiered",
       "name": "Bambie Rapier",
       "role": "Assistant Manager"
     },
     {
       "contactID": 4,
-      "userName": "Diverse",
+      "userName": "@Diverse",
       "name": "Wit Kuschel",
       "role": "Human Resources Manager"
     },
     {
       "contactID": 5,
-      "userName": "Digitized",
+      "userName": "@Digitized",
       "name": "Bartel O'Connel",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 6,
-      "userName": "contextually-based",
+      "userName": "@contextually-based",
       "name": "Crawford Iddenden",
       "role": "Teacher"
     },
     {
       "contactID": 7,
-      "userName": "model",
+      "userName": "@model",
       "name": "Jerald Warters",
       "role": "Staff Scientist"
     }
@@ -30639,31 +30639,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Robust",
+      "userName": "@Robust",
       "name": "Oralee Hintzer",
       "role": "Staff Scientist"
     },
     {
       "contactID": 2,
-      "userName": "Upgradable",
+      "userName": "@Upgradable",
       "name": "Sashenka Yearnes",
       "role": "Health Coach II"
     },
     {
       "contactID": 3,
-      "userName": "modular",
+      "userName": "@modular",
       "name": "Allison Durn",
       "role": "Director of Sales"
     },
     {
       "contactID": 4,
-      "userName": "adapter",
+      "userName": "@adapter",
       "name": "Kevina Lemon",
       "role": "Graphic Designer"
     },
     {
       "contactID": 5,
-      "userName": "emulation",
+      "userName": "@emulation",
       "name": "Curtice Hebblethwaite",
       "role": "Quality Engineer"
     }
@@ -30888,25 +30888,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Multi-lateral",
+      "userName": "@Multi-lateral",
       "name": "Doro Wale",
       "role": "VP Accounting"
     },
     {
       "contactID": 2,
-      "userName": "local",
+      "userName": "@local",
       "name": "Perkin Bleackley",
       "role": "Editor"
     },
     {
       "contactID": 3,
-      "userName": "installation",
+      "userName": "@installation",
       "name": "Randene Ilyuchyov",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 4,
-      "userName": "4th generation",
+      "userName": "@4th generation",
       "name": "Janeta Cranstoun",
       "role": "Financial Advisor"
     }
@@ -31648,37 +31648,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "productivity",
+      "userName": "@productivity",
       "name": "Sella Fominov",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 2,
-      "userName": "holistic",
+      "userName": "@holistic",
       "name": "Garrot Oldland",
       "role": "Operator"
     },
     {
       "contactID": 3,
-      "userName": "bandwidth-monitored",
+      "userName": "@bandwidth-monitored",
       "name": "Ronnie Stiddard",
       "role": "VP Sales"
     },
     {
       "contactID": 4,
-      "userName": "exuding",
+      "userName": "@exuding",
       "name": "Shena Kunz",
       "role": "Associate Professor"
     },
     {
       "contactID": 5,
-      "userName": "implementation",
+      "userName": "@implementation",
       "name": "Maureene Smurfitt",
       "role": "Environmental Specialist"
     },
     {
       "contactID": 6,
-      "userName": "5th generation",
+      "userName": "@5th generation",
       "name": "Marv Fairholme",
       "role": "Structural Engineer"
     }
@@ -32214,25 +32214,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Universal",
+      "userName": "@Universal",
       "name": "Datha Littlemore",
       "role": "Environmental Tech"
     },
     {
       "contactID": 2,
-      "userName": "Pre-emptive",
+      "userName": "@Pre-emptive",
       "name": "Claudie Adamowicz",
       "role": "Programmer III"
     },
     {
       "contactID": 3,
-      "userName": "Re-contextualized",
+      "userName": "@Re-contextualized",
       "name": "Roseline Wixon",
       "role": "VP Product Management"
     },
     {
       "contactID": 4,
-      "userName": "algorithm",
+      "userName": "@algorithm",
       "name": "Ann Witnall",
       "role": "VP Marketing"
     }
@@ -32652,43 +32652,43 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "reciprocal",
+      "userName": "@reciprocal",
       "name": "Percy Presley",
       "role": "Accounting Assistant II"
     },
     {
       "contactID": 2,
-      "userName": "analyzer",
+      "userName": "@analyzer",
       "name": "Beryle Furminger",
       "role": "Community Outreach Specialist"
     },
     {
       "contactID": 3,
-      "userName": "artificial intelligence",
+      "userName": "@artificial intelligence",
       "name": "Henka Cottesford",
       "role": "Account Coordinator"
     },
     {
       "contactID": 4,
-      "userName": "heuristic",
+      "userName": "@heuristic",
       "name": "Helge Marshalleck",
       "role": "VP Sales"
     },
     {
       "contactID": 5,
-      "userName": "transitional",
+      "userName": "@transitional",
       "name": "Mohandas Antcliff",
       "role": "Quality Control Specialist"
     },
     {
       "contactID": 6,
-      "userName": "Graphical User Interface",
+      "userName": "@Graphical User Interface",
       "name": "Trisha Armes",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 7,
-      "userName": "Integrated",
+      "userName": "@Integrated",
       "name": "Rahal O'Doran",
       "role": "Administrative Assistant III"
     }
@@ -32702,49 +32702,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Reverse-engineered",
+      "userName": "@Reverse-engineered",
       "name": "Dante Thornber",
       "role": "Recruiter"
     },
     {
       "contactID": 2,
-      "userName": "Configurable",
+      "userName": "@Configurable",
       "name": "Frederick McCall",
       "role": "Marketing Manager"
     },
     {
       "contactID": 3,
-      "userName": "Team-oriented",
+      "userName": "@Team-oriented",
       "name": "Allsun Macro",
       "role": "Software Test Engineer I"
     },
     {
       "contactID": 4,
-      "userName": "exuding",
+      "userName": "@exuding",
       "name": "Ambrose Yexley",
       "role": "Registered Nurse"
     },
     {
       "contactID": 5,
-      "userName": "foreground",
+      "userName": "@foreground",
       "name": "Carine Jeskins",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 6,
-      "userName": "bottom-line",
+      "userName": "@bottom-line",
       "name": "Engelbert Vian",
       "role": "Teacher"
     },
     {
       "contactID": 7,
-      "userName": "neutral",
+      "userName": "@neutral",
       "name": "Coral Carnaman",
       "role": "Senior Sales Associate"
     },
     {
       "contactID": 8,
-      "userName": "grid-enabled",
+      "userName": "@grid-enabled",
       "name": "Heidi Bottlestone",
       "role": "Tax Accountant"
     }
@@ -33192,61 +33192,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "Total",
+      "userName": "@Total",
       "name": "Rubie ducarme",
       "role": "Quality Control Specialist"
     },
     {
       "contactID": 2,
-      "userName": "Compatible",
+      "userName": "@Compatible",
       "name": "Elbertine Tull",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 3,
-      "userName": "De-engineered",
+      "userName": "@De-engineered",
       "name": "Wilona Shwenn",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 4,
-      "userName": "neutral",
+      "userName": "@neutral",
       "name": "Joete Belham",
       "role": "Compensation Analyst"
     },
     {
       "contactID": 5,
-      "userName": "holistic",
+      "userName": "@holistic",
       "name": "Jeannette McIlherran",
       "role": "Research Nurse"
     },
     {
       "contactID": 6,
-      "userName": "uniform",
+      "userName": "@uniform",
       "name": "Adina Baish",
       "role": "Staff Scientist"
     },
     {
       "contactID": 7,
-      "userName": "Profit-focused",
+      "userName": "@Profit-focused",
       "name": "Aldridge Cordova",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 8,
-      "userName": "encoding",
+      "userName": "@encoding",
       "name": "Dianna Morshead",
       "role": "Help Desk Operator"
     },
     {
       "contactID": 9,
-      "userName": "Phased",
+      "userName": "@Phased",
       "name": "Rutherford Tatlowe",
       "role": "Tax Accountant"
     },
     {
       "contactID": 10,
-      "userName": "Organic",
+      "userName": "@Organic",
       "name": "Ivy Chugg",
       "role": "Structural Engineer"
     }
@@ -33344,49 +33344,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "3rd generation",
+      "userName": "@3rd generation",
       "name": "Christie Keene",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 2,
-      "userName": "Ergonomic",
+      "userName": "@Ergonomic",
       "name": "Leonore Blakesley",
       "role": "Office Assistant IV"
     },
     {
       "contactID": 3,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Kim Clancy",
       "role": "Chief Design Engineer"
     },
     {
       "contactID": 4,
-      "userName": "extranet",
+      "userName": "@extranet",
       "name": "Geri Dyton",
       "role": "Assistant Professor"
     },
     {
       "contactID": 5,
-      "userName": "orchestration",
+      "userName": "@orchestration",
       "name": "Aguie Meads",
       "role": "Product Engineer"
     },
     {
       "contactID": 6,
-      "userName": "interface",
+      "userName": "@interface",
       "name": "Linnell Spare",
       "role": "VP Product Management"
     },
     {
       "contactID": 7,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Taddeusz Byart",
       "role": "Engineer III"
     },
     {
       "contactID": 8,
-      "userName": "fresh-thinking",
+      "userName": "@fresh-thinking",
       "name": "Ethel Southwell",
       "role": "Software Consultant"
     }
@@ -33407,13 +33407,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "hub",
+      "userName": "@hub",
       "name": "Bogey Goodlatt",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 2,
-      "userName": "Expanded",
+      "userName": "@Expanded",
       "name": "Kamillah Elliott",
       "role": "Assistant Professor"
     }
@@ -33939,37 +33939,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Fiorenze Scarrott",
       "role": "Payment Adjustment Coordinator"
     },
     {
       "contactID": 2,
-      "userName": "Versatile",
+      "userName": "@Versatile",
       "name": "Jacquenetta Dedmam",
       "role": "Marketing Manager"
     },
     {
       "contactID": 3,
-      "userName": "Quality-focused",
+      "userName": "@Quality-focused",
       "name": "Maximo Brabben",
       "role": "Marketing Manager"
     },
     {
       "contactID": 4,
-      "userName": "non-volatile",
+      "userName": "@non-volatile",
       "name": "Nevsa Amberg",
       "role": "Occupational Therapist"
     },
     {
       "contactID": 5,
-      "userName": "maximized",
+      "userName": "@maximized",
       "name": "Melvyn Osanne",
       "role": "Business Systems Development Analyst"
     },
     {
       "contactID": 6,
-      "userName": "asymmetric",
+      "userName": "@asymmetric",
       "name": "Nalani Bott",
       "role": "Teacher"
     }
@@ -34128,7 +34128,7 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "groupware",
+      "userName": "@groupware",
       "name": "Tawsha Brockett",
       "role": "Accounting Assistant IV"
     }
@@ -34535,25 +34535,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "infrastructure",
+      "userName": "@infrastructure",
       "name": "Oralle Bidewell",
       "role": "Engineer III"
     },
     {
       "contactID": 2,
-      "userName": "moderator",
+      "userName": "@moderator",
       "name": "Langston Hardson",
       "role": "Junior Executive"
     },
     {
       "contactID": 3,
-      "userName": "Phased",
+      "userName": "@Phased",
       "name": "Jourdan Blackborne",
       "role": "Assistant Media Planner"
     },
     {
       "contactID": 4,
-      "userName": "ability",
+      "userName": "@ability",
       "name": "Lita Fulle",
       "role": "Administrative Officer"
     }
@@ -34567,13 +34567,13 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "implementation",
+      "userName": "@implementation",
       "name": "Jaymie Sallan",
       "role": "Analyst Programmer"
     },
     {
       "contactID": 2,
-      "userName": "Digitized",
+      "userName": "@Digitized",
       "name": "Marget Grimsdale",
       "role": "Legal Assistant"
     }
@@ -34742,31 +34742,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "synergy",
+      "userName": "@synergy",
       "name": "Deny Zylbermann",
       "role": "Accountant II"
     },
     {
       "contactID": 2,
-      "userName": "Fundamental",
+      "userName": "@Fundamental",
       "name": "Lavinie Deacock",
       "role": "Tax Accountant"
     },
     {
       "contactID": 3,
-      "userName": "capability",
+      "userName": "@capability",
       "name": "Aigneis Tuiller",
       "role": "General Manager"
     },
     {
       "contactID": 4,
-      "userName": "Mandatory",
+      "userName": "@Mandatory",
       "name": "Beckie Phippin",
       "role": "Marketing Assistant"
     },
     {
       "contactID": 5,
-      "userName": "grid-enabled",
+      "userName": "@grid-enabled",
       "name": "Zarah Turnbull",
       "role": "Chief Design Engineer"
     }
@@ -35263,49 +35263,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "framework",
+      "userName": "@framework",
       "name": "Corenda Antosch",
       "role": "VP Marketing"
     },
     {
       "contactID": 2,
-      "userName": "success",
+      "userName": "@success",
       "name": "Annamaria Seemmonds",
       "role": "Recruiting Manager"
     },
     {
       "contactID": 3,
-      "userName": "Horizontal",
+      "userName": "@Horizontal",
       "name": "Honor MacKill",
       "role": "Administrative Assistant IV"
     },
     {
       "contactID": 4,
-      "userName": "encompassing",
+      "userName": "@encompassing",
       "name": "Abbey Borsay",
       "role": "Physical Therapy Assistant"
     },
     {
       "contactID": 5,
-      "userName": "encoding",
+      "userName": "@encoding",
       "name": "Reine Roller",
       "role": "Occupational Therapist"
     },
     {
       "contactID": 6,
-      "userName": "superstructure",
+      "userName": "@superstructure",
       "name": "Hoyt Dunkinson",
       "role": "Internal Auditor"
     },
     {
       "contactID": 7,
-      "userName": "Realigned",
+      "userName": "@Realigned",
       "name": "Else Billsberry",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 8,
-      "userName": "throughput",
+      "userName": "@throughput",
       "name": "Leila Deason",
       "role": "Technical Writer"
     }
@@ -35319,37 +35319,37 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "national",
+      "userName": "@national",
       "name": "Koren Outridge",
       "role": "Compensation Analyst"
     },
     {
       "contactID": 2,
-      "userName": "fault-tolerant",
+      "userName": "@fault-tolerant",
       "name": "Otho Gallagher",
       "role": "Budget/Accounting Analyst II"
     },
     {
       "contactID": 3,
-      "userName": "intangible",
+      "userName": "@intangible",
       "name": "Peyter Suermeiers",
       "role": "Marketing Assistant"
     },
     {
       "contactID": 4,
-      "userName": "software",
+      "userName": "@software",
       "name": "Rhodia Noods",
       "role": "Director of Sales"
     },
     {
       "contactID": 5,
-      "userName": "attitude",
+      "userName": "@attitude",
       "name": "Henrie Tampin",
       "role": "Nuclear Power Engineer"
     },
     {
       "contactID": 6,
-      "userName": "core",
+      "userName": "@core",
       "name": "Horace Posner",
       "role": "Social Worker"
     }
@@ -35520,49 +35520,49 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "structure",
+      "userName": "@structure",
       "name": "Aveline Broxton",
       "role": "Account Coordinator"
     },
     {
       "contactID": 2,
-      "userName": "exuding",
+      "userName": "@exuding",
       "name": "Bogart Danilyuk",
       "role": "Data Coordiator"
     },
     {
       "contactID": 3,
-      "userName": "info-mediaries",
+      "userName": "@info-mediaries",
       "name": "Pammie Trigwell",
       "role": "Desktop Support Technician"
     },
     {
       "contactID": 4,
-      "userName": "protocol",
+      "userName": "@protocol",
       "name": "Faun Coulthard",
       "role": "Speech Pathologist"
     },
     {
       "contactID": 5,
-      "userName": "incremental",
+      "userName": "@incremental",
       "name": "Albina Flade",
       "role": "Geological Engineer"
     },
     {
       "contactID": 6,
-      "userName": "full-range",
+      "userName": "@full-range",
       "name": "Kora Iacomini",
       "role": "Social Worker"
     },
     {
       "contactID": 7,
-      "userName": "firmware",
+      "userName": "@firmware",
       "name": "Alva Stillman",
       "role": "Staff Accountant II"
     },
     {
       "contactID": 8,
-      "userName": "initiative",
+      "userName": "@initiative",
       "name": "Charis Trim",
       "role": "Senior Cost Accountant"
     }
@@ -35814,61 +35814,61 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "dedicated",
+      "userName": "@dedicated",
       "name": "Luella Thraves",
       "role": "Mechanical Systems Engineer"
     },
     {
       "contactID": 2,
-      "userName": "utilisation",
+      "userName": "@utilisation",
       "name": "Merrilee Boggs",
       "role": "VP Sales"
     },
     {
       "contactID": 3,
-      "userName": "core",
+      "userName": "@core",
       "name": "Anita Machent",
       "role": "Senior Quality Engineer"
     },
     {
       "contactID": 4,
-      "userName": "utilisation",
+      "userName": "@utilisation",
       "name": "Kissee Rennocks",
       "role": "Computer Systems Analyst I"
     },
     {
       "contactID": 5,
-      "userName": "portal",
+      "userName": "@portal",
       "name": "Arron Melby",
       "role": "Graphic Designer"
     },
     {
       "contactID": 6,
-      "userName": "incremental",
+      "userName": "@incremental",
       "name": "Madelyn Puttnam",
       "role": "Legal Assistant"
     },
     {
       "contactID": 7,
-      "userName": "Robust",
+      "userName": "@Robust",
       "name": "Sheri Silbersak",
       "role": "Media Manager IV"
     },
     {
       "contactID": 8,
-      "userName": "Realigned",
+      "userName": "@Realigned",
       "name": "Will Robertelli",
       "role": "Business Systems Development Analyst"
     },
     {
       "contactID": 9,
-      "userName": "orchestration",
+      "userName": "@orchestration",
       "name": "Wallas Johantges",
       "role": "Professor"
     },
     {
       "contactID": 10,
-      "userName": "3rd generation",
+      "userName": "@3rd generation",
       "name": "Maggee Acheson",
       "role": "Software Consultant"
     }
@@ -35882,25 +35882,25 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "project",
+      "userName": "@project",
       "name": "Leonerd Boggs",
       "role": "Information Systems Manager"
     },
     {
       "contactID": 2,
-      "userName": "Persistent",
+      "userName": "@Persistent",
       "name": "Harper Vick",
       "role": "Physical Therapy Assistant"
     },
     {
       "contactID": 3,
-      "userName": "systematic",
+      "userName": "@systematic",
       "name": "Kathryn Brownlea",
       "role": "Developer I"
     },
     {
       "contactID": 4,
-      "userName": "portal",
+      "userName": "@portal",
       "name": "Nappy Bottrill",
       "role": "Web Developer III"
     }
@@ -36362,31 +36362,31 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "framework",
+      "userName": "@framework",
       "name": "Corenda Capelen",
       "role": "Senior Financial Analyst"
     },
     {
       "contactID": 2,
-      "userName": "Switchable",
+      "userName": "@Switchable",
       "name": "Janel Pollett",
       "role": "Librarian"
     },
     {
       "contactID": 3,
-      "userName": "foreground",
+      "userName": "@foreground",
       "name": "Ashlie Kemmons",
       "role": "Research Nurse"
     },
     {
       "contactID": 4,
-      "userName": "approach",
+      "userName": "@approach",
       "name": "Lucy Saffe",
       "role": "Community Outreach Specialist"
     },
     {
       "contactID": 5,
-      "userName": "framework",
+      "userName": "@framework",
       "name": "Octavia Rowswell",
       "role": "Information Systems Manager"
     }
@@ -36796,19 +36796,19 @@ chapters = {"chapters" : [{
   "contacts": [
     {
       "contactID": 1,
-      "userName": "system-worthy",
+      "userName": "@system-worthy",
       "name": "Brandice Ferrer",
       "role": "Senior Cost Accountant"
     },
     {
       "contactID": 2,
-      "userName": "Triple-buffered",
+      "userName": "@Triple-buffered",
       "name": "Emyle Grabeham",
       "role": "Systems Administrator III"
     },
     {
       "contactID": 3,
-      "userName": "Expanded",
+      "userName": "@Expanded",
       "name": "Lanita Cawthera",
       "role": "Administrative Assistant III"
     }
