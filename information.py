@@ -3,6 +3,8 @@
 # IEEE Computer TEC Telegram Bot
 # Info module
 
+import connection as conn
+
 '''
 Method that returns the about information formated as is
 '''
@@ -15,29 +17,41 @@ def about():
 	return aboutText
 '''
 Method that gets from the api a list of branches
-Some caching can be implemented since the branches will not be changing often
+The connection module use cache to improve response time
 '''
 def listBranches():
-	# Api call and stuff (The API is not yet implemented)
-	return [u"Rama Estudiantil Tecnológico de Costa Rica"]
+	#Get branches from the API
+	branchList = conn.apiGet("branches")["branches"]
+	branchNames = []
+	#Get only the names of the branches
+	for branch in branchList:
+		branchNames += [u"Rama Estudiantil "+branch["college"]]
+	return branchNames
 
 '''
 Method that gets from the api a list of chapters
-Some caching can be implemented since the chapters will not be changing often
+branch name is required to search the branch
+The connection module use cache to improve response time
 '''
 def listChapters(BranchName):
-	abbreviation = getBranchAbbreviation(BranchName)
-	# Api call and stuff (The API is not yet implemented)
-	return [u"Capítulo Computer "+abbreviation]
+	branchData = getBranchData(BranchName)
+	chapterList = conn.apiGet("chapters", {"branchID":branchData["branchID"]})["chapters"]
+	chapterNames = []
+	for chapter in chapterList:
+		chapterNames += [chapter["name"]+u" "+branchData["acronym"]]
+	return chapterNames
 
 '''
-Method that gets from the api a abbreviation for the branch name
-Some caching can be implemented since the branch names will not be changing often
+Method that gets from the api one specific branch by name
+branch name is required to search the branch
+The connection module use cache to improve response time
 '''
-def getBranchAbbreviation(BranchName):
-	# Api call and stuff (The API is not yet implemented)
-	if(True):
-		return u"TEC"
-	else:
-		raise Exception("The Chapter cannot be found.")
+def getBranchData(BranchName):
+	#Get all branches from api
+	branchList = conn.apiGet("branches")["branches"]
+	#Search for the branch and return the acronym
+	for branch in branchList:
+		if(branch["college"] in BranchName):
+			return branch
+	raise Exception("The Branch "+ BranchName +" cannot be found.")
 

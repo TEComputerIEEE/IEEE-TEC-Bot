@@ -100,15 +100,15 @@ def getKeys(screenNumber, branchName=""):
         keys+=[ [branch] for branch in info.listBranches() ]
     elif screenNumber == chapterActivities or screenNumber == chapterNotifications or screenNumber == chapterContacts:
         try:#Since a API search call will be made and the result is needed in order to continue
-            abbreviation=info.getBranchAbbreviation(branchName)
+            acronym=info.getBranchData(branchName)["acronym"]
             if screenNumber == chapterActivities:
-                keys+=[[branchActivitiesKey+abbreviation]]
+                keys+=[[branchActivitiesKey+acronym]]
             elif screenNumber == chapterNotifications:
-                keys+=[[branchNotificationsKey+abbreviation]]
+                keys+=[[branchNotificationsKey+acronym]]
             else:
-                keys+=[[branchContactsKey+abbreviation]]
+                keys+=[[branchContactsKey+acronym]]
             keys+=[ [chapter] for chapter in info.listChapters(branchName) ]
-        except (Exception, e):
+        except ValueError as e:
             #Log the error
             logger.warning('Something went wrong searching for "%s" branch. Error "%s"', branchName, e)
             return customKeyboards[homeScreen]
@@ -122,7 +122,7 @@ Since the return and other functions use the same lines to go home
 or other screens this method is implemented, the default screen is the home screen
 '''
 def goToScreen(bot, update, screenNumber=homeScreen, message="Seleccione una Opcion:", document=None, photo=None, branchName=""):
-    userState.update({update.message.chat_id : [screenNumber, ""]})
+    userState.update({update.message.chat_id : [screenNumber, branchName]})
     openKeyboard(bot, update, getKeys(screenNumber, branchName),message, document=document, photo=photo)
 
 
@@ -172,19 +172,19 @@ def commonHandler(bot, update, screens, customMethods):
         if update.message.text == returnKey:
             #If return key is pressed then go to the previous screen
             goToScreen(bot, update, screenNumber=screens[0])
+        elif branchActivitiesKey in update.message.text or branchNotificationsKey in update.message.text or branchContactsKey in update.message.text:
+            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
+            #replyText=customMethods[0](branchName=userState[update.message.chat_id][1])
+            replyText="Esta es la informacion de la rama que solicitó"
+            goToScreen(bot, update, message=replyText)
         elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
             #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
             #replyText=customMethods[1](chapterName=update.message.text, branchName=userState[update.message.chat_id][1])
             replyText="Esta es la informacion del capítulo que solicitó"
             goToScreen(bot, update, message=replyText)
-        elif branchActivitiesKey in update.message.text:
-            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
-            #replyText=customMethods[0](branchName=userState[update.message.chat_id][1])
-            replyText="Esta es la informacion de la rama que solicitó"
-            goToScreen(bot, update, message=replyText)
         else:
             #If is not any valid option
-            openKeyboard(bot, update, getKeys(screens[1]), message=config.unrecognizedReply)
+            openKeyboard(bot, update, getKeys(screens[1], branchName=userState[update.message.chat_id][1]), message=config.unrecognizedReply)
     else:
         #Log the error
         logger.warning('Something went wrong reaching common handler screen code: "%d".', userState[update.message.chat_id][0])
