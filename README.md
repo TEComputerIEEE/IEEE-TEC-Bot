@@ -20,17 +20,24 @@ If you don't have python installed you can install it by typing into a terminal:
 sudo apt get install python3 python3-pip
 pip3 install --upgrade pip setuptools
 ```
-#### Python-telegram-bot wrapper
+#### Pip Quick Install
+Since we have a [requirements.txt](requirements.txt) file with the requirements, you can simply install all with:
+```
+pip install -r requirements.txt --user
+```
+You can also install them in a [virtual enviroment](https://virtualenv.pypa.io/en/stable/userguide/#usage).
+Other way is install each of them manually:
+##### Python-telegram-bot wrapper
 This bot is based on [python-telegram-bot wrapper](https://github.com/python-telegram-bot/python-telegram-bot), you can install it with:
 ```
 pip3 install python-telegram-bot --upgrade --user
 ```
-#### Request-Cache
+##### Request-Cache
 To improve response time, the request responses are [cached](https://github.com/reclosedev/requests-cache/blob/master/docs/user_guide.rst):
 ```
 pip3 install requests-cache --upgrade --user
 ```
-#### Schedule
+##### Schedule
 To do task periodically this bot uses [schedule](https://github.com/dbader/schedule):
 ```
 pip3 install schedule --upgrade --user
@@ -50,6 +57,9 @@ TELAPIKEY = ""
 WEBAPIKEY = ""
 #Config parameters
 Logging = True
+cacheTime = 1 #In hours
+clearCacheTime = "23:00" # the time when the clear cache function will be called
+webApiAddr = "http://httpbin.org"
 #Default Messages
 startReply = "Bienvenido al Bot de IEEE Computer Society TEC"
 unrecognizedReply = "Comando invalido, por favor utilice el teclado especial."
