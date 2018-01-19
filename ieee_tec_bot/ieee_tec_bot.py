@@ -275,10 +275,11 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == guideScreen:
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
-            #replyText=info.membershipSteps() 
-            replyText = "Mostrando pasos para pertenecer a IEEE"
-            goToScreen(bot, update, message=replyText)#if a photo or document needs to be added , just add the parameter photo=the photo or document= the document
-
+            replyText=info.membershipSteps() 
+            membershipDocument= open("MembresíaIEEE.pdf","rb")
+            goToScreen(bot, update, message=replyText,document= membershipDocument)
+            membershipDocument.close()
+            
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
             #replyText=info.chapterMembershipSteps()
