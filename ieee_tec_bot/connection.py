@@ -208,6 +208,6 @@ This module cannot be run as a main
 '''
 if __name__ != '__main__':
 	#Monkey patch requests
-	requests_cache.install_cache('icb_cache', backend='sqlite', expire_after=config.cacheTime*3600)
+	requests_cache.install_cache('../resources/icb_cache', backend='sqlite', expire_after=config.cacheTime*3600)
 	#Schedule a cache cleaning every day at the especified time
 	schedule.every().day.at(config.clearCacheTime)

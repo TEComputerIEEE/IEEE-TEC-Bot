@@ -15,7 +15,7 @@ Send /notify to activate notifications
 """
 from telegram.ext import Updater, CommandHandler, MessageHandler, RegexHandler,Filters
 import logging
-import config
+import config as config
 import information as info
 import telegram #necessary for Keyboards
 
