@@ -69,7 +69,7 @@ This is not the [best way](https://medium.freecodecamp.org/how-to-securely-store
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](heregoesthelink) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 Given a version number MAJOR.MINOR.PATCH, increment the:
