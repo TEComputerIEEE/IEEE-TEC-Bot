@@ -282,7 +282,8 @@ def informationHandler(bot, update):
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
             replyText=info.chapterMembershipSteps()
-            chapterMembershipDocument= open("MembresíaIEEE.pdf","rb")
+            #chapterMembershipDocument= open(config.membershipPath,"rb")
+            chapterMembershipDocument= open("../resources/MembresiaIEEE.pdf","rb")
             goToScreen(bot, update, message=replyText,document= chapterMembershipDocument)
             chapterMembershipDocument.close()
 
