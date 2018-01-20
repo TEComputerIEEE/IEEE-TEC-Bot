@@ -20,7 +20,7 @@ def about():
 Method that returns the steps to become a member of an IEEE chapter 
 '''
 def chapterMembershipSteps():
-        #The URL needs updating
+	#The URL needs updating
 	chapterMembershipStepsText = "<b>Para convertirse en miembro de un capítulo de IEEE</b>\n"
 	chapterMembershipStepsText += "Siga los pasos descritos en el archivo adjunto "
 	chapterMembershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
