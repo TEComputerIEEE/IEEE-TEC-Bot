@@ -276,7 +276,8 @@ def informationHandler(bot, update):
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
             replyText=info.membershipSteps() 
-            membershipDocument= open("MembresíaIEEE.pdf","rb")
+            #membershipDocument= open(config.membershipPath,"rb")
+            membershipDocument= open("../resources/MembresiaIEEE.pdf","rb")
             goToScreen(bot, update, message=replyText,document= membershipDocument)
             membershipDocument.close()
             
