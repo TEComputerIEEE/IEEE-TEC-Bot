@@ -15,9 +15,10 @@ Send /notify to activate notifications
 """
 from telegram.ext import Updater, CommandHandler, MessageHandler, RegexHandler,Filters
 import logging
-import config as config
+import config
 import information as info
 import telegram #necessary for Keyboards
+import os # For TELAPIKEY
 
 
 #Const keys text
@@ -73,7 +74,6 @@ Function to show a keyboard, it also sends a message if required
 '''
 def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", document=None, photo=None,resize=True):
     if document != None:
-        print("Sending document")
         bot.send_document(chat_id=update.message.chat_id, document=document)
     if photo != None:
         bot.send_photo(chat_id=update.message.chat_id, photo=photo)
@@ -276,18 +276,14 @@ def informationHandler(bot, update):
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
             replyText=info.membershipSteps() 
-            #membershipDocument= open(config.membershipPath,"rb")
-            membershipDocument= open("../resources/MembresiaIEEE.pdf","rb")
-            goToScreen(bot, update, message=replyText,document= membershipDocument)
-            membershipDocument.close()
+            with open(config.membershipPath,"rb") as membershipDocument:
+                goToScreen(bot, update, message=replyText,document= membershipDocument)
             
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
             replyText=info.chapterMembershipSteps()
-            #chapterMembershipDocument= open(config.membershipPath,"rb")
-            chapterMembershipDocument= open("../resources/MembresiaIEEE.pdf","rb")
-            goToScreen(bot, update, message=replyText,document= chapterMembershipDocument)
-            chapterMembershipDocument.close()
+            with open(config.chapterMembershipPath,"rb") as chapterMembershipDocument:
+                goToScreen(bot, update, message=replyText,document= chapterMembershipDocument)
 
         elif update.message.text in customKeyboards[guideScreen][2]:
             #if the help button is pressed move to the contacts screen
@@ -370,7 +366,11 @@ Bot main flow function
 def main():
     # Making the bot work
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(config.TELAPIKEY)
+    TELAPIKEY = os.environ.get("TELEGRAM_API_KEY")
+    if(TELAPIKEY == None):
+        print("No TELEGRAM_API_KEY variable defined, please type on terminal export TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
+        return -1
+    updater = Updater(TELAPIKEY)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
