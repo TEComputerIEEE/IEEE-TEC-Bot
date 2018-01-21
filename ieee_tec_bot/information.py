@@ -17,6 +17,16 @@ def about():
 	return aboutText
 
 '''
+Method that returns the steps to become a IEEE member formated 
+'''
+def membershipSteps():
+	#The URL needs updating
+	membershipStepsText = "<b>Para convertirse en miembro de IEEE</b>\n"
+	membershipStepsText += "Siga los pasos descritos en el archivo adjunto "
+	membershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
+	return membershipStepsText
+
+'''
 Method that returns the steps to become a member of an IEEE chapter 
 '''
 def chapterMembershipSteps():
@@ -25,6 +35,7 @@ def chapterMembershipSteps():
 	chapterMembershipStepsText += "Siga los pasos descritos en el archivo adjunto "
 	chapterMembershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
 	return chapterMembershipStepsText
+
 
 '''
 Method that gets from the api a list of branches
