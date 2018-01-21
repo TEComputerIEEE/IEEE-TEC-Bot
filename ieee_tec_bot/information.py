@@ -15,6 +15,17 @@ def about():
 		aboutText+="⚫ Nombre Completo - @johndoe\n"
 	aboutText+="Para más información visite el proyecto en <a href='https://github.com/TEComputerIEEE/IEEE-TEC-Bot/'>github</a>."
 	return aboutText
+
+'''
+Method that returns the steps to become a member of an IEEE chapter 
+'''
+def chapterMembershipSteps():
+	#The URL needs updating
+	chapterMembershipStepsText = "<b>Para convertirse en miembro de un capítulo de IEEE</b>\n"
+	chapterMembershipStepsText += "Siga los pasos descritos en el archivo adjunto "
+	chapterMembershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
+	return chapterMembershipStepsText
+
 '''
 Method that gets from the api a list of branches
 The connection module use cache to improve response time
