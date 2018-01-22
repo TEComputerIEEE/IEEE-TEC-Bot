@@ -3,6 +3,8 @@
 # IEEE Computer TEC Telegram Bot
 # Info module
 
+import connection as conn
+
 '''
 Method that returns the about information formated as is
 '''
@@ -13,33 +15,7 @@ def about():
 		aboutText+="⚫ Nombre Completo - @johndoe\n"
 	aboutText+="Para más información visite el proyecto en <a href='https://github.com/TEComputerIEEE/IEEE-TEC-Bot/'>github</a>."
 	return aboutText
-'''
-Method that gets from the api a list of branches
-Some caching can be implemented since the branches will not be changing often
-'''
-def listBranches():
-	# Api call and stuff (The API is not yet implemented)
-	return [u"Rama Estudiantil Tecnológico de Costa Rica"]
 
-'''
-Method that gets from the api a list of chapters
-Some caching can be implemented since the chapters will not be changing often
-'''
-def listChapters(BranchName):
-	abbreviation = getBranchAbbreviation(BranchName)
-	# Api call and stuff (The API is not yet implemented)
-	return [u"Capítulo Computer "+abbreviation]
-
-'''
-Method that gets from the api a abbreviation for the branch name
-Some caching can be implemented since the branch names will not be changing often
-'''
-def getBranchAbbreviation(BranchName):
-	# Api call and stuff (The API is not yet implemented)
-	if(True):
-		return u"TEC"
-	else:
-		raise Exception("The Chapter cannot be found.")
 '''
 Method that give the information of the IEEE membership and send it
 to the main program
@@ -54,3 +30,67 @@ to the main program----Now only the CS chapter (in develop CAS EBM  IAS NPSS PES
 def chaptersBenefits():
 	CBenefistText="<b>Beneficios de ser miembro de Computer Society:\n</b>🔹Revista Computer mensual (digital).\n🔹Revista ComputingEdge mensual (digital).\n🔹Descuentos solo para miembros a conferencias y eventos.\n🔹Seminarios web solo para miembros.\n🔹Acceso ilimitado a Computing Now, computer.org, y a la nueva aplicación móvil myCS.\n🔹<b>Membresía al Capítulo Computer local.\n</b>🔹<b>Skillsoft Skillchoice™ Complete</b>, con más de 67.000 libros, videos, cursos, practices para examen y recursos de orientación.\n🔹Acceso a 15.000 recursos técnicos y de negocio en Books24x7.\n🔹30 tokens para la aplicación móvil myCS.\n🔹Acceso a la Librería Digital de Computer Society."
 	return CBenefistText
+
+
+'''
+Method that returns the steps to become a IEEE member formated 
+'''
+def membershipSteps():
+	#The URL needs updating
+	membershipStepsText = "<b>Para convertirse en miembro de IEEE</b>\n"
+	membershipStepsText += "Siga los pasos descritos en el archivo adjunto "
+	membershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
+	return membershipStepsText
+
+'''
+Method that returns the steps to become a member of an IEEE chapter 
+'''
+def chapterMembershipSteps():
+	#The URL needs updating
+	chapterMembershipStepsText = "<b>Para convertirse en miembro de un capítulo de IEEE</b>\n"
+	chapterMembershipStepsText += "Siga los pasos descritos en el archivo adjunto "
+	chapterMembershipStepsText += "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."
+	return chapterMembershipStepsText
+
+
+'''
+Method that gets from the api a list of branches
+The connection module use cache to improve response time
+'''
+def listBranches():
+	#Get branches from the API
+	branchList = conn.apiGet("branches")["branches"]
+	branchNames = []
+	#Get only the names of the branches
+	for branch in branchList:
+		branchNames += [u"Rama Estudiantil "+branch["college"]]
+	return branchNames
+
+'''
+Method that gets from the api a list of chapters
+branch name is required to search the branch
+The connection module use cache to improve response time
+'''
+def listChapters(BranchName):
+	branchData = getBranchData(BranchName)
+	chapterList = conn.apiGet("chapters", {"branchID":branchData["branchID"]})["chapters"]
+	chapterNames = []
+	for chapter in chapterList:
+		chapterNames += [chapter["name"]+u" "+branchData["acronym"]]
+	return chapterNames
+
+'''
+Method that gets from the api one specific branch by name
+branch name is required to search the branch
+The connection module use cache to improve response time
+'''
+def getBranchData(BranchName):
+	#Get all branches from api
+	branchList = conn.apiGet("branches")["branches"]
+	#Search for the branch and return the acronym
+	for branch in branchList:
+		if(branch["college"] in BranchName):
+			return branch
+	raise Exception("The Branch "+ BranchName +" cannot be found.")
+
+

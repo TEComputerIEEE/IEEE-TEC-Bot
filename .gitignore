@@ -100,5 +100,6 @@ ENV/
 # mypy
 .mypy_cache/
 
-#Bot Config
-config.py
+
+#Databases
+*.sqlite

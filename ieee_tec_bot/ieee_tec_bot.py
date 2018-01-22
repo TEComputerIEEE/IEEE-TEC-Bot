@@ -18,6 +18,7 @@ import logging
 import config
 import information as info
 import telegram #necessary for Keyboards
+import os # For TELAPIKEY
 
 
 #Const keys text
@@ -73,7 +74,6 @@ Function to show a keyboard, it also sends a message if required
 '''
 def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", document=None, photo=None,resize=True):
     if document != None:
-        print("Sending document")
         bot.send_document(chat_id=update.message.chat_id, document=document)
     if photo != None:
         bot.send_photo(chat_id=update.message.chat_id, photo=photo)
@@ -100,15 +100,15 @@ def getKeys(screenNumber, branchName=""):
         keys+=[ [branch] for branch in info.listBranches() ]
     elif screenNumber == chapterActivities or screenNumber == chapterNotifications or screenNumber == chapterContacts:
         try:#Since a API search call will be made and the result is needed in order to continue
-            abbreviation=info.getBranchAbbreviation(branchName)
+            acronym=info.getBranchData(branchName)["acronym"]
             if screenNumber == chapterActivities:
-                keys+=[[branchActivitiesKey+abbreviation]]
+                keys+=[[branchActivitiesKey+acronym]]
             elif screenNumber == chapterNotifications:
-                keys+=[[branchNotificationsKey+abbreviation]]
+                keys+=[[branchNotificationsKey+acronym]]
             else:
-                keys+=[[branchContactsKey+abbreviation]]
+                keys+=[[branchContactsKey+acronym]]
             keys+=[ [chapter] for chapter in info.listChapters(branchName) ]
-        except Exception, e:
+        except ValueError as e:
             #Log the error
             logger.warning('Something went wrong searching for "%s" branch. Error "%s"', branchName, e)
             return customKeyboards[homeScreen]
@@ -122,7 +122,7 @@ Since the return and other functions use the same lines to go home
 or other screens this method is implemented, the default screen is the home screen
 '''
 def goToScreen(bot, update, screenNumber=homeScreen, message="Seleccione una Opcion:", document=None, photo=None, branchName=""):
-    userState.update({update.message.chat_id : [screenNumber, ""]})
+    userState.update({update.message.chat_id : [screenNumber, branchName]})
     openKeyboard(bot, update, getKeys(screenNumber, branchName),message, document=document, photo=photo)
 
 
@@ -172,19 +172,19 @@ def commonHandler(bot, update, screens, customMethods):
         if update.message.text == returnKey:
             #If return key is pressed then go to the previous screen
             goToScreen(bot, update, screenNumber=screens[0])
+        elif branchActivitiesKey in update.message.text or branchNotificationsKey in update.message.text or branchContactsKey in update.message.text:
+            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
+            #replyText=customMethods[0](branchName=userState[update.message.chat_id][1])
+            replyText="Esta es la informacion de la rama que solicitó"
+            goToScreen(bot, update, message=replyText)
         elif update.message.text in info.listChapters(userState[update.message.chat_id][1]):
             #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
             #replyText=customMethods[1](chapterName=update.message.text, branchName=userState[update.message.chat_id][1])
             replyText="Esta es la informacion del capítulo que solicitó"
             goToScreen(bot, update, message=replyText)
-        elif branchActivitiesKey in update.message.text:
-            #Calls the module to get the info of that chapter (chapter notifications, activities or contacts) with the branch name
-            #replyText=customMethods[0](branchName=userState[update.message.chat_id][1])
-            replyText="Esta es la informacion de la rama que solicitó"
-            goToScreen(bot, update, message=replyText)
         else:
             #If is not any valid option
-            openKeyboard(bot, update, getKeys(screens[1]), message=config.unrecognizedReply)
+            openKeyboard(bot, update, getKeys(screens[1], branchName=userState[update.message.chat_id][1]), message=config.unrecognizedReply)
     else:
         #Log the error
         logger.warning('Something went wrong reaching common handler screen code: "%d".', userState[update.message.chat_id][0])
@@ -248,13 +248,11 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == benefitScreen:
         if update.message.text in customKeyboards[benefitScreen][0]:
             #If IEEE benefits selected, get the info from the info module
-            #replyText=info.IEEEBenefits()
             replyText =info.IEEEBenefist()
             goToScreen(bot, update, message=replyText)
 
         elif update.message.text in customKeyboards[benefitScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
-            #replyText=info.chaptersBenefits()
             replyText =info.chaptersBenefits()
             goToScreen(bot, update, message=replyText)
 
@@ -275,15 +273,15 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == guideScreen:
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
-            #replyText=info.membershipSteps() 
-            replyText = "Mostrando pasos para pertenecer a IEEE"
-            goToScreen(bot, update, message=replyText)#if a photo or document needs to be added , just add the parameter photo=the photo or document= the document
-
+            replyText=info.membershipSteps() 
+            with open(config.membershipPath,"rb") as membershipDocument:
+                goToScreen(bot, update, message=replyText,document= membershipDocument)
+            
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
-            #replyText=info.chapterMembershipSteps()
-            replyText ="Mostrando pasos para pertenecer a un capítulo."
-            goToScreen(bot, update, message=replyText)
+            replyText=info.chapterMembershipSteps()
+            with open(config.chapterMembershipPath,"rb") as chapterMembershipDocument:
+                goToScreen(bot, update, message=replyText,document= chapterMembershipDocument)
 
         elif update.message.text in customKeyboards[guideScreen][2]:
             #if the help button is pressed move to the contacts screen
@@ -366,7 +364,11 @@ Bot main flow function
 def main():
     # Making the bot work
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(config.TELAPIKEY)
+    TELAPIKEY = os.environ.get("TELEGRAM_API_KEY")
+    if(TELAPIKEY == None):
+        print("No TELEGRAM_API_KEY variable defined, please type on terminal export TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
+        return -1
+    updater = Updater(TELAPIKEY)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
