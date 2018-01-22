@@ -248,14 +248,12 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == benefitScreen:
         if update.message.text in customKeyboards[benefitScreen][0]:
             #If IEEE benefits selected, get the info from the info module
-            #replyText=info.IEEEBenefits()
-            replyText ="Mostrando beneficios IEEE"
+            replyText =info.IEEEBenefist()
             goToScreen(bot, update, message=replyText)
 
         elif update.message.text in customKeyboards[benefitScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
-            #replyText=info.chaptersBenefits()
-            replyText ="Mostrando beneficios Capítulos Técnicos"
+            replyText =info.chaptersBenefits()
             goToScreen(bot, update, message=replyText)
 
         elif update.message.text in customKeyboards[benefitScreen][2]:
