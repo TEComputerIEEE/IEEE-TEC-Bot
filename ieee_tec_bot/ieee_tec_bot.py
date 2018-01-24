@@ -15,7 +15,7 @@ Send /notify to activate notifications
 """
 from telegram.ext import Updater, CommandHandler, MessageHandler, RegexHandler,Filters
 import logging
-import config as config
+import config
 import information as info
 import telegram #necessary for Keyboards
 
@@ -73,7 +73,6 @@ Function to show a keyboard, it also sends a message if required
 '''
 def openKeyboard(bot, update, keys, message="Seleccione una Opcion:", document=None, photo=None,resize=True):
     if document != None:
-        print("Sending document")
         bot.send_document(chat_id=update.message.chat_id, document=document)
     if photo != None:
         bot.send_photo(chat_id=update.message.chat_id, photo=photo)

@@ -4,7 +4,7 @@
 # Info module
 
 import connection as conn
-
+import config
 '''
 Method that returns the about information formated as is
 '''
@@ -21,7 +21,7 @@ The connection module use cache to improve response time
 '''
 def listBranches():
 	#Get branches from the API
-	branchList = conn.apiGet("branches")["branches"]
+	branchList = conn.apiGet(config.branchesEntryPoint)["branches"]
 	branchNames = []
 	#Get only the names of the branches
 	for branch in branchList:
@@ -35,7 +35,7 @@ The connection module use cache to improve response time
 '''
 def listChapters(BranchName):
 	branchData = getBranchData(BranchName)
-	chapterList = conn.apiGet("chapters", {"branchID":branchData["branchID"]})["chapters"]
+	chapterList = conn.apiGet(config.chaptersEntryPoint, {"branchID":branchData["branchID"]})["chapters"]
 	chapterNames = []
 	for chapter in chapterList:
 		chapterNames += [chapter["name"]+u" "+branchData["acronym"]]
@@ -48,7 +48,7 @@ The connection module use cache to improve response time
 '''
 def getBranchData(BranchName):
 	#Get all branches from api
-	branchList = conn.apiGet("branches")["branches"]
+	branchList = conn.apiGet(config.branchesEntryPoint)["branches"]
 	#Search for the branch and return the acronym
 	for branch in branchList:
 		if(branch["college"] in BranchName):
