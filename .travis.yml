@@ -7,7 +7,8 @@ install:
   - pip install -r requirements.txt
 # Tests
 script:
-  - cd ieee-tec-bot && tpython3 -m pytest
+  - cd ieee-tec-bot 
+  - python3 -m pytest
 notifications:
   email:
     on_success: never
