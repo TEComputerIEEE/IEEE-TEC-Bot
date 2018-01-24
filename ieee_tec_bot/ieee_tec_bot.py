@@ -18,6 +18,7 @@ import logging
 import config
 import information as info
 import telegram #necessary for Keyboards
+import os # For TELAPIKEY
 
 
 #Const keys text
@@ -247,14 +248,12 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == benefitScreen:
         if update.message.text in customKeyboards[benefitScreen][0]:
             #If IEEE benefits selected, get the info from the info module
-            #replyText=info.IEEEBenefits()
-            replyText ="Mostrando beneficios IEEE"
+            replyText =info.IEEEBenefist()
             goToScreen(bot, update, message=replyText)
 
         elif update.message.text in customKeyboards[benefitScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
-            #replyText=info.chaptersBenefits()
-            replyText ="Mostrando beneficios Capítulos Técnicos"
+            replyText =info.chaptersBenefits()
             goToScreen(bot, update, message=replyText)
 
         elif update.message.text in customKeyboards[benefitScreen][2]:
@@ -274,15 +273,15 @@ def informationHandler(bot, update):
     elif userState[update.message.chat_id][0] == guideScreen:
         if update.message.text in customKeyboards[guideScreen][0]:
             #If Membership info selected, get the info from the info module
-            #replyText=info.membershipSteps() 
-            replyText = "Mostrando pasos para pertenecer a IEEE"
-            goToScreen(bot, update, message=replyText)#if a photo or document needs to be added , just add the parameter photo=the photo or document= the document
-
+            replyText=info.membershipSteps() 
+            with open(config.membershipPath,"rb") as membershipDocument:
+                goToScreen(bot, update, message=replyText,document= membershipDocument)
+            
         elif update.message.text in customKeyboards[guideScreen][1]:
             #If Tech Chapters benefits selected, get the info from the info module
-            #replyText=info.chapterMembershipSteps()
-            replyText ="Mostrando pasos para pertenecer a un capítulo."
-            goToScreen(bot, update, message=replyText)
+            replyText=info.chapterMembershipSteps()
+            with open(config.chapterMembershipPath,"rb") as chapterMembershipDocument:
+                goToScreen(bot, update, message=replyText,document= chapterMembershipDocument)
 
         elif update.message.text in customKeyboards[guideScreen][2]:
             #if the help button is pressed move to the contacts screen
@@ -365,7 +364,11 @@ Bot main flow function
 def main():
     # Making the bot work
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(config.TELAPIKEY)
+    TELAPIKEY = os.environ.get("TELEGRAM_API_KEY")
+    if(TELAPIKEY == None):
+        print("No TELEGRAM_API_KEY variable defined, please type on terminal export TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
+        return -1
+    updater = Updater(TELAPIKEY)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
