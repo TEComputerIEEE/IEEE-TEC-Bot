@@ -107,7 +107,7 @@ Test if the format of the format of the returned user is correct
 def test_user_structure():
 	user = conn.apiGet(config.usersEntryPoint, {"chatID":1})["users"][0]
 	correct = isinstance(user["name"], str) and len(user["name"]) > 0
-	correct &= isinstance(user["carnet"], str) and len(user["carnet"]) > 0
+	correct &= isinstance(user["studentID"], str) and len(user["studentID"]) > 0
 	correct &= isinstance(user["email"], str) and len(user["email"]) > 5
 	assert correct
 
