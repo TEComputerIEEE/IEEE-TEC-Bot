@@ -6,7 +6,7 @@
 import connection as conn
 import config
 '''
-Method that returns the about information formated as is
+Function that returns the about information formated as is
 '''
 def about():
 	#About info have to be formated here(the contributors link can be pulled from github)
@@ -17,14 +17,14 @@ def about():
 	return aboutText
 
 '''
-Method that give the information of the IEEE membership and send it
+Function that give the information of the IEEE membership and send it
 to the main program
 '''
 def IEEEBenefist():
 	IEEEBtext="<b>Oportunidades de crecimiento: </b>\n🔹Competitividad personal.\n🔹Habilidades extracurriculares.\n🔹Capacidad de liderazgo.\n(organizar, dirigir y trabajo en equipo)\n🔹Redes de contactos.\n(sociales y profesionales)\n🔹Pertenencia a una comunidad global.\n(Sociedades Técnicas, Grupos de afinidad y voluntariado)\n🔹Competiciones a nivel local, regional y mundial.\n<b>(premios en efectivo, membresías, artículos electrónicos, viajes a muchas parte del mundo)</b>\n🔹Fondos para desarrollo y ejecución de proyectos\n\n<b>Información Actual y Confiable:</b>\n🔹Libros, revistas, bases de datos, material didáctico, charlas (presenciales y en línea), conferencias (nacionales e internacionales)\n\n<b>Otros Beneficios:\n</b>🔹IEEE Jobs Site, IEEE Mentoring Connection, Reconocimientos y mucho más"
 	return IEEEBtext
 '''
-Method that give the information of the all chapter benefists and send it
+Function that give the information of the all chapter benefists and send it
 to the main program----Now only the CS chapter (in develop CAS EBM  IAS NPSS PES)
 '''
 def chaptersBenefits():
@@ -33,7 +33,7 @@ def chaptersBenefits():
 
 
 '''
-Method that returns the steps to become a IEEE member formated 
+Function that returns the steps to become a IEEE member formated 
 '''
 def membershipSteps():
 	#The URL needs updating
@@ -43,7 +43,7 @@ def membershipSteps():
 	return membershipStepsText
 
 '''
-Method that returns the steps to become a member of an IEEE chapter 
+Function that returns the steps to become a member of an IEEE chapter 
 '''
 def chapterMembershipSteps():
 	#The URL needs updating
@@ -54,7 +54,7 @@ def chapterMembershipSteps():
 
 
 '''
-Method that gets from the api a list of branches
+Function that gets from the api a list of branches
 The connection module use cache to improve response time
 '''
 def listBranches():
@@ -67,7 +67,7 @@ def listBranches():
 	return branchNames
 
 '''
-Method that gets from the api a list of chapters
+Function that gets from the api a list of chapters
 branch name is required to search the branch
 The connection module use cache to improve response time
 '''
@@ -80,7 +80,7 @@ def listChapters(BranchName):
 	return chapterNames
 
 '''
-Method that gets from the api one specific branch by name
+Function that gets from the api one specific branch by name
 branch name is required to search the branch
 The connection module use cache to improve response time
 '''

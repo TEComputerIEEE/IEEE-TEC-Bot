@@ -10,7 +10,7 @@ from ieee_tec_bot import config
 
 
 '''
-
+Test if the connection with the API to get activities is working
 '''
 def test_activities_get():
 	activities = conn.apiGet(config.activitiesEntryPoint)["activities"]
@@ -20,7 +20,7 @@ def test_activities_get():
 	assert exist
 
 '''
-
+Test if the format of the format of the returned activity is correct
 '''
 def test_activities_structure():
 	activity = conn.apiGet(config.activitiesEntryPoint)["activities"][0]
@@ -35,7 +35,7 @@ def test_activities_structure():
 	assert correct
 
 '''
-
+Test if the connection with the API to get branches is working
 '''
 def test_branch_get():
 	branches = conn.apiGet(config.branchesEntryPoint)["branches"]
@@ -44,7 +44,7 @@ def test_branch_get():
 	assert exist
 
 '''
-
+Test if the format of the format of the returned branch is correct
 '''
 def test_branch_structure():
 	branch = conn.apiGet(config.branchesEntryPoint, {"branchID":1})["branches"][0]
@@ -55,7 +55,7 @@ def test_branch_structure():
 
 
 '''
-
+Test if the connection with the API to get contacts is working
 '''
 def test_contacts_get():
 	contacts1 = conn.apiGet(config.contactsEntryPoint, {"branchID":1})["contacts"]
@@ -64,7 +64,7 @@ def test_contacts_get():
 	assert exist
 
 '''
-
+Test if the format of the format of the returned contact is correct
 '''
 def test_contacts_structure():
 	activity = conn.apiGet(config.contactsEntryPoint,  {"branchID":1})["contacts"][0]
@@ -75,7 +75,7 @@ def test_contacts_structure():
 	assert correct
 
 '''
-
+Test if the connection with the API to get chapters is working
 '''
 def test_chapter_get():
 	chapters = conn.apiGet(config.chaptersEntryPoint, {"branchID":1})["chapters"]
@@ -84,7 +84,7 @@ def test_chapter_get():
 	assert exist
 
 '''
-
+Test if the format of the format of the returned chapter is correct
 '''
 def test_chapter_structure():
 	chapter = conn.apiGet(config.chaptersEntryPoint, {"branchID":1, "chapterID":1})["chapters"][0]
@@ -94,7 +94,7 @@ def test_chapter_structure():
 	assert correct
 
 '''
-
+Test if the connection with the API to get users is working
 '''
 def test_user_get():
 	user = conn.apiGet(config.usersEntryPoint, {"chatID":1})["users"]
@@ -102,7 +102,7 @@ def test_user_get():
 	assert exist
 
 '''
-
+Test if the format of the format of the returned user is correct
 '''
 def test_user_structure():
 	user = conn.apiGet(config.usersEntryPoint, {"chatID":1})["users"][0]
@@ -112,14 +112,14 @@ def test_user_structure():
 	assert correct
 
 '''
-
+Test if the connection with the API to post is working
 '''
 def test_post():
 	request = conn.apiPost("http://httpbin.org/post",  body={"chatID":1})
 	assert len(request) > 0
 
 '''
-
+Test if the connection with the API to put is working
 '''
 def test_update():
 	request = conn.apiUpdate("http://httpbin.org/put", body={"chatID":1})

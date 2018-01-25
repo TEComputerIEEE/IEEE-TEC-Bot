@@ -119,7 +119,7 @@ def getKeys(screenNumber, branchName=""):
 
 '''
 Since the return and other functions use the same lines to go home 
-or other screens this method is implemented, the default screen is the home screen
+or other screens this function is implemented, the default screen is the home screen
 '''
 def goToScreen(bot, update, screenNumber=homeScreen, message="Seleccione una Opcion:", document=None, photo=None, branchName=""):
     userState.update({update.message.chat_id : [screenNumber, branchName]})
@@ -153,7 +153,7 @@ def homeHandler(bot, update):
 '''
 Function to encapsulate the common handler steps so the activities, contacts and notifications handlers don't have so many lines of repeated code
 screens is a list with the level 2 and level 3 screen numbers e.g [(branch activities or notifications or contacts), (chapter activities or notifications or contacts)]
-customMethods is a list with the methods that will be called to get the required information e.g [info.listBranchContacts, info.listChapterContacts]
+customMethods is a list with the functions that will be called to get the required information e.g [info.listBranchContacts, info.listChapterContacts]
 '''
 def commonHandler(bot, update, screens, customMethods):
     if userState[update.message.chat_id][0]==screens[0]:
@@ -195,7 +195,7 @@ Function to handle Activities Screens
 def activitiesHandler(bot, update):
     #Set the screens to show for this handler
     screens=[branchActivities, chapterActivities]
-    #Set the custom functions/methods to be called if the info is required
+    #Set the custom functions/functions to be called if the info is required
     customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
     commonHandler(bot, update, screens, customMethods)
 
@@ -205,7 +205,7 @@ Function to handle Contacts Screens
 def contactsHandler(bot, update):
     #Set the screens to show for this handler
     screens=[branchContacts, chapterContacts]
-    #Set the custom functions/methods to be called if the info is required
+    #Set the custom functions/functions to be called if the info is required
     customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
     commonHandler(bot, update, screens, customMethods)
 
@@ -215,7 +215,7 @@ Function to handle Notifications Screens
 def notificationsHandler(bot, update):
     #Set the screens to show for this handler
     screens=[branchNotifications, chapterNotifications]
-    #Set the custom functions/methods to be called if the info is required
+    #Set the custom functions/functions to be called if the info is required
     customMethods=["e.g activities.branchActivities without quotes", "e.g activities.chapterActivities without quotes"]
     commonHandler(bot, update, screens, customMethods)
 
@@ -322,7 +322,7 @@ def stop(bot, update):
 
 '''
 Function to handle text messages depending on which screen the user is, this will only pre-clasify the queries, but the actual handling will happen on each
-helper method that will parse the message and look for the required info
+helper function that will parse the message and look for the required info
 '''
 def handleMessage(bot, update):
     if not(update.message.chat_id in userState):
@@ -343,7 +343,7 @@ def handleMessage(bot, update):
         logger.warning('Error on getkeys, "%d" inserted.', screenNumber)
         goToScreen(bot, update)
 '''
-Unrecognized is a method so when natural language processing
+Unrecognized is a function so when natural language processing
 is implemented. will be easier to incorporate to the actual code
 '''
 def unrecognized(bot, update):
@@ -397,7 +397,7 @@ def main():
 
 
 ''' 
-If this file is run as main call the main method 
+If this file is run as main call the main function 
 '''
 if __name__ == '__main__':
     main()

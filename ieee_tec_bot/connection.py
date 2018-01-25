@@ -11,7 +11,7 @@ import config
 import dummyData as data #just needed for dummy data delete when api is ready
 
 '''
-General get method to connect with the Web API, returns json data or raise a exception
+General get function to connect with the Web API, returns json data or raise a exception
 entryPoint is the api entry point example /users to get user list(without parameters)
 Parameters is a dict with the parameters of the request
 cache by default all request will be cached to improve response time
@@ -165,7 +165,7 @@ def dummyGet(entryPoint, parameters=None):
 		raise ValueError('Invalid entry point')
 
 '''
-General post method to connect with the Web API
+General post function to connect with the Web API
 entryPoint is the api entry point example /users to post a new user(the user should be send in the body)
 Parameters is a dict with the parameters of the request
 body is a dict with body data
@@ -180,7 +180,7 @@ def apiPost(entryPoint, parameters=None, body=None):
 	return response.json()
 
 '''
-General put method to connect with the Web API
+General put function to connect with the Web API
 entryPoint is the api entry point example /users to update a new user(the user should be send in the body)
 Parameters is a dict with the parameters of the request
 body is a dict with body data
