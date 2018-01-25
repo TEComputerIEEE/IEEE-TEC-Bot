@@ -4,7 +4,7 @@ IEEE-TEC-Bot
 
 | Release        | Master           | Develop  |
 | ------------- |-------------| -----|
-|[![Github All Releases](https://img.shields.io/github/release/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)     | [![Travis Build Status](https://img.shields.io/travis/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=master)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)  | [![Travis Build Status](https://img.shields.io/travis/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=develop)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot) |   
+|[![Github All Releases](https://img.shields.io/github/release/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)     | [![Travis Build Status](https://travis-ci.org/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=master)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)  | [![Travis Build Status](https://travis-ci.org/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=develop)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot) |   
 
 Telegram Bot for the TEC's Branch of the IEEE. With this bot you can......**Features go here**.......
 
