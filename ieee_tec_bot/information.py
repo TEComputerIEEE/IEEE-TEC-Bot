@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # IEEE Computer TEC Telegram Bot
-# Info module
+# Information module
 
 import connection as conn
+import config
 
 '''
 Method that returns the about information formated as is
@@ -59,7 +60,7 @@ The connection module use cache to improve response time
 '''
 def listBranches():
 	#Get branches from the API
-	branchList = conn.apiGet("branches")["branches"]
+	branchList = conn.apiGet(config.branchesEntryPoint)["branches"]
 	branchNames = []
 	#Get only the names of the branches
 	for branch in branchList:
@@ -71,26 +72,24 @@ Method that gets from the api a list of chapters
 branch name is required to search the branch
 The connection module use cache to improve response time
 '''
-def listChapters(BranchName):
-	branchData = getBranchData(BranchName)
-	chapterList = conn.apiGet("chapters", {"branchID":branchData["branchID"]})["chapters"]
+def listChapters(branchName):
+	branchData = conn.getBranchData(branchName)
+	chapterList = conn.apiGet(config.chaptersEntryPoint, {"branchID":branchData["branchID"]})["chapters"]
 	chapterNames = []
 	for chapter in chapterList:
 		chapterNames += [chapter["name"]+u" "+branchData["acronym"]]
 	return chapterNames
 
+
 '''
-Method that gets from the api one specific branch by name
-branch name is required to search the branch
+Method that gets from the api a list of contacts of a branch or chapter
+branch name is required to search the branchs contacts or chapters contacts
 The connection module use cache to improve response time
 '''
-def getBranchData(BranchName):
-	#Get all branches from api
-	branchList = conn.apiGet("branches")["branches"]
-	#Search for the branch and return the acronym
-	for branch in branchList:
-		if(branch["college"] in BranchName):
-			return branch
-	raise Exception("The Branch "+ BranchName +" cannot be found.")
-
-
+def listContacts(branchName, chapterName=None):
+	#Api Call stuff
+	#contacts=conn.apiGet("contacts", {"branchID":branchData["branchID"]})["contacts"] #if chapterName=None.....
+	#format the contacts and the response text
+	text = "Estos son los contactos de....\n <b>name</b>\n <i>Chair</i>\n@johndoe"
+	messages = [{"text":text}]
+	return messages
