@@ -22,12 +22,12 @@ auth still needs to be implemented, and for now it returns just test data
 def apiGet(entryPoint, parameters=None, cache=True):
 	#Dummy test data
 	return dummyGet(entryPoint, parameters)
-	response = requests.get(config.webApiAddr+'/'+entryPoint, params=parameters)
+	response = requests.get(entryPoint, params=parameters)
 	#if the request must not be cached and the response that we get before is cached
 	if not cache and response.from_cache:
 		#disable cache and get the response
 		with requests_cache.disabled():
-			respose = requests.get(config.webApiAddr+'/'+entryPoint, params=parameters)
+			respose = requests.get(entryPoint, params=parameters)
 	#if the response is not a valid response, raise a error
 	if response.status_code != 200:
 		response.raise_for_status()
@@ -35,12 +35,50 @@ def apiGet(entryPoint, parameters=None, cache=True):
 	return response.json()
 
 '''
+Method that gets from the api one specific branch by name
+branch name is required to search the branch
+The connection module use cache to improve response time
+'''
+def getBranchData(branchName):
+	if branchName == "":
+		raise Exception("Cannot search a branch with an empty branch name.")
+	#Get all branches from api
+	branchList = apiGet(config.branchesEntryPoint)["branches"]
+	#Search for the branch and return the branchData
+	for branch in branchList:
+		if(branch["college"] in branchName):
+			return branch
+	raise Exception("The Branch "+ branchName +" cannot be found.")
+
+'''
+Method that gets from the api one specific branch by name
+branch name is required to search the branch
+The connection module use cache to improve response time
+'''
+def getChapterData(branchName, chapterName):
+	if chapterName == "":
+		raise Exception("Cannot search a chapter with an empty branch name.")
+	if chapterName == "":
+		raise Exception("Cannot search a chapter with an empty chapter name.")
+	branch = {}
+	try:
+		branch = getBranchData(branchName)
+	except ValueError as e:
+		raise Exception("The chapter "+ chapterName +" cannot be found. Because the branch '%s'", e)
+	chapterList = apiGet(config.chaptersEntryPoint, parameters={"branchID":branch["branchID"]})["chapters"]
+	for chapter in chapterList:
+		if(chapter["name"] in chapterName):
+			return chapter
+	raise Exception("The chapter "+ chapterName +" cannot be found.")
+
+
+'''
 Dummy test data to be used insted of the Web API
 DONT call it directly use the apiGet funct instead
 See https://github.com/TEComputerIEEE/IEEE-TEC-WebAPI/issues/3 for full dummy data entry points and params
 '''
 def dummyGet(entryPoint, parameters=None):
-	if entryPoint == "activities":
+	if entryPoint == config.activitiesEntryPoint:
 		activities = {"activities":[]}
 		if parameters == None:
 			#For every branch in the branches json
@@ -74,7 +112,7 @@ def dummyGet(entryPoint, parameters=None):
 		else:
 			raise ValueError("No valid parameters")
 
-	elif entryPoint == "branches":
+	elif entryPoint == config.branchesEntryPoint:
 		branches = {"branches":[]}
 		if parameters == None:
 			#For every branch in the branches json
@@ -96,7 +134,7 @@ def dummyGet(entryPoint, parameters=None):
 		else:
 			raise ValueError("No valid parameters")
 
-	elif entryPoint == "chapters":
+	elif entryPoint == config.chaptersEntryPoint:
 		chapters = {"chapters":[]}
 		if parameters == None:
 			#For every chapter in the chapters json
@@ -127,7 +165,7 @@ def dummyGet(entryPoint, parameters=None):
 				return chapters
 		else:
 			raise ValueError("No valid parameters")
-	elif entryPoint == "contacts":
+	elif entryPoint == config.contactsEntryPoint:
 		contacts = {"contacts":[]}
 		#if the branch ID is in the parameters
 		if "branchID" in parameters.keys():
@@ -150,7 +188,7 @@ def dummyGet(entryPoint, parameters=None):
 		else:
 			raise ValueError("No valid parameters")
 
-	elif entryPoint == "users":
+	elif entryPoint == config.usersEntryPoint:
 		#if no parameters return all users
 		if parameters == None:
 			return data.users
@@ -174,7 +212,7 @@ body is a dict with body data
 auth still needs to be implemented
 '''
 def apiPost(entryPoint, parameters=None, body=None):
-	response = requests.post(config.webApiAddr+'/'+entryPoint, params=parameters, data=body)
+	response = requests.post(entryPoint, params=parameters, data=body)
 	#if the response is not a valid response, raise a error
 	if response.status_code != 200:
 		response.raise_for_status()
@@ -189,7 +227,7 @@ body is a dict with body data
 auth still needs to be implemented
 '''
 def apiUpdate(entryPoint, parameters=None, body=None):
-	response = requests.put(config.webApiAddr+'/'+entryPoint, params=parameters, data=body)
+	response = requests.put(entryPoint, params=parameters, data=body)
 	#if the response is not a valid response, raise a error
 	if response.status_code != 200:
 		response.raise_for_status()
