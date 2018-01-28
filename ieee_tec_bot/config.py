@@ -15,3 +15,4 @@ chapterMembershipPath = "../resources/MembresiaIEEE.pdf"
 #Default Messages
 startReply = "Bienvenido al Bot de IEEE Computer Society TEC"
 unrecognizedReply = "Comando invalido, por favor utilice el teclado especial."
+closeReply = "Gracias por utilizar nuestro bot."
