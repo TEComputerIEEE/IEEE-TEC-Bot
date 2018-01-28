@@ -54,10 +54,15 @@ def listActivities(branchName, chapterName=None):
 		date = parser.parse(activity["date"]).replace(tzinfo=timezone.utc).astimezone(tz=None)
 		dateStr = date.strftime("<b>Día:</b> %A %d de %B %Y. <b>Hora:</b> %I:%M %p")
 		text += dateStr
-		callback_data = "Subscribe:"+":".join([str(branchID),str(chapterID),str(activity["activityID"])])
+		callback_data = "subscribe:"+":".join([str(branchID),str(chapterID),str(activity["activityID"])])
 		keyboard = [[InlineKeyboardButton("Subscribirse", callback_data=callback_data)]]
 		reply_markup = InlineKeyboardMarkup(keyboard)
 		message = {"text":text, "keyboard":keyboard, "reply_markup":reply_markup, "photo":activity["flyer"]}
 		messages.append(message)
 	messages.append({"text":"Le invitamos cordialmente a participar a nuestras actividades."})
 	return messages
+
+
+def subscribe(user, branchID, activityID, chapterID= None):
+	#API POST
+	pass

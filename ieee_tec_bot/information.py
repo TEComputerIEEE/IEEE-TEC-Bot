@@ -93,3 +93,13 @@ def listContacts(branchName, chapterName=None):
 	text = "Estos son los contactos de....\n <b>name</b>\n <i>Chair</i>\n@johndoe"
 	messages = [{"text":text}]
 	return messages
+
+'''
+Method that returns the users(only return the chat id) that are registered on the database
+'''
+def listUsers():
+	try:
+		users = conn.apiGet(config.usersEntryPoint)["users"]
+		return users
+	except ValueError as e:
+		raise e

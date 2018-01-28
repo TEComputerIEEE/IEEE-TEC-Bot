@@ -191,13 +191,13 @@ def dummyGet(entryPoint, parameters=None):
 	elif entryPoint == config.usersEntryPoint:
 		#if no parameters return all users
 		if parameters == None:
-			return data.users
+			return {"users":[i["chatID"] for i in data.users["users"]]}
 		elif "chatID" in parameters:
 			#search for the user
 			for user in data.users["users"]:
 				#return the contacts if the ids are equal
 				if(user["chatID"]==parameters["chatID"]):
-					return {"users":[user]}
+					return {"users":[user["chatID"]]}
 			raise ValueError("No user find with that id")
 		else:
 			raise ValueError("No valid parameters")
