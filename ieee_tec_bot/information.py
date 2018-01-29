@@ -87,9 +87,14 @@ branch name is required to search the branchs contacts or chapters contacts
 The connection module use cache to improve response time
 '''
 def listContacts(branchName, chapterName=None):
-	#Api Call stuff
-	#contacts=conn.apiGet("contacts", {"branchID":branchData["branchID"]})["contacts"] #if chapterName=None.....
-	#format the contacts and the response text
-	text = "Estos son los contactos de....\n <b>name</b>\n <i>Chair</i>\n@johndoe"
+	branchData = conn.getBranchData(branchName)
+	if chapterName == None:
+		contactList=conn.apiGet(config.contactsEntryPoint, {"branchID":branchData["branchID"]})["contacts"]
+	else:
+		chapterData = conn.getChapterData(branchName, chapterName)
+		contactList = conn.apiGet(config.contactsEntryPoint, {"branchID":branchData["branchID"],"chapterID": chapterData["chapterID"]})["contacts"]
+	text= ""
+	for contact in contactList:
+		text += "<b>"+contact["name"]+u"</b>\n   "+contact["role"] + u"\n   @"+ contact["userName"]+ u"\n"
 	messages = [{"text":text}]
 	return messages
