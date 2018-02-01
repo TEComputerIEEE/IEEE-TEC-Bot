@@ -32,6 +32,12 @@ def chaptersBenefits():
 	CBenefistText="<b>Beneficios de ser miembro de Computer Society:\n</b>🔹Revista Computer mensual (digital).\n🔹Revista ComputingEdge mensual (digital).\n🔹Descuentos solo para miembros a conferencias y eventos.\n🔹Seminarios web solo para miembros.\n🔹Acceso ilimitado a Computing Now, computer.org, y a la nueva aplicación móvil myCS.\n🔹<b>Membresía al Capítulo Computer local.\n</b>🔹<b>Skillsoft Skillchoice™ Complete</b>, con más de 67.000 libros, videos, cursos, practices para examen y recursos de orientación.\n🔹Acceso a 15.000 recursos técnicos y de negocio en Books24x7.\n🔹30 tokens para la aplicación móvil myCS.\n🔹Acceso a la Librería Digital de Computer Society."
 	return CBenefistText
 
+'''
+Method that gives the information of the affinity groups' benefits
+'''
+def groupsBenefits():
+	GBenefitsText="<b>En estos momentos no contamos con la información solicitada</b>"
+	return GBenefitsText
 
 '''
 Method that returns the steps to become a IEEE member formated 
