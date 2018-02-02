@@ -285,8 +285,7 @@ def informationHandler(bot, update):
 
         elif update.message.text in customKeyboards[benefitScreen][2]:
             #If affinity groups benefits selected, get the info from the info module
-            #replyText=info.groupsBenefits()
-            replyText ="Mostrando beneficios Grupos de Afinidad"
+            replyText=info.groupsBenefits()
             goToScreen(bot, update, messages=[{"text":replyText}])
 
         elif update.message.text in customKeyboards[benefitScreen][3]:
