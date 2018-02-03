@@ -73,10 +73,11 @@ def getChapterData(branchName, chapterName):
 
     except ValueError as e:
         raise Exception("The chapter '%s' cannot be found. Because the \
-                        branch '%s'", chapterName, e)
+branch '%s'", chapterName, e)
 
     chapterList = apiGet(config.chaptersEntryPoint,
-                         parameters={"branchID": branch["branchID"]})["chapters"]
+                         parameters={"branchID":
+                                     branch["branchID"]})["chapters"]
     for chapter in chapterList:
         if(chapter["name"] in chapterName):
             return chapter
@@ -98,12 +99,14 @@ def dummyGet(entryPoint, parameters=None):
             for branch in data.branches["branches"]:
                 # add the activities of that branch to a dict
                 activities.update({"activities":
-                                   activities["activities"]+branch["activities"]})
+                                   activities["activities"] +
+                                   branch["activities"]})
             # For every chapter in the branches json
             for chapter in data.chapters["chapters"]:
                 # add the activities of that branch to a dict
                 activities.update({"activities":
-                                   activities["activities"]+chapter["activities"]})
+                                   activities["activities"] +
+                                   chapter["activities"]})
             # returns all IEEE activities
             return activities
 
@@ -140,9 +143,12 @@ def dummyGet(entryPoint, parameters=None):
             for branch in data.branches["branches"]:
                 # add the branch data to a dict
                 branches.update({"branches":
-                                 branches["branches"]+[{"branchID": branch["branchID"],
-                                                        "college": branch["college"],
-                                                        "acronym": branch["acronym"]}]})
+                                 branches["branches"]+[{"branchID":
+                                                        branch["branchID"],
+                                                        "college":
+                                                        branch["college"],
+                                                        "acronym":
+                                                        branch["acronym"]}]})
             return branches
         elif "branchID" in parameters.keys():
             # For every branch in the branches json
@@ -163,9 +169,12 @@ def dummyGet(entryPoint, parameters=None):
             for chapter in data.chapters["chapters"]:
                 # add the chapter data to a dict
                 chapters.update({"chapters":
-                                 chapters["chapters"]+[{"chapterID": chapter["chapterID"],
-                                                        "name": chapter["name"],
-                                                        "branchID": chapter["branchID"]}]})
+                                 chapters["chapters"]+[{"chapterID":
+                                                        chapter["chapterID"],
+                                                        "name":
+                                                        chapter["name"],
+                                                        "branchID":
+                                                        chapter["branchID"]}]})
             return chapters
 
         elif "branchID" in parameters.keys():
@@ -177,7 +186,8 @@ def dummyGet(entryPoint, parameters=None):
                        chapter["chapterID"] == parameters["chapterID"]):
                         return {"chapters": [{"chapterID": ["chapterID"],
                                               "name": chapter["name"],
-                                              "branchID": chapter["branchID"]}]}
+                                              "branchID": chapter["branchID"]}]
+                                }
 
                 raise ValueError("No branchID + chapterID combination found")
 
@@ -187,9 +197,10 @@ def dummyGet(entryPoint, parameters=None):
                     # add the chapter data to a dict if the branch ids are ==
                     if(chapter["branchID"] == parameters["branchID"]):
                         chapters.update({"chapters":
-                                         chapters["chapters"]+[{"chapterID": chapter["chapterID"],
-                                                                "name": chapter["name"],
-                                                                "branchID": chapter["branchID"]}]})
+                                         chapters["chapters"] +
+                                         [{"chapterID": chapter["chapterID"],
+                                           "name": chapter["name"], "branchID":
+                                           chapter["branchID"]}]})
                 return chapters
         else:
             raise ValueError("No valid parameters")

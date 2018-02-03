@@ -38,12 +38,12 @@ _BRANCH_CONTACTS_KEY = u"Contactos de la Rama "
 _CUSTOM_KEYBOARDS = [[[u"Actividades"], [u"Información"],
                       [u"Notificaciones"], [u"Contactos"]],
                      [[u"Beneficios Membresía IEEE"], [u"Guías de \
-                        Inscripción"], [u"Acerca del Bot"], [_RETURN_KEY]],
+Inscripción"], [u"Acerca del Bot"], [_RETURN_KEY]],
                      [[u"Beneficios IEEE"], [u"Beneficios Capítulos Técnicos"],
                       [u"Beneficios Grupos de Afinidad"], [_RETURN_KEY]],
                      [[u"¿Cómo ser miembro de IEEE?"],
                       [u"¿Cómo afiliarme a un Capítulo Técnico o Grupo de \
-                      Afinidad?"], [u"Solicitar Asistencia"], [_RETURN_KEY]]]
+Afinidad?"], [u"Solicitar Asistencia"], [_RETURN_KEY]]]
 
 # Constant Values do not Change them
 _HOME_SCREEN_NUMBER = 0
@@ -72,7 +72,7 @@ def log():
     """Enable logging if defined on config"""
     if(config.Logging):
         logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - \
-                %(message)s', level=logging.INFO)
+%(message)s', level=logging.INFO)
         return logging.getLogger(__name__)
     else:
         return None
@@ -126,7 +126,7 @@ def sendMessages(bot, update, keys,
                                  text=message["text"], reply_markup=r_markup)
         except ValueError as e:
             _logger.warning('Something went wrong sending document or message. \
-                            Error "%s"', e)
+Error "%s"', e)
 
 
 def closeKeyboard(bot, update, message=config.closeReply):
@@ -175,7 +175,7 @@ def getKeys(screenNumber, branchName=""):
         except ValueError as e:
             # Log the error
             _logger.warning('Something went wrong searching for "%s" branch. \
-                            Error "%s"', branchName, e)
+Error "%s"', branchName, e)
             return _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER]
     else:
         # Log the error
@@ -183,7 +183,6 @@ def getKeys(screenNumber, branchName=""):
     return keys+[[_RETURN_KEY]]
 
 
-@run_async
 def goToScreen(bot, update, screenNumber=_HOME_SCREEN_NUMBER,
                messages=[{"text": "Seleccione una Opcion:"}], branchName=""):
     '''
@@ -372,7 +371,7 @@ def informationHandler(bot, update):
         elif chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][2]:
             # If affinity groups benefits selected, get the info from the info
             # module replyText=info.groupsBenefits()
-            replyText = "Mostrando beneficios Grupos de Afinidad"
+            replyText = info.groupsBenefits()
             goToScreen(bot, update, messages=[{"text": replyText}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][3]:
@@ -416,7 +415,7 @@ def informationHandler(bot, update):
     else:
         # Log the error and return home
         _logger.warning('Something went wrong reaching information handler \
-                        screen code: "%d".', _userState[chat_id][0])
+screen code: "%d".', _userState[chat_id][0])
         goToScreen(bot, update, messages=[{"text": config.unrecognizedReply}])
 
 
@@ -514,7 +513,7 @@ def main():
     TELAPIKEY = os.environ.get("TELEGRAM_API_KEY")
     if(TELAPIKEY is None):
         print("No TELEGRAM_API_KEY variable defined, please type on terminal export \
-               TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
+TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
         return -1
     updater = Updater(TELAPIKEY)
 

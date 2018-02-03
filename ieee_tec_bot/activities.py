@@ -63,7 +63,7 @@ def listActivities(branchName, chapterName=None):
         # Transform to local timezone
         date = date.replace(tzinfo=timezone.utc).astimezone(tz=None)
         dateStr = date.strftime("<b>Día:</b> %A %d de %B %Y. \
-                                 <b>Hora:</b> %I:%M %p")
+<b>Hora:</b> %I:%M %p")
         text = "".join([text, dateStr])
         callback_data = "".join(["register:",
                                 ":".join([str(branchID), str(chapterID),
@@ -75,5 +75,5 @@ def listActivities(branchName, chapterName=None):
                    "reply_markup": reply_markup, "photo": activity["flyer"]}
         messages.append(message)
     messages.append({"text": "Le invitamos cordialmente a participar a \
-                     nuestras actividades."})
+nuestras actividades."})
     return messages
