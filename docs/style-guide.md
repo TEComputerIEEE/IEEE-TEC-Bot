@@ -4,8 +4,13 @@ This is a IEEE-Computer Style Guide inspired by [*Git Style Guide*](https://gith
 
 # Table of contents
 
-1. [Branches](#branches)
-2. [Commits](#commits)
+1. [Code Style](#code)
+2. [Branches](#branches)
+3. [Commits](#commits)
+
+## Code Style
+
+We use [pep8](https://www.python.org/dev/peps/pep-0008/) as code style standard. Make sure to test if your code complies with this, you can use some linter like [flake8](http://flake8.pycqa.org/en/latest/).
 
 ## Branches
 
