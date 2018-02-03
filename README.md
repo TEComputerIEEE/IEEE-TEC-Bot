@@ -1,8 +1,11 @@
 IEEE-TEC-Bot
 ==================
-![Some informative photo goes here](photo.png)![photo](photo.png)   
-[![Github All Releases](https://img.shields.io/github/release/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)
-[![Github All Releases](https://img.shields.io/travis/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)   
+![Some informative photo goes here](photo.png)![photo](photo.png)
+
+| Release        | Master           | Develop  |
+| ------------- |-------------| -----|
+|[![Github All Releases](https://img.shields.io/github/release/TEComputerIEEE/IEEE-TEC-Bot.svg)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)     | [![Travis Build Status](https://travis-ci.org/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=master)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot)  | [![Travis Build Status](https://travis-ci.org/TEComputerIEEE/IEEE-TEC-Bot.svg?branch=develop)](https://github.com/TEComputerIEEE/IEEE-TEC-Bot) |   
+
 Telegram Bot for the TEC's Branch of the IEEE. With this bot you can......**Features go here**.......
 
 ## Getting Started
@@ -13,7 +16,8 @@ git clone https://github.com/TEComputerIEEE/IEEE-TEC-Bot.git
 ```
 
 ### Prerequisites
-If you wish to develop or test your own version of the bot, you'll have to install the following prerequisites. **Pd: installation notes are for debian based systems with apt installed, but you can use your own package manager**.     
+If you wish to develop or test your own version of the bot, you'll have to install the following prerequisites.   
+**Note: installation notes are for debian based systems with apt installed, but you can use your own package manager**.     
 #### Python 3 and Pip
 If you don't have python installed you can install it by typing into a terminal:
 ```
@@ -49,20 +53,10 @@ Also as we're using our own API, you'll have to make a API. See [IEEE-TEC-WebAPI
 **Unit test howto**
 
 ## Deployment
-To deploy your own version of the bot. You need to follow the telegram bot creation [steps](https://core.telegram.org/bots#3-how-do-i-create-a-bot). And create a config.py file with your private info, as this one:
+To deploy your own version of the bot. You need to follow the telegram bot creation [steps](https://core.telegram.org/bots#3-how-do-i-create-a-bot). And export the value of the key by typing on a terminal(or in the ~/.bashrc file):
 
 ```
-#API KEYs
-TELAPIKEY = ""
-WEBAPIKEY = ""
-#Config parameters
-Logging = True
-cacheTime = 1 #In hours
-clearCacheTime = "23:00" # the time when the clear cache function will be called
-webApiAddr = "http://httpbin.org"
-#Default Messages
-startReply = "Bienvenido al Bot de IEEE Computer Society TEC"
-unrecognizedReply = "Comando invalido, por favor utilice el teclado especial."
+export TELEGRAM_API_KEY=<Your bot Key>
 ```
 
 This is not the [best way](https://medium.freecodecamp.org/how-to-securely-store-api-keys-4ff3ea19ebda) to handle your key, but for now it will do.
