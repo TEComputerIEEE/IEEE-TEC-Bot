@@ -9,7 +9,7 @@ import config
 
 def about():
     '''
-    Method that returns the about information formated as is
+    Function that returns the about information formated as is
     '''
     # About info have to be formated here
     aboutText = ["<b>Acerca del Bot</b>\nLorem ipsum dolor sit amet, consectet\
@@ -23,7 +23,7 @@ s://github.com/TEComputerIEEE/IEEE-TEC-Bot/'>github</a>.")
 
 def IEEEBenefist():
     '''
-    Method that give the information of the IEEE membership and send it
+    Function that give the information of the IEEE membership and send it
     to the main program
     '''
     IEEEBtext = "<b>Oportunidades de crecimiento: </b>\n🔹Competitividad person\
@@ -42,7 +42,7 @@ cimientos y mucho más."
 
 def chaptersBenefits():
     '''
-    Method that give the information of the all chapter benefists and send it
+    Function that give the information of the all chapter benefists and send it
     to the main program----Now only the CS chapter (in develop CAS EBM
     IAS NPSS PES)
     '''
@@ -60,7 +60,7 @@ técnicos y de negocio en Books24x7.\n🔹30 tokens para la aplicación móvil m
 
 def groupsBenefits():
     '''
-    Method that gives the information of the affinity groups' benefits
+    Function that gives the information of the affinity groups' benefits
     '''
     GBenefitsText = "<b>En estos momentos no contamos con la información \
 solicitada.</b>"
@@ -69,7 +69,7 @@ solicitada.</b>"
 
 def membershipSteps():
     '''
-    Method that returns the steps to become a IEEE member formated
+    Function that returns the steps to become a IEEE member formated
     '''
     # The URL needs updating
     membershipStepsText = ["<b>Para convertirse en miembro de IEEE</b>\n",
@@ -81,7 +81,7 @@ http://bit.ly/IEEE-Guia-Inscripcion."]
 
 def chapterMembershipSteps():
     '''
-    Method that returns the steps to become a member of an IEEE chapter
+    Function that returns the steps to become a member of an IEEE chapter
     '''
     # The URL needs updating
     chapterMembershipStepsText = ["<b>Para convertirse en miembro de un \
@@ -92,7 +92,7 @@ adjunto ", "o visite la dirección http://bit.ly/IEEE-Guia-Inscripcion."]
 
 def listBranches():
     '''
-    Method that gets from the api a list of branches
+    Function that gets from the api a list of branches
     The connection module use cache to improve response time
     '''
     # Get branches from the API
@@ -106,7 +106,7 @@ def listBranches():
 
 def isUserTracked(chat_id):
     '''
-    Method that returns true if a user is being tracked on the database
+    Function that returns true if a user is being tracked on the database
     (that means that we have their register data)
     '''
     try:
@@ -114,12 +114,27 @@ def isUserTracked(chat_id):
                                                      chat_id})["users"]
         return True if users != [] else False
     except ValueError as e:
+        return False
+
+
+def trackUser(user):
+    '''
+    Function to add a user data to the database
+    The user parameter is a dict with chatID, name, email and studentID
+    '''
+    try:
+        response = conn.apiPost(config.usersEntryPoint, body=user)
+        if response["status_code"] == 200:
+            return True
+        else:
+            raise ValueError(response["message"])
+    except ValueError as e:
         raise e
 
 
 def listChapters(branchName):
     '''
-    Method that gets from the api a list of chapters
+    Function that gets from the api a list of chapters
     branch name is required to search the branch
     The connection module use cache to improve response time
     '''
@@ -135,7 +150,7 @@ def listChapters(branchName):
 
 def listContacts(branchName, chapterName=None, chat_id=None):
     '''
-    Method that gets from the api a list of contacts of a branch or chapter
+    Function that gets from the api a list of contacts of a branch or chapter
     branch name is required to search the branchs contacts or chapters contacts
     The connection module use cache to improve response time
     '''

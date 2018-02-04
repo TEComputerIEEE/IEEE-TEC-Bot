@@ -2,6 +2,7 @@
 Logging = True
 cacheTime = 1  # In hours
 clearCacheTime = "23:00"  # The time when the clear cache function will run
+remindersTime = "20:00"
 webApiAddr = "http://httpbin.org"
 # Entry points
 activitiesEntryPoint = "".join([webApiAddr, "/activities"])

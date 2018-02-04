@@ -14,11 +14,13 @@ Send /subs to subscribe to a activity
 Send /notify to activate notifications
 """
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackQueryHandler
 from telegram.ext.dispatcher import run_async
 from connection import getBranchData
 import information as info
 import activities
+import schedule     # Necesary for recurrent task
 import logging
 import config
 import base64       # Image parse
@@ -57,16 +59,20 @@ _BRANCH_NOTIFICATION_SCREEN_NUMBER = 6
 _CHAPTER_NOTIFICATION_SCREEN_NUMBER = 7
 _BRANCH_CONTACTS_SCREEN_NUMBER = 8
 _CHAPTER_CONTACTS_SCREEN_NUMBER = 9
-
+_REGISTER_STUDENT_ID_SCREEN_NUMBER = 10
+_REGISTER_NAME_SCREEN_NUMBER = 11
+_REGISTER_EMAIL_SCREEN_NUMBER = 12
+_REGISTER_CONFIRM_SCREEN_NUMBER = 13
 
 '''
 A hash(it's actually a dictionary but since python implements dictionaries as
 hash tables... see
 https://mail.python.org/pipermail/python-list/2000-March/048085.html)
 to handle each user reply depending on their state(in which screen they are).
-Format hash : [screenNumber, lastValidMessage]
+Format: {chatID: [screenNumber, lastValidMessage]}
 '''
 _userState = {}
+_tmpRegisterData = {}
 
 
 def log():
@@ -424,6 +430,85 @@ screen code: "%d".', _userState[chat_id][0])
         goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
 
 
+def handleRegistry(bot, update):
+    '''
+    Helper method to handle register data
+    '''
+    chat_id = update.message.chat_id
+    if not(chat_id in _tmpRegisterData.keys()):
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+    chat_text = update.message.text
+    if _userState[chat_id][0] == _REGISTER_STUDENT_ID_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"studentID": chat_text})
+        text = "Introduzca su nombre completo:"
+        _userState.update({chat_id: [_REGISTER_NAME_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text)
+        return
+    elif _userState[chat_id][0] == _REGISTER_NAME_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"name": chat_text})
+        text = "Introduzca su correo electrónico:"
+        _userState.update({chat_id: [_REGISTER_EMAIL_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text)
+        return
+    elif _userState[chat_id][0] == _REGISTER_EMAIL_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"email": chat_text})
+        text = "".join(["Los datos proporcionados son:\nCarnet Universitario:",
+                        _tmpRegisterData[chat_id]["studentID"], "\nNombre: ",
+                        _tmpRegisterData[chat_id]["name"], "\nCorreo: ",
+                        _tmpRegisterData[chat_id]["email"], "\n¿Estos datos son\
+ correctos?"])
+        keys = [[u"Sí"], [u"No"]]
+        r_markup = telegram.ReplyKeyboardMarkup(keys, resize_keyboard=True)
+        _userState.update({chat_id: [_REGISTER_CONFIRM_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text,
+                         reply_markup=r_markup)
+        return
+    elif _userState[chat_id][0] == _REGISTER_CONFIRM_SCREEN_NUMBER:
+        if chat_text == u"Sí":
+            user = {"chatID": chat_id, "name":
+                    _tmpRegisterData[chat_id]["name"], "email":
+                    _tmpRegisterData[chat_id]["email"], "studentID":
+                    _tmpRegisterData[chat_id]["studentID"]}
+            try:
+                info.trackUser(user)
+            except ValueError as e:
+                _logger.warning("Could not add the user", user, e)
+                goToScreen(bot, chat_id, messages=[{"text":
+                                                    config.unrecognizedReply}])
+            registerHandler(bot, update, chat_id)
+            goToScreen(bot, chat_id)
+        elif chat_text == u"No":
+            text = "Introduzca su carnet de estudiante:\nSi no es estudiante \
+introduzca un 0."
+            _userState.update({chat_id: [_REGISTER_EMAIL_SCREEN_NUMBER,
+                                         ""]})
+            closeKeyboard(bot, chat_id, message=text)
+        else:
+            text = config.unrecognizedReply
+            keys = [[u"Sí"], [u"No"]]
+            r_markup = telegram.ReplyKeyboardMarkup(keys, resize_keyboard=True)
+            bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text,
+                             reply_markup=r_markup)
+    else:
+        # Log the error and return home
+        _logger.warning('Something went wrong reaching handleRegistry \
+screen code: "%d".', _userState[chat_id][0])
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+
+
+def remind(bot):
+    '''
+    Method to remind people of activities
+    '''
+    reminders = activities.remindTo()
+    for person in reminders:
+        bot.send_message(parse_mode='HTML', chat_id=person,
+                         text=reminders[person])
+
+
 #  Command handlers
 @run_async
 def start(bot, update):
@@ -463,8 +548,9 @@ def handleMessage(bot, update):
     '''
     chat_id = update.message.chat_id
     if not(chat_id in _userState.keys()):
-        # If the user is not registered then go to home screen
-        goToScreen(bot, chat_id)
+        # If the user is not registered then register them
+        _userState.update({chat_id:
+                           [_HOME_SCREEN_NUMBER, ""]})
 
     if _userState[chat_id][0] == _HOME_SCREEN_NUMBER:
         homeHandler(bot, update)
@@ -486,6 +572,12 @@ def handleMessage(bot, update):
           _userState[chat_id][0] == _CHAPTER_CONTACTS_SCREEN_NUMBER):
         contactsHandler(bot, update)
 
+    elif (_userState[chat_id][0] == _REGISTER_STUDENT_ID_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_NAME_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_EMAIL_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_CONFIRM_SCREEN_NUMBER):
+        handleRegistry(bot, update)
+
     else:
         # Log the error
         _logger.warning('Error on handleMessage, "%s" state.',
@@ -497,53 +589,83 @@ def handleMessage(bot, update):
 def handleCallBack(bot, update):
     chat_id = update.callback_query.message.chat_id
     if not(chat_id in _userState.keys()):
-        # If the user is not registered then go to home screen
-        goToScreen(bot, chat_id)
+        # If the user is not registered then register them
+        _userState.update({chat_id:
+                           [_HOME_SCREEN_NUMBER, ""]})
     query = update.callback_query
     queryData = query.data.split(":")
     if (queryData[0] == "register"):
-        return registerHandler(bot, update, query, queryData[1:])
+        return registerHandler(bot, update, chat_id, queryData[1:])
     elif(queryData[0] == "notify"):
-        return notificationsCallBackHandler(bot, update, query, queryData[1:])
+        return notificationsCallBackHandler(bot, update, queryData[1:])
     else:
         # Log the error
         _logger.warning('Error on handlecalback, "%s" inserted.', query)
         goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
 
 
-def registerHandler(bot, update, query, params):
+def registerHandler(bot, update, chat_id, params=None):
     '''
     Method that will be called to register a user to a activity
     '''
-    chat_id = update.callback_query.message.chat_id
     try:
+        if not (chat_id in _tmpRegisterData.keys()):
+            query = update.callback_query
+            if len(params) < 3:
+                raise ValueError("No valid params ", params)
+            branchID = int(params[0])
+            chapterID = None
+            if(params[1] != "None"):
+                chapterID = int(params[1])
+            activityID = int(params[2])
+        else:
+            activityID = _tmpRegisterData[chat_id]["activityID"]
+            branchID = _tmpRegisterData[chat_id]["branchID"]
+            chapterID = _tmpRegisterData[chat_id]["chapterID"]
+            query = _tmpRegisterData[chat_id]["callback_query"]
+            del _tmpRegisterData[chat_id]
         userTracked = info.isUserTracked(chat_id)
-        if len(params) < 3:
-            raise ValueError("No valid params", query)
-        branchID = int(params[0])
-        chapterID = None
-        if(params[1] != "None"):
-            chapterID = int(params[1])
-        activityID = int(params[2])
-        branchID = int(params[0])
         if userTracked:
-            response = activities.register(user={"chat_id":
-                                                 query.message.chat_id},
+            wasRegistered = activities.isRegistered(branchID, activityID,
+                                                    chat_id, chapterID)
+            response = activities.register(user={"chatID": chat_id},
                                            branchID=branchID,
                                            chapterID=chapterID,
                                            activityID=activityID)
+            registered = activities.isRegistered(branchID, activityID, chat_id,
+                                                 chapterID)
+            reply_markup = None
+            if wasRegistered != registered:
+                # Only change the keyboard if the new state is different from
+                # before
+                key = "Cancelar Registro" if registered else "Registrarme"
+                keyboard = [[InlineKeyboardButton(key,
+                                                  callback_data=query.data)]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+            bot.edit_message_reply_markup(chat_id=chat_id,
+                                          message_id=query.message.message_id,
+                                          reply_markup=reply_markup)
             goToScreen(bot, chat_id, messages=[{"text": response}])
 
         else:
             # Gather user information
-            pass
+            text = "Introduzca su carnet de estudiante:\nSi no es estudiante \
+introduzca un 0."
+            _userState.update({chat_id: [_REGISTER_STUDENT_ID_SCREEN_NUMBER,
+                                         ""]})
+            _tmpRegisterData.update({chat_id:
+                                    {"callback_query": update.callback_query,
+                                     "branchID": branchID, "chapterID":
+                                     chapterID, "activityID": activityID}})
+            closeKeyboard(bot, chat_id, message=text)
+
     except ValueError as e:
         # Log the error
-        _logger.warning('Error on subscribeHandler, error "%s".', e)
-        goToScreen(bot, chat_id, config.unrecognizedReply)
+        _logger.warning('Error on registerHandler, error "%s".', e)
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
 
 
-def notificationsCallBackHandler(bot, update, query, params):
+def notificationsCallBackHandler(bot, update, params):
     '''
     Method that will be called to confirm or cancel branch and chapter
     activities notifications
@@ -603,7 +725,8 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
 
     # Start the bot
     updater.start_polling()
-
+    # Schedule a reminder every day at config.remindersTime
+    schedule.every().day.at(config.remindersTime).do(remind, updater.bot)
     # Loop 'till the end of the world(or interrupted)
     updater.idle()
 
