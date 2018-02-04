@@ -2,13 +2,15 @@
 Logging = True
 cacheTime = 1  # In hours
 clearCacheTime = "23:00"  # The time when the clear cache function will run
+remindersTime = "20:00"
 webApiAddr = "http://httpbin.org"
 # Entry points
-activitiesEntryPoint = webApiAddr.join("/activities")
-branchesEntryPoint = webApiAddr.join("/branches")
-chaptersEntryPoint = webApiAddr.join("/chapters")
-contactsEntryPoint = webApiAddr.join("/contacts")
-usersEntryPoint = webApiAddr.join("/users")
+activitiesEntryPoint = "".join([webApiAddr, "/activities"])
+branchesEntryPoint = "".join([webApiAddr, "/branches"])
+chaptersEntryPoint = "".join([webApiAddr, "/chapters"])
+contactsEntryPoint = "".join([webApiAddr, "/contacts"])
+usersEntryPoint = "".join([webApiAddr, "/users"])
+registerEntryPoint = "".join([webApiAddr, "/register"])
 # File Paths
 membershipPath = "../resources/MembresiaIEEE.pdf"
 chapterMembershipPath = "../resources/MembresiaIEEE.pdf"

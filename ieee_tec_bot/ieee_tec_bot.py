@@ -14,10 +14,13 @@ Send /subs to subscribe to a activity
 Send /notify to activate notifications
 """
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import CallbackQueryHandler
 from telegram.ext.dispatcher import run_async
 from connection import getBranchData
 import information as info
 import activities
+import schedule     # Necesary for recurrent task
 import logging
 import config
 import base64       # Image parse
@@ -56,16 +59,20 @@ _BRANCH_NOTIFICATION_SCREEN_NUMBER = 6
 _CHAPTER_NOTIFICATION_SCREEN_NUMBER = 7
 _BRANCH_CONTACTS_SCREEN_NUMBER = 8
 _CHAPTER_CONTACTS_SCREEN_NUMBER = 9
-
+_REGISTER_STUDENT_ID_SCREEN_NUMBER = 10
+_REGISTER_NAME_SCREEN_NUMBER = 11
+_REGISTER_EMAIL_SCREEN_NUMBER = 12
+_REGISTER_CONFIRM_SCREEN_NUMBER = 13
 
 '''
 A hash(it's actually a dictionary but since python implements dictionaries as
 hash tables... see
 https://mail.python.org/pipermail/python-list/2000-March/048085.html)
 to handle each user reply depending on their state(in which screen they are).
-Format hash : [screenNumber, lastValidMessage]
+Format: {chatID: [screenNumber, lastValidMessage]}
 '''
 _userState = {}
+_tmpRegisterData = {}
 
 
 def log():
@@ -82,7 +89,7 @@ _logger = log()
 
 
 # Helper Functions
-def sendMessages(bot, update, keys,
+def sendMessages(bot, chat_id, keys,
                  messages=[{"text": "Seleccione una Opcion:"}], resize=True):
     '''
     Function to show a keyboard, it also sends a message if required
@@ -97,17 +104,17 @@ def sendMessages(bot, update, keys,
         try:
             if "document" in message.keys():
                 with open(message["document"], "rb") as document:
-                    bot.send_document(chat_id=update.message.chat_id,
+                    bot.send_document(chat_id=chat_id,
                                       document=document)
             if "photo" in message.keys():
                 photoData = message["photo"]
                 photoName = "".join(["../resources/tmp/photo",
-                                    str(update.message.chat_id), ".png"])
+                                    str(chat_id), ".png"])
                 if(photoData != ""):
                     with open(photoName, "wb") as toSave:
                         toSave.write(base64.b64decode(photoData))
                     with open(photoName, "rb") as photo:
-                        bot.send_photo(chat_id=update.message.chat_id,
+                        bot.send_photo(chat_id=chat_id,
                                        photo=photo)
             if "keyboard" in message.keys():
                 inlineKeys = message["keyboard"]
@@ -116,24 +123,24 @@ def sendMessages(bot, update, keys,
                 if "reply_markup" in message.keys():
                     r_markup = message["reply_markup"]
                 bot.send_message(parse_mode='HTML',
-                                 chat_id=update.message.chat_id,
+                                 chat_id=chat_id,
                                  text=message["text"], reply_markup=r_markup)
             else:
                 r_markup = telegram.ReplyKeyboardMarkup(keys,
                                                         resize_keyboard=resize)
                 bot.send_message(parse_mode='HTML',
-                                 chat_id=update.message.chat_id,
+                                 chat_id=chat_id,
                                  text=message["text"], reply_markup=r_markup)
         except ValueError as e:
             _logger.warning('Something went wrong sending document or message. \
 Error "%s"', e)
 
 
-def closeKeyboard(bot, update, message=config.closeReply):
+def closeKeyboard(bot, chat_id, message=config.closeReply):
     '''
     Function to close a keyboard, it also sends a message if required
     '''
-    bot.send_message(parse_mode='HTML', chat_id=update.message.chat_id,
+    bot.send_message(parse_mode='HTML', chat_id=chat_id,
                      text=message,
                      reply_markup=telegram.ReplyKeyboardRemove())
 
@@ -178,12 +185,13 @@ def getKeys(screenNumber, branchName=""):
 Error "%s"', branchName, e)
             return _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER]
     else:
+
         # Log the error
         _logger.warning('Error on getkeys, "%d" inserted.', screenNumber)
     return keys+[[_RETURN_KEY]]
 
 
-def goToScreen(bot, update, screenNumber=_HOME_SCREEN_NUMBER,
+def goToScreen(bot, chat_id, screenNumber=_HOME_SCREEN_NUMBER,
                messages=[{"text": "Seleccione una Opcion:"}], branchName=""):
     '''
     Since the return and other functions use the same lines to go home
@@ -195,8 +203,8 @@ def goToScreen(bot, update, screenNumber=_HOME_SCREEN_NUMBER,
     "photo":"base64 string photo data", "document":"file_address.extension"}
     "branchName":"for chapters screens the branch name"
     '''
-    _userState.update({update.message.chat_id: [screenNumber, branchName]})
-    sendMessages(bot, update, getKeys(screenNumber, branchName), messages)
+    _userState.update({chat_id: [screenNumber, branchName]})
+    sendMessages(bot, chat_id, getKeys(screenNumber, branchName), messages)
 
 
 @run_async
@@ -204,26 +212,27 @@ def homeHandler(bot, update):
     '''
     Function to handle the home screen
     '''
+    chat_id = update.message.chat_id
     if update.message.text in _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER][0]:
         # If the activities key is selected then go to that screen
-        goToScreen(bot, update, screenNumber=_BRANCH_ACTIVITIES_SCREEN_NUMBER)
+        goToScreen(bot, chat_id, screenNumber=_BRANCH_ACTIVITIES_SCREEN_NUMBER)
 
     elif update.message.text in _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER][1]:
         # If the information key is selected then go to that screen
-        goToScreen(bot, update, screenNumber=_INFORMATION_SCREEN_NUMBER)
+        goToScreen(bot, chat_id, screenNumber=_INFORMATION_SCREEN_NUMBER)
 
     elif update.message.text in _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER][2]:
         # If the notifications key is selected then go to that screen
-        goToScreen(bot, update,
+        goToScreen(bot, chat_id,
                    screenNumber=_BRANCH_NOTIFICATION_SCREEN_NUMBER)
 
     elif update.message.text in _CUSTOM_KEYBOARDS[_HOME_SCREEN_NUMBER][3]:
         # If the information key is selected then go to that screen
-        goToScreen(bot, update, screenNumber=_BRANCH_CONTACTS_SCREEN_NUMBER)
+        goToScreen(bot, chat_id, screenNumber=_BRANCH_CONTACTS_SCREEN_NUMBER)
 
     else:
         # If is not any valid option
-        sendMessages(bot, update, getKeys(_HOME_SCREEN_NUMBER),
+        sendMessages(bot, chat_id, getKeys(_HOME_SCREEN_NUMBER),
                      messages=[{"text": config.unrecognizedReply}])
 
 
@@ -241,48 +250,50 @@ def commonHandler(bot, update, screens, customMethod):
     if _userState[chat_id][0] == screens[0]:
         if update.message.text == _RETURN_KEY:
             # If return key is pressed then go to home screen
-            goToScreen(bot, update)
+            goToScreen(bot, chat_id)
 
         elif update.message.text in info.listBranches():
             # if a branch is selected then show the level 3 screen
             # (chapter notifications, activities or contacts)
-            goToScreen(bot, update, screenNumber=screens[1],
+            goToScreen(bot, chat_id, screenNumber=screens[1],
                        branchName=update.message.text)
 
         else:
             # If is not any valid option
-            goToScreen(bot, update, screenNumber=screens[0],
+            goToScreen(bot, chat_id, screenNumber=screens[0],
                        messages=[{"text": config.unrecognizedReply}])
 
     elif _userState[chat_id][0] == screens[1]:
         if update.message.text == _RETURN_KEY:
             # If return key is pressed then go to the previous screen
-            goToScreen(bot, update, screenNumber=screens[0])
+            goToScreen(bot, chat_id, screenNumber=screens[0])
 
         elif (_BRANCH_ACTIVITIES_KEY in update.message.text or
               _BRANCH_NOTIFICATIONS_KEY in update.message.text or
               _BRANCH_CONTACTS_KEY in update.message.text):
             # Calls the custom method with the branch name to get the info
-            messages = customMethod(branchName=_userState[chat_id][1])
-            goToScreen(bot, update, messages=messages)
+            messages = customMethod(branchName=_userState[chat_id][1],
+                                    chat_id=chat_id)
+            goToScreen(bot, chat_id, messages=messages)
 
         elif update.message.text in info.listChapters(_userState[chat_id][1]):
             # Calls the custom method with the branch and chapter names
             # to get the required the info
             messages = customMethod(chapterName=update.message.text,
-                                    branchName=_userState[chat_id][1])
-            goToScreen(bot, update, messages=messages)
+                                    branchName=_userState[chat_id][1],
+                                    chat_id=chat_id)
+            goToScreen(bot, chat_id, messages=messages)
 
         else:
             # If is not any valid option
-            sendMessages(bot, update, getKeys(screens[1],
+            sendMessages(bot, chat_id, getKeys(screens[1],
                          branchName=_userState[update.message.chat_id][1]),
                          messages=[{"text": config.unrecognizedReply}])
     else:
         # Log the error
         _logger.warning('Something went wrong reaching common handler screen \
                         code: "%d".', _userState[update.message.chat_id][0])
-        goToScreen(bot, update, messages=[{"text": config.unrecognizedReply}])
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
 
 
 @run_async
@@ -338,85 +349,164 @@ def informationHandler(bot, update):
     if _userState[chat_id][0] == _INFORMATION_SCREEN_NUMBER:
         if chat_text in _CUSTOM_KEYBOARDS[_INFORMATION_SCREEN_NUMBER][0]:
             # If benefits selected, go to the benefits screen
-            goToScreen(bot, update, screenNumber=_BENEFITS_SCREEN_NUMBER)
+            goToScreen(bot, chat_id, screenNumber=_BENEFITS_SCREEN_NUMBER)
 
         elif chat_text in _CUSTOM_KEYBOARDS[_INFORMATION_SCREEN_NUMBER][1]:
             # If guides selected, go to the guides screen
-            goToScreen(bot, update, screenNumber=_GUIDES_SCREEN_NUMBER)
+            goToScreen(bot, chat_id, screenNumber=_GUIDES_SCREEN_NUMBER)
 
         elif chat_text in _CUSTOM_KEYBOARDS[_INFORMATION_SCREEN_NUMBER][2]:
             # If about selected, return the info and go to the home screen
-            goToScreen(bot, update, messages=[{"text": info.about()}])
+            goToScreen(bot, chat_id, messages=[{"text": info.about()}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_INFORMATION_SCREEN_NUMBER][3]:
             # If return key is pressed go to home screen
-            goToScreen(bot, update)
+            goToScreen(bot, chat_id)
 
         else:
             # If is not any valid option
-            sendMessages(bot, update, getKeys(_INFORMATION_SCREEN_NUMBER),
+            sendMessages(bot, chat_id, getKeys(_INFORMATION_SCREEN_NUMBER),
                          config.unrecognizedReply)
 
     elif _userState[chat_id][0] == _BENEFITS_SCREEN_NUMBER:
         if chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][0]:
             # If IEEE benefits selected, show the info
             replyText = info.IEEEBenefist()
-            goToScreen(bot, update, messages=[{"text": replyText}])
+            goToScreen(bot, chat_id, messages=[{"text": replyText}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][1]:
             # If Tech Chapters benefits selected, show the info
             replyText = info.chaptersBenefits()
-            goToScreen(bot, update, messages=[{"text": replyText}])
+            goToScreen(bot, chat_id, messages=[{"text": replyText}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][2]:
             # If affinity groups benefits selected, get the info from the info
             # module replyText=info.groupsBenefits()
             replyText = info.groupsBenefits()
-            goToScreen(bot, update, messages=[{"text": replyText}])
+            goToScreen(bot, chat_id, messages=[{"text": replyText}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_BENEFITS_SCREEN_NUMBER][3]:
             # If return key is pressed to info screen
-            goToScreen(bot, update, screenNumber=_INFORMATION_SCREEN_NUMBER)
+            goToScreen(bot, chat_id, screenNumber=_INFORMATION_SCREEN_NUMBER)
 
         else:
             # If is not any valid option
-            sendMessages(bot, update, getKeys(_BENEFITS_SCREEN_NUMBER),
+            sendMessages(bot, chat_id, getKeys(_BENEFITS_SCREEN_NUMBER),
                          config.unrecognizedReply)
 
     elif _userState[chat_id][0] == _GUIDES_SCREEN_NUMBER:
         if chat_text in _CUSTOM_KEYBOARDS[_GUIDES_SCREEN_NUMBER][0]:
             # If Membership info selected, get the info from the info module
             replyText = info.membershipSteps()
-            goToScreen(bot, update,
+            goToScreen(bot, chat_id,
                        messages=[{"text": replyText,
                                   "document": config.membershipPath}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_GUIDES_SCREEN_NUMBER][1]:
             # If Tech Chapters benefits selected, shows the info
             replyText = info.chapterMembershipSteps()
-            goToScreen(bot, update,
+            goToScreen(bot, chat_id,
                        messages=[{"text": replyText,
                                   "document": config.chapterMembershipPath}])
 
         elif chat_text in _CUSTOM_KEYBOARDS[_GUIDES_SCREEN_NUMBER][2]:
             # if the help button is pressed move to the contacts screen
-            goToScreen(bot, update,
+            goToScreen(bot, chat_id,
                        screenNumber=_BRANCH_CONTACTS_SCREEN_NUMBER)
 
         elif chat_text in _CUSTOM_KEYBOARDS[_GUIDES_SCREEN_NUMBER][3]:
             # If return key is pressed to info screen
-            goToScreen(bot, update, screenNumber=_INFORMATION_SCREEN_NUMBER)
+            goToScreen(bot, chat_id, screenNumber=_INFORMATION_SCREEN_NUMBER)
 
         else:
             # If is not any valid option
-            sendMessages(bot, update, getKeys(_GUIDES_SCREEN_NUMBER),
+            sendMessages(bot, chat_id, getKeys(_GUIDES_SCREEN_NUMBER),
                          config.unrecognizedReply)
 
     else:
         # Log the error and return home
         _logger.warning('Something went wrong reaching information handler \
 screen code: "%d".', _userState[chat_id][0])
-        goToScreen(bot, update, messages=[{"text": config.unrecognizedReply}])
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+
+
+def handleRegistry(bot, update):
+    '''
+    Helper method to handle register data
+    '''
+    chat_id = update.message.chat_id
+    if not(chat_id in _tmpRegisterData.keys()):
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+    chat_text = update.message.text
+    if _userState[chat_id][0] == _REGISTER_STUDENT_ID_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"studentID": chat_text})
+        text = "Introduzca su nombre completo:"
+        _userState.update({chat_id: [_REGISTER_NAME_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text)
+        return
+    elif _userState[chat_id][0] == _REGISTER_NAME_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"name": chat_text})
+        text = "Introduzca su correo electrónico:"
+        _userState.update({chat_id: [_REGISTER_EMAIL_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text)
+        return
+    elif _userState[chat_id][0] == _REGISTER_EMAIL_SCREEN_NUMBER:
+        _tmpRegisterData[chat_id].update({"email": chat_text})
+        text = "".join(["Los datos proporcionados son:\nCarnet Universitario:",
+                        _tmpRegisterData[chat_id]["studentID"], "\nNombre: ",
+                        _tmpRegisterData[chat_id]["name"], "\nCorreo: ",
+                        _tmpRegisterData[chat_id]["email"], "\n¿Estos datos son\
+ correctos?"])
+        keys = [[u"Sí"], [u"No"]]
+        r_markup = telegram.ReplyKeyboardMarkup(keys, resize_keyboard=True)
+        _userState.update({chat_id: [_REGISTER_CONFIRM_SCREEN_NUMBER,
+                                     ""]})
+        bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text,
+                         reply_markup=r_markup)
+        return
+    elif _userState[chat_id][0] == _REGISTER_CONFIRM_SCREEN_NUMBER:
+        if chat_text == u"Sí":
+            user = {"chatID": chat_id, "name":
+                    _tmpRegisterData[chat_id]["name"], "email":
+                    _tmpRegisterData[chat_id]["email"], "studentID":
+                    _tmpRegisterData[chat_id]["studentID"]}
+            try:
+                info.trackUser(user)
+            except ValueError as e:
+                _logger.warning("Could not add the user", user, e)
+                goToScreen(bot, chat_id, messages=[{"text":
+                                                    config.unrecognizedReply}])
+            registerHandler(bot, update, chat_id)
+            goToScreen(bot, chat_id)
+        elif chat_text == u"No":
+            text = "Introduzca su carnet de estudiante:\nSi no es estudiante \
+introduzca un 0."
+            _userState.update({chat_id: [_REGISTER_EMAIL_SCREEN_NUMBER,
+                                         ""]})
+            closeKeyboard(bot, chat_id, message=text)
+        else:
+            text = config.unrecognizedReply
+            keys = [[u"Sí"], [u"No"]]
+            r_markup = telegram.ReplyKeyboardMarkup(keys, resize_keyboard=True)
+            bot.send_message(parse_mode='HTML', chat_id=chat_id, text=text,
+                             reply_markup=r_markup)
+    else:
+        # Log the error and return home
+        _logger.warning('Something went wrong reaching handleRegistry \
+screen code: "%d".', _userState[chat_id][0])
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+
+
+def remind(bot):
+    '''
+    Method to remind people of activities
+    '''
+    reminders = activities.remindTo()
+    for person in reminders:
+        bot.send_message(parse_mode='HTML', chat_id=person,
+                         text=reminders[person])
 
 
 #  Command handlers
@@ -427,7 +517,8 @@ def start(bot, update):
     keyboard
     '''
     # Goes to home screen
-    goToScreen(bot, update, messages=[{"text": config.startReply}])
+    goToScreen(bot, update.message.chat_id, messages=[{"text":
+                                                       config.startReply}])
 
 
 @run_async
@@ -457,8 +548,9 @@ def handleMessage(bot, update):
     '''
     chat_id = update.message.chat_id
     if not(chat_id in _userState.keys()):
-        # If the user is not registered then go to home screen
-        goToScreen(bot, update)
+        # If the user is not registered then register them
+        _userState.update({chat_id:
+                           [_HOME_SCREEN_NUMBER, ""]})
 
     if _userState[chat_id][0] == _HOME_SCREEN_NUMBER:
         homeHandler(bot, update)
@@ -480,11 +572,105 @@ def handleMessage(bot, update):
           _userState[chat_id][0] == _CHAPTER_CONTACTS_SCREEN_NUMBER):
         contactsHandler(bot, update)
 
+    elif (_userState[chat_id][0] == _REGISTER_STUDENT_ID_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_NAME_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_EMAIL_SCREEN_NUMBER or
+          _userState[chat_id][0] == _REGISTER_CONFIRM_SCREEN_NUMBER):
+        handleRegistry(bot, update)
+
     else:
         # Log the error
         _logger.warning('Error on handleMessage, "%s" state.',
                         _userState[chat_id][0])
-        goToScreen(bot, update)
+        goToScreen(bot, chat_id)
+
+
+@run_async
+def handleCallBack(bot, update):
+    chat_id = update.callback_query.message.chat_id
+    if not(chat_id in _userState.keys()):
+        # If the user is not registered then register them
+        _userState.update({chat_id:
+                           [_HOME_SCREEN_NUMBER, ""]})
+    query = update.callback_query
+    queryData = query.data.split(":")
+    if (queryData[0] == "register"):
+        return registerHandler(bot, update, chat_id, queryData[1:])
+    elif(queryData[0] == "notify"):
+        return notificationsCallBackHandler(bot, update, queryData[1:])
+    else:
+        # Log the error
+        _logger.warning('Error on handlecalback, "%s" inserted.', query)
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+
+
+def registerHandler(bot, update, chat_id, params=None):
+    '''
+    Method that will be called to register a user to a activity
+    '''
+    try:
+        if not (chat_id in _tmpRegisterData.keys()):
+            query = update.callback_query
+            if len(params) < 3:
+                raise ValueError("No valid params ", params)
+            branchID = int(params[0])
+            chapterID = None
+            if(params[1] != "None"):
+                chapterID = int(params[1])
+            activityID = int(params[2])
+        else:
+            activityID = _tmpRegisterData[chat_id]["activityID"]
+            branchID = _tmpRegisterData[chat_id]["branchID"]
+            chapterID = _tmpRegisterData[chat_id]["chapterID"]
+            query = _tmpRegisterData[chat_id]["callback_query"]
+            del _tmpRegisterData[chat_id]
+        userTracked = info.isUserTracked(chat_id)
+        if userTracked:
+            wasRegistered = activities.isRegistered(branchID, activityID,
+                                                    chat_id, chapterID)
+            response = activities.register(user={"chatID": chat_id},
+                                           branchID=branchID,
+                                           chapterID=chapterID,
+                                           activityID=activityID)
+            registered = activities.isRegistered(branchID, activityID, chat_id,
+                                                 chapterID)
+            reply_markup = None
+            if wasRegistered != registered:
+                # Only change the keyboard if the new state is different from
+                # before
+                key = "Cancelar Registro" if registered else "Registrarme"
+                keyboard = [[InlineKeyboardButton(key,
+                                                  callback_data=query.data)]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+            bot.edit_message_reply_markup(chat_id=chat_id,
+                                          message_id=query.message.message_id,
+                                          reply_markup=reply_markup)
+            goToScreen(bot, chat_id, messages=[{"text": response}])
+
+        else:
+            # Gather user information
+            text = "Introduzca su carnet de estudiante:\nSi no es estudiante \
+introduzca un 0."
+            _userState.update({chat_id: [_REGISTER_STUDENT_ID_SCREEN_NUMBER,
+                                         ""]})
+            _tmpRegisterData.update({chat_id:
+                                    {"callback_query": update.callback_query,
+                                     "branchID": branchID, "chapterID":
+                                     chapterID, "activityID": activityID}})
+            closeKeyboard(bot, chat_id, message=text)
+
+    except ValueError as e:
+        # Log the error
+        _logger.warning('Error on registerHandler, error "%s".', e)
+        goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
+
+
+def notificationsCallBackHandler(bot, update, params):
+    '''
+    Method that will be called to confirm or cancel branch and chapter
+    activities notifications
+    '''
+    pass
 
 
 @run_async
@@ -524,6 +710,7 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("stop", stop))
+    dp.add_handler(CallbackQueryHandler(handleCallBack))
     # inline commands to be implemented later on
     # ("info", info)
     # ("contact", contact))
@@ -538,7 +725,8 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
 
     # Start the bot
     updater.start_polling()
-
+    # Schedule a reminder every day at config.remindersTime
+    schedule.every().day.at(config.remindersTime).do(remind, updater.bot)
     # Loop 'till the end of the world(or interrupted)
     updater.idle()
 

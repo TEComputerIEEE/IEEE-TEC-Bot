@@ -11,7 +11,8 @@ import requests_cache
 import schedule
 import config
 import dummyData as data  # just needed for dummy data delete when api is ready
-
+from dateutil import parser  # just needed for dummy data...
+from datetime import timezone  # just needed for dummy data...
 
 def apiGet(entryPoint, parameters=None, cache=True):
     '''
@@ -120,8 +121,15 @@ def dummyGet(entryPoint, parameters=None):
                     # return the activity if the ids are equal
                     if(chapter["chapterID"] == parameters["chapterID"] and
                        chapter["branchID"] == parameters["branchID"]):
-                        return {"activities": chapter["activities"]}
-
+                        if not("activityID" in parameters.keys()):
+                            return {"activities": chapter["activities"]}
+                        else:
+                            for activity in chapter["activities"]:
+                                if(activity["activityID"] ==
+                                   parameters["activityID"]):
+                                    return {"activities": [activity]}
+                            raise ValueError("No branchID + chapterID + acti\
+vityID combination found")
                 raise ValueError("No branchID + chapterID combination found")
 
             # else just search for branch activities
@@ -130,9 +138,18 @@ def dummyGet(entryPoint, parameters=None):
                 for branch in data.branches["branches"]:
                     # return the activity if the ids are equal
                     if(branch["branchID"] == parameters["branchID"]):
-                        return {"activities": branch["activities"]}
+                        if not("activityID" in parameters.keys()):
+                            return {"activities": branch["activities"]}
+                        else:
+                            for activity in branch["activities"]:
+                                if(activity["activityID"] ==
+                                   parameters["activityID"]):
+                                    return {"activities": [activity]}
+                            raise ValueError("No branchID + activityID combina\
+tion found")
 
-                raise ValueError("BranchID not found")
+                raise ValueError("BranchID '%d' not found",
+                                 parameters["branchID"])
         else:
             raise ValueError("No valid parameters")
 
@@ -250,7 +267,7 @@ def dummyGet(entryPoint, parameters=None):
         raise ValueError('Invalid entry point')
 
 
-def apiPost(entryPoint, parameters=None, body=None):
+def apiPost(entryPoint, body, parameters=None):
     '''
     General post method to connect with the Web API
     entryPoint is the api entry point example /users to post a new
@@ -259,6 +276,7 @@ def apiPost(entryPoint, parameters=None, body=None):
     body is a dict with body data
     auth still needs to be implemented
     '''
+    return dummyPost(entryPoint, body, parameters)
     response = requests.post(entryPoint, params=parameters, data=body)
     # if the response is not a valid response, raise a error
     if response.status_code != 200:
@@ -267,7 +285,46 @@ def apiPost(entryPoint, parameters=None, body=None):
     return response.json()
 
 
-def apiUpdate(entryPoint, parameters=None, body=None):
+def dummyPost(entryPoint, body, parameters=None):
+    '''
+    Dummy method to add some things on the dict(the changes will not be
+    stored on disk, just memmory)
+    '''
+    if entryPoint == config.usersEntryPoint:
+        if "chatID" in body.keys():
+            chat_id = body["chatID"]
+            user = list(filter(lambda user: user['chatID'] == chat_id,
+                               data.users["users"]))
+            if len(user) == 0:
+                if "name" in body.keys():
+                    if "studentID" in body.keys():
+                        if "email" in body.keys():
+                            name = body["name"]
+                            studentID = body["studentID"]
+                            email = body["email"]
+                            data.users.update({"users":
+                                               data.users["users"] +
+                                               [{"chatID": chat_id,
+                                                 "name": name,
+                                                 "email": email,
+                                                 "studentID": studentID}]})
+                            return {"status_code": 200}
+                        else:
+                            raise ValueError("No email provided")
+                    else:
+                        raise ValueError("No student Id provided")
+                else:
+                    raise ValueError("No name provided")
+            else:
+                raise ValueError("User already exist")
+        else:
+            raise ValueError("No Chat Id provided")
+
+    else:
+        raise ValueError("No valid entry point for post")
+
+
+def apiUpdate(entryPoint, body, parameters=None):
     '''
     General put method to connect with the Web API
     entryPoint is the api entry point example /users to update a new
@@ -276,12 +333,165 @@ def apiUpdate(entryPoint, parameters=None, body=None):
     body is a dict with body data
     auth still needs to be implemented
     '''
+    return dummyUpdate(entryPoint, parameters=parameters, body=body)
     response = requests.put(entryPoint, params=parameters, data=body)
     # if the response is not a valid response, raise a error
     if response.status_code != 200:
         response.raise_for_status()
     # if the request was valid return the response data in a json format
     return response.json()
+
+
+def dummyUpdate(entryPoint, body, parameters=None):
+    '''
+    Dummy method to update some things on the dict(the changes will not be
+    stored on disk, just memmory)
+    '''
+    if entryPoint == config.registerEntryPoint:
+        if parameters is None:
+            raise ValueError("No parameters where provided")
+        if "chatID" in parameters.keys():
+            chat_id = parameters["chatID"]
+            notify = False
+            if "notify" in parameters.keys():
+                notify = parameters["notify"]
+            user = list(filter(lambda user: user['chatID'] == chat_id,
+                               data.users["users"]))
+            alreadyExist = True if user != [] else False
+            if alreadyExist:
+                if "branchID" in parameters.keys():
+                    branchID = parameters["branchID"]
+                    if "activityID" in parameters.keys():
+                        activityID = parameters["activityID"]
+                        if "chapterID" in parameters.keys():
+                            chapterID = parameters["chapterID"]
+                            chapter = list(filter(
+                                           lambda chapter:
+                                           (chapter['chapterID'] == chapterID
+                                            and
+                                            chapter["branchID"] == branchID),
+                                           data.chapters["chapters"]))
+                            if len(chapter) != 1:
+                                raise ValueError("The chapter cannot be found",
+                                                 branchID, chapterID)
+                            activity = list(filter(
+                                            lambda acti:
+                                            acti['activityID'] == activityID,
+                                            chapter[0]["activities"]))
+                            if len(activity) != 1:
+                                raise ValueError("The activity can't be found",
+                                                 branchID, chapterID,
+                                                 activityID)
+                            user = list(filter(lambda user:
+                                               user["chatID"] == chat_id,
+                                               activity[0]["users"]))
+                            # Dummy way to update that big structure
+                            # Delete and then append new element
+                            data.chapters["chapters"].remove(chapter[0])
+                            chapter[0]["activities"].remove(activity[0])
+                            if len(user) == 0:
+                                # First check if there's space left
+                                if(activity[0]["maxCapacity"] >
+                                   len(activity[0]["users"])):
+                                    # If the user is not on the list then
+                                    # register them
+                                    activity[0].update({"users":
+                                                        activity[0]["users"] +
+                                                        [{"chatID": chat_id,
+                                                          "notify": notify}]})
+                                    # Parse Date
+                                    date = parser.parse(activity[0]["date"])
+                                    # Transform to local timezone
+                                    date = (date.replace(tzinfo=timezone.utc).
+                                            astimezone(tz=None))
+                                    dateStr = date.strftime("%A %d de %B %Y. \
+a las %I:%M %p")
+                                    message = "".join(["Su registro a la \
+actividad <b>", activity[0]["name"], "</b> se realizó correctamente. Recuerde \
+que la misma se realizará el día ", dateStr])
+                                else:
+                                    message = "".join(["Su registro a la \
+actividad <b>", activity[0]["name"], "</b> no se pudo realizar ya que se ha \
+excedido la cantidad máxima para este evento. Puede intentar contactar a un \
+representante para ver si se puede realizar algo al respecto...(Aquí adjuntar\
+adjuntar info de representantes del capítulo o rama)"])
+                            else:
+                                # Remove the user from the registered list
+                                activity[0]["users"].remove(user[0])
+                                message = "".join(["Se ha cancelado su registro a la \
+actividad <b>", activity[0]["name"], "</b>. Algo más....."])
+                            # Then just sum up
+                            chapter[0]["activities"].append(activity[0])
+                            data.chapters["chapters"].append(chapter[0])
+                            return {"message": message}
+                        else:
+                            branch = list(filter(
+                                            lambda branch:
+                                            branch["branchID"] == branchID,
+                                            data.branches["branches"]))
+                            if len(branch) != 1:
+                                raise ValueError("The branch cannot be found",
+                                                 branchID)
+                            activity = list(filter(
+                                              lambda acti:
+                                              acti['activityID'] == activityID,
+                                              branch[0]["activities"]))
+                            if len(activity) != 1:
+                                raise ValueError("The activity can't be found",
+                                                 branchID, activityID)
+                            user = list(filter(
+                                          lambda user:
+                                          user["chatID"] == chat_id,
+                                          activity[0]["users"]))
+                            # Dummy way to update that big structure
+                            # Delete and then append new element
+                            data.branches["branches"].remove(branch[0])
+                            branch[0]["activities"].remove(activity[0])
+                            if len(user) == 0:
+                                # First check if there's space left
+                                if(activity[0]["maxCapacity"] >
+                                   len(activity[0]["users"])):
+                                    # If the user is not on the list then
+                                    # register them
+                                    activity[0].update({"users":
+                                                        activity[0]["users"] +
+                                                        [{"chatID": chat_id,
+                                                          "notify": notify}]})
+                                    # Parse Date
+                                    date = parser.parse(activity[0]["date"])
+                                    # Transform to local timezone
+                                    date = (date.replace(tzinfo=timezone.utc).
+                                            astimezone(tz=None))
+                                    dateStr = date.strftime("%A %d de %B %Y \
+a las %I:%M %p")
+                                    message = "".join(["Su registro a la \
+actividad <b>", activity[0]["name"], "</b> se realizó correctamente. Recuerde \
+que la misma se realizará el día ", dateStr])
+                                else:
+                                    message = "".join(["Su registro a la \
+actividad <b>", activity[0]["name"], "</b> no se pudo realizar ya que se ha \
+excedido la cantidad máxima para este evento. Puede intentar contactar a un \
+representante para ver si se puede realizar algo al respecto...(Aquí adjuntar\
+adjuntar info de representantes del capítulo o rama)"])
+                            else:
+                                # Remove the user from the registered list
+                                activity[0]["users"].remove(user[0])
+                                message = "".join(["Se ha cancelado su registro a la \
+actividad <b>", activity[0]["name"], "</b>. Algo más....."])
+                            # Then just sum up
+                            branch[0]["activities"].append(activity[0])
+                            data.branches["branches"].append(branch[0])
+                            return {"message": message}
+                    else:
+                        raise ValueError("No Activity Id Provided")
+                else:
+                    raise ValueError("No Branch ID provided")
+        else:
+            raise ValueError("No chat id provided")
+    elif entryPoint == config.notificationsEntryPoint:
+        pass  # Add the user to the notification list
+    else:
+        raise ValueError('Invalid entry point')
 
 
 def clearCache():
