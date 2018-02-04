@@ -155,11 +155,14 @@ def listContacts(branchName, chapterName=None, chat_id=None):
     The connection module use cache to improve response time
     '''
     branchData = conn.getBranchData(branchName)
+    requested = "".join([" de la <b>", branchName, "</b>:\n\n"])
     if chapterName is None:
         contactList = conn.apiGet(config.contactsEntryPoint,
                                   {"branchID":
                                    branchData["branchID"]})["contacts"]
     else:
+        requested = "".join([" del capítulo <b>", chapterName, "</b>",
+                             requested])
         chapterData = conn.getChapterData(branchName, chapterName)
         contactList = conn.apiGet(config.contactsEntryPoint,
                                   {"branchID": branchData["branchID"],
@@ -174,7 +177,12 @@ def listContacts(branchName, chapterName=None, chat_id=None):
         textList.append(u"\n   @")
         textList.append(contact["userName"])
         textList.append(u"\n")
-
+    if len(textList) == 0:
+        textList.append("Lo sentimos, pero en el momento no disponemos de la \
+información solicidata. Intente otra opción")
+    else:
+        header = "".join(["Contactos ", requested])
+        textList.insert(0, header)
     text = "".join(textList)
     messages = [{"text": text}]
     return messages
