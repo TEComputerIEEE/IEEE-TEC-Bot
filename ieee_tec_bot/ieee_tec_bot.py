@@ -17,7 +17,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackQueryHandler
 from telegram.ext.dispatcher import run_async
-from connection import getBranchData
+from connection import getBranchData, dummyGet, getBranchDataName
 import information as info
 import activities
 import schedule     # Necesary for recurrent task
@@ -90,7 +90,7 @@ _logger = log()
 
 # Helper Functions
 def sendMessages(bot, chat_id, keys,
-                 messages=[{"text": "Seleccione una Opcion:"}], resize=True):
+                 messages=[{"text": "Seleccione una Opcion 2:"}], resize=True):
     '''
     Function to show a keyboard, it also sends a message if required
     keys is a keyboard to send to the user(screen keyboards only)
@@ -278,7 +278,7 @@ def commonHandler(bot, update, screens, customMethod):
 
         elif update.message.text in info.listChapters(_userState[chat_id][1]):
             # Calls the custom method with the branch and chapter names
-            # to get the required the info
+            # to get the required info
             messages = customMethod(chapterName=update.message.text,
                                     branchName=_userState[chat_id][1],
                                     chat_id=chat_id)
@@ -334,7 +334,7 @@ def notificationsHandler(bot, update):
     screens = [_BRANCH_NOTIFICATION_SCREEN_NUMBER,
                _CHAPTER_NOTIFICATION_SCREEN_NUMBER]
     # Set the custom function/method to be called if the info is required
-    customMethod = activities.listActivities  # Replace with proper call
+    customMethod = activities.showNotificationOption
     commonHandler(bot, update, screens, customMethod)
 
 
@@ -670,7 +670,25 @@ def notificationsCallBackHandler(bot, update, params):
     Method that will be called to confirm or cancel branch and chapter
     activities notifications
     '''
-    pass
+    branchID = int(params[0])
+
+    if(params[1] == "None"): chapterID = None 
+    else: chapterID = int(params[1])
+
+    if(params[2] == "None"): chatID = None 
+    else: chatID = int(params[2])
+
+    response = activities.subscribeNotification(branchID = branchID, chapterID = chapterID, chat_id = chatID)
+
+    screenNumber = _CHAPTER_NOTIFICATION_SCREEN_NUMBER
+    if chapterID is None:
+        screenNumber = _BRANCH_NOTIFICATION_SCREEN_NUMBER
+
+    branch = getBranchDataName(branchID)
+
+    goToScreen(bot, chat_id = chatID, screenNumber=_BRANCH_NOTIFICATION_SCREEN_NUMBER, branchName=branch["college"], messages=[{"text": response}])
+
+
 
 
 @run_async

@@ -10,11 +10,10 @@ from dateutil import parser
 from datetime import timezone, datetime
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-locale.setlocale(locale.LC_TIME, 'es_CR.utf8')
+# locale.setlocale(locale.LC_TIME, 'es_CR.utf8') # Linux
+locale.setlocale(locale.LC_TIME, 'es-CR') # Windows
 
-
-def _getActivities(branchName=None, chapterName=None, branchID=None,
-                   chapterID=None, activityID=None):
+def _getActivities(branchName=None, chapterName=None, branchID=None, chapterID=None, activityID=None):
     activities = []
     # Get the data of the branch and chapter with their names
     try:
@@ -23,7 +22,7 @@ def _getActivities(branchName=None, chapterName=None, branchID=None,
                 branchID = conn.getBranchData(branchName)["branchID"]
             else:
                 raise ValueError("A branchID or Branch Name needs to be \
-provided")
+                provided")
         parameters = {"branchID": branchID}
         # If chaptername is defined, add the chapter id to the parameters dict
         if chapterID is None:
@@ -88,7 +87,7 @@ def listActivities(branchName, chat_id=None, chapterName=None):
         # Transform to local timezone
         date = date.replace(tzinfo=timezone.utc).astimezone(tz=None)
         dateStr = date.strftime("<b>Día:</b> %A %d de %B %Y. \
-<b>Hora:</b> %I:%M %p")
+        <b>Hora:</b> %I:%M %p")
         text = "".join([text, dateStr])
         callback_data = "".join(["register:",
                                 ":".join([str(branchID), str(chapterID),
@@ -104,7 +103,7 @@ def listActivities(branchName, chat_id=None, chapterName=None):
                    "reply_markup": reply_markup, "photo": activity["flyer"]}
         messages.append(message)
     messages.append({"text": "Le invitamos cordialmente a participar a \
-nuestras actividades."})
+    nuestras actividades."})
     return messages
 
 
@@ -217,3 +216,81 @@ def remindTo():
                                 result.update({user["chatID"]: text})
 
     return result
+
+def isSubscribedNotification(branchID, chapterID, chat_id):
+    parameters = {"branchID": branchID, "chatID": chat_id}
+    if chapterID != None:
+        parameters["chapterID"] = chapterID
+
+    return conn.dummyGet(config.notificationsEntryPoint, parameters = parameters)
+
+def subscribeNotification(branchID, chapterID=None, chat_id=None):
+    """
+    Method to subscribe or unsubscribe a user from a notification,
+    returns the text of the message response
+    """
+    try:
+        parameters = {"branchID": branchID}
+        if chapterID != None:
+            parameters["chapterID"] = chapterID
+
+        user = {"chatID": chat_id}
+        # if chat_id is None:
+        #    parameters.update({"chapterID": chapterID})
+        subscribeRequest = conn.apiUpdate(config.notificationsEntryPoint, parameters=parameters, body=user)
+        return subscribeRequest["message"]
+    except ValueError as e:
+        raise e
+
+def showNotificationOption(branchName, chat_id=None, chapterName=None):
+    '''
+    Method that gets from the api a list of activities of a branch or chapter
+    branch name is required to search the branch or chapter activities,
+    the chapterName is required only to list chapter activities
+    The connection module use cache to improve response time
+    The chat id is used for the "Registrar", "Desregistrar"
+    '''
+    try:
+        activitiesData = _getActivities(branchName=branchName, chapterName=chapterName)
+        branchID = activitiesData["branchID"]
+        chapterID = activitiesData["chapterID"]
+    except ValueError as e:
+        raise e
+
+
+    messages = []
+    # Format the message response and append them to a list
+    # Each message response have this format message={"text":"some text",
+    # "keyboard":keyboard, "reply_markup":reply_markup,
+    # "photo":activity["flyer"]}
+    # And also a document can be sent adding the key to de dict
+
+    callback_data = [str(branchID), str(chapterID)]
+
+    key = "Suscribirme a notificaciones"
+   
+    if chapterName is None: # If chapterName is none means that the user selected a Branch.
+        text = "¿Desea recibir notificaciones de " + branchName + "?"
+    else:
+        text = "¿Desea recibir notificaciones de " + chapterName + "?"
+    
+    if isSubscribedNotification(branchID = branchID, chapterID = chapterID, chat_id = chat_id) == int(chat_id):
+        key = "Cancelar notificaciones"
+
+        if (chapterName is None): # If chapterName is none means that the user selected a Branch.
+            text = "¿Desea dejar de recibir notificaciones de " + branchName + "?"
+        else:
+            text = "¿Desea dejar de recibir notificaciones de " + chapterName + "?"
+
+    callback_data = "".join(["notify:",
+                                ":".join([str(branchID), str(chapterID), str(chat_id)])])
+        
+    keyboard = [[InlineKeyboardButton(text = key, callback_data=callback_data)]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    
+
+    message = {"text": text, "keyboard": keyboard, "reply_markup": reply_markup}
+    messages.append(message)
+
+    return messages

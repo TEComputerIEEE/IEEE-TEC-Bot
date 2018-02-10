@@ -11,6 +11,7 @@ chaptersEntryPoint = "".join([webApiAddr, "/chapters"])
 contactsEntryPoint = "".join([webApiAddr, "/contacts"])
 usersEntryPoint = "".join([webApiAddr, "/users"])
 registerEntryPoint = "".join([webApiAddr, "/register"])
+notificationsEntryPoint = "".join([webApiAddr, "/notifications"])
 # File Paths
 membershipPath = "../resources/MembresiaIEEE.pdf"
 chapterMembershipPath = "../resources/MembresiaIEEE.pdf"

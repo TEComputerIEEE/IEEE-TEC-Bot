@@ -55,6 +55,22 @@ def getBranchData(branchName):
             return branch
     raise Exception("The Branch '%s' cannot be found.", branchName)
 
+def getBranchDataName(branchID = None):
+    '''
+    Method that gets from the api one specific branch by ID,
+    branchID is required to search the branch
+    The connection module use cache to improve response time
+    '''
+    if branchID is None:
+        raise Exception("branchID not provided.")
+    # Get all branches from api
+    branchList = apiGet(config.branchesEntryPoint)["branches"]
+    # Search for the branch and return the branchData
+    for branch in branchList:
+        if(branch["branchID"] == branchID):
+            return branch
+    raise Exception("The Branch '%s' cannot be found.", branchID)
+
 
 def getChapterData(branchName, chapterName):
     '''
@@ -263,6 +279,47 @@ tion found")
             raise ValueError("No user find with that id")
         else:
             raise ValueError("No valid parameters")
+    
+    elif entryPoint == config.notificationsEntryPoint:
+        print ("estoy en entryPoint")
+        print (parameters)
+        
+        if parameters is None:
+            raise ValueError("No valid parameters")
+        
+        if "branchID" in parameters:
+            for branch in data.branches["branches"]:
+                if int(branch["branchID"]) == int(parameters["branchID"]):
+                    if "chapterID" in parameters:
+                        for chapter in data.chapters["chapters"]:
+                            if chapter["chapterID"] == parameters["chapterID"]:
+                                # If chatID is provided returns same chatID if it's subscribed.
+                                # if it's not subscribed returns []
+                                if "chatID" in parameters: 
+                                    for user in chapter["users"]:
+                                        if user["chatID"] == parameters["chatID"]:
+                                            return parameters["chatID"]
+                                    return []
+                                # If chatID is not provided returns all users from Chapter.
+                                # IMPLEMENT A for TO RETURN ONLY CHATIDs
+                                return chapter["users"]
+
+                    # If chapterID is not provided returns all users from Branch.
+                    else:
+                        # If chatID is provided returns same chatID if it's subscribed.
+                        # if it's not subscribed returns []
+                        if "chatID" in parameters: 
+                            for user in branch["users"]:
+                                if int(user["chatID"]) == int(parameters["chatID"]):
+                                    return parameters["chatID"]
+                            return []
+                        # If chatID is not provided returns all users from Branch.
+                        # IMPLEMENT A for TO RETURN ONLY CHATIDs
+                        return branch["users"]
+                        #return [ user["chatID"] for user in branch["users"] ] 
+        else: 
+            raise ValueError("No branchID provided")
+
     else:
         raise ValueError('Invalid entry point')
 
@@ -335,7 +392,7 @@ def apiUpdate(entryPoint, body, parameters=None):
     '''
     return dummyUpdate(entryPoint, parameters=parameters, body=body)
     response = requests.put(entryPoint, params=parameters, data=body)
-    # if the response is not a valid response, raise a error
+    # if the response is not a valid response, raise an error
     if response.status_code != 200:
         response.raise_for_status()
     # if the request was valid return the response data in a json format
@@ -488,8 +545,57 @@ actividad <b>", activity[0]["name"], "</b>. Algo más....."])
                     raise ValueError("No Branch ID provided")
         else:
             raise ValueError("No chat id provided")
+    
     elif entryPoint == config.notificationsEntryPoint:
-        pass  # Add the user to the notification list
+        message = []
+        if parameters is None:
+            raise ValueError("No valid parameters")
+            return {"message": message}
+        elif "branchID" in parameters:
+            for branch in data.branches["branches"]:
+                if str(branch["branchID"]) == str(parameters["branchID"]):
+                    if "chapterID" in parameters:
+                        for chapter in data.chapters["chapters"]:
+                            if str(chapter["chapterID"]) == str(parameters["chapterID"]):
+                                # Update users in Chapter.
+                                # If it's subscribed then unsubscribe, or viceversa.
+                                for user in chapter["users"]:
+                                    if int(user["chatID"]) == int(body["chatID"]):
+                                        # Remove user
+                                        chapter["users"].remove({'chatID': int(body["chatID"])})
+                                        
+                                        message = "".join(["La suscripción a las notificaciones de <b>",
+                                         chapter["name"],"</b> ha sido cancelada. No recibirá más notificaciones."])
+                                        return {"message": message}
+                                # Add user 
+                                chapter["users"].append({'chatID': int(body["chatID"])})
+                                message = "".join(["La suscripción a las notificaciones de <b>",
+                                chapter["name"],"</b> se realizó correctamente. Recibirá solamente una notificación semanal."])
+                                return {"message": message}
+                    else:
+                        # If chapterID is not provided update users in Branch.
+                        # If it's subscribed then unsubscribe, or viceversa.
+                        print ("ES UNA RAMA, VAMO' A ACTUALIZAR")
+                        for user in branch["users"]:
+                            if int(user["chatID"]) == int(body["chatID"]):
+                                # Remove user
+                                branch["users"].remove({'chatID': int(body["chatID"])})
+                                
+                                message = "".join(["La suscripción a las notificaciones de Rama Estudiantil <b>",
+                                branch["college"],"</b> ha sido cancelada. No recibirá más notificaciones."])
+                                return {"message": message}
+                        # Add user 
+                        branch["users"].append({'chatID': int(body["chatID"])})
+                        
+                        message = "".join(["La suscripción a las notificaciones de Rama Estudiantil <b>",
+                        branch["college"],"</b> se realizó correctamente. Recibirá solamente una notificación semanal."])
+                        return {"message": message}
+
+            raise ValueError("branchID not founded.")
+            return {"message": message}
+        else: 
+            raise ValueError("No branchID provided.")
+            return {"message": message}
     else:
         raise ValueError('Invalid entry point')
 
