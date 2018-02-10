@@ -55,6 +55,7 @@ def getBranchData(branchName):
             return branch
     raise Exception("The Branch '%s' cannot be found.", branchName)
 
+
 def getBranchDataName(branchID = None):
     '''
     Method that gets from the api one specific branch by ID,
@@ -71,6 +72,12 @@ def getBranchDataName(branchID = None):
             return branch
     raise Exception("The Branch '%s' cannot be found.", branchID)
 
+
+def getAllBranchesID():
+    '''
+    Method that gets from the api all the branchIDs,
+    '''
+    
 
 def getChapterData(branchName, chapterName):
     '''

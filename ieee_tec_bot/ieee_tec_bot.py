@@ -680,15 +680,11 @@ def notificationsCallBackHandler(bot, update, params):
 
     response = activities.subscribeNotification(branchID = branchID, chapterID = chapterID, chat_id = chatID)
 
-    screenNumber = _CHAPTER_NOTIFICATION_SCREEN_NUMBER
-    if chapterID is None:
-        screenNumber = _BRANCH_NOTIFICATION_SCREEN_NUMBER
-
     branch = getBranchDataName(branchID)
 
-    goToScreen(bot, chat_id = chatID, screenNumber=_BRANCH_NOTIFICATION_SCREEN_NUMBER, branchName=branch["college"], messages=[{"text": response}])
 
 
+    goToScreen(bot, chat_id = chatID, screenNumber=_CHAPTER_NOTIFICATION_SCREEN_NUMBER, branchName=branch["college"], messages=[{"text": response}])
 
 
 @run_async
@@ -706,6 +702,11 @@ def error(bot, update, error):
     Log errors
     '''
     _logger.warning('Update "%s" caused error "%s"', update, error)
+
+
+
+def testa():
+    print ("working on schedule")
 
 
 def main():
@@ -745,6 +746,8 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
     updater.start_polling()
     # Schedule a reminder every day at config.remindersTime
     schedule.every().day.at(config.remindersTime).do(remind, updater.bot)
+    # Schedule the activities notifications
+    schedule.every().day.at("12:06").do(testa)
     # Loop 'till the end of the world(or interrupted)
     updater.idle()
 
