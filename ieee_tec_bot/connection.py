@@ -38,7 +38,6 @@ def apiGet(entryPoint, parameters=None, cache=True):
     # if the request was valid return the response data in a json format
     return response.json()
 
-
 def getBranchData(branchName):
     '''
     Method that gets from the api one specific branch by name
@@ -55,7 +54,6 @@ def getBranchData(branchName):
             return branch
     raise Exception("The Branch '%s' cannot be found.", branchName)
 
-
 def getBranchDataName(branchID = None):
     '''
     Method that gets from the api one specific branch by ID,
@@ -69,15 +67,44 @@ def getBranchDataName(branchID = None):
     # Search for the branch and return the branchData
     for branch in branchList:
         if(branch["branchID"] == branchID):
-            return branch
-    raise Exception("The Branch '%s' cannot be found.", branchID)
+            return branch["college"]
+    raise Exception("The Branch '%i' cannot be found.", branchID)
 
+def getChapterDataName(chapterID = None):
+    '''
+    Method that gets from the api one specific chapter by ID,
+    chapterID is required to search the chapter
+    Used in activities.py
+    '''
+    if chapterID is None:
+        raise Exception("chapterID not provided.")
+    # Get all branches from api
+    chapterList = apiGet(config.chaptersEntryPoint)["chapters"]
+    # Search for the chapter and return the chapterData
+    for chapter in chapterList:
+        if(chapter["chapterID"] == chapterID):
+            return chapter["name"]
+    raise Exception("The Chapter '%s' cannot be found.", chapterID)
 
-def getAllBranchesID():
+def getAllBranchChapterIDs():
     '''
-    Method that gets from the api all the branchIDs,
+    Method that gets from the API all the branchIDs & chapterIDs
+    Used in activities.py
+    output: {branchID: [chapterIDs], ...}
     '''
-    
+    output = {}
+
+    # Adds branchIDs as keys to dict.
+    for branch in data.branches["branches"]:
+        output[branch["branchID"]] = []
+
+    # Adds chapterIDs to dict.
+    for chapter in data.chapters["chapters"]:
+        output[chapter["branchID"]] = output[chapter["branchID"]] + [chapter["chapterID"]]
+
+        #print(getChapterDataName(chapterID = chapter["chapterID"]))
+
+    return output
 
 def getChapterData(branchName, chapterName):
     '''
@@ -97,7 +124,7 @@ def getChapterData(branchName, chapterName):
 
     except ValueError as e:
         raise Exception("The chapter '%s' cannot be found. Because the \
-branch '%s'", chapterName, e)
+    branch '%s'", chapterName, e)
 
     chapterList = apiGet(config.chaptersEntryPoint,
                          parameters={"branchID":
@@ -108,6 +135,31 @@ branch '%s'", chapterName, e)
 
     raise Exception("The chapter '%s' cannot be found.", chapterName)
 
+def getBranchChapterUsers(branchID= None, chapterID = None):
+    '''
+    Method that gets from the API the users 
+    of a branch or a chapter.
+    output: [chatID, chatID,...]
+    '''
+    users = []
+
+    if branchID is not None:
+        # Return user from Branch.
+        for branch in data.branches["branches"]:
+            if branchID == branch["branchID"]:
+                for user in branch["users"]:
+                    users.append(user["chatID"])
+                return users
+        raise Exception("The Branch '%i' cannot be found.", branchID)
+        
+    if chapterID is not None:
+        # Return user from Chapter.
+        for chapter in data.chapters["chapters"]:
+            if chapterID == chapter["chapterID"]:
+                for user in chapter["users"]:
+                    users.append(user["chatID"])
+                return users
+        raise Exception("The Chapter '%i' cannot be found.", chapterID)
 
 def dummyGet(entryPoint, parameters=None):
     '''
@@ -582,7 +634,6 @@ actividad <b>", activity[0]["name"], "</b>. Algo más....."])
                     else:
                         # If chapterID is not provided update users in Branch.
                         # If it's subscribed then unsubscribe, or viceversa.
-                        print ("ES UNA RAMA, VAMO' A ACTUALIZAR")
                         for user in branch["users"]:
                             if int(user["chatID"]) == int(body["chatID"]):
                                 # Remove user

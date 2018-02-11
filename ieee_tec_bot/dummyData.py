@@ -8268,9 +8268,6 @@ chapters = {"chapters" : [{
     },
     {
       "chatID": 9
-    },
-    {
-      "chatID": 115100920
     }
   ],
   "contacts": [
