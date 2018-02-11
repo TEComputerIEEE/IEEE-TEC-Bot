@@ -17,10 +17,12 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackQueryHandler
 from telegram.ext.dispatcher import run_async
-from connection import getBranchData
+from connection import getBranchData, dummyGet, getBranchDataName, getAllBranchChapterIDs
 import information as info
 import activities
 import schedule     # Necesary for recurrent task
+import time
+import threading
 import logging
 import config
 import base64       # Image parse
@@ -90,7 +92,7 @@ _logger = log()
 
 # Helper Functions
 def sendMessages(bot, chat_id, keys,
-                 messages=[{"text": "Seleccione una Opcion:"}], resize=True):
+                 messages=[{"text": "Seleccione una opción:"}], resize=True):
     '''
     Function to show a keyboard, it also sends a message if required
     keys is a keyboard to send to the user(screen keyboards only)
@@ -192,7 +194,7 @@ Error "%s"', branchName, e)
 
 
 def goToScreen(bot, chat_id, screenNumber=_HOME_SCREEN_NUMBER,
-               messages=[{"text": "Seleccione una Opcion:"}], branchName=""):
+               messages=[{"text": "Seleccione una opción:"}], branchName=""):
     '''
     Since the return and other functions use the same lines to go home
     or other screens this method is implemented, the default screen is the home
@@ -278,7 +280,7 @@ def commonHandler(bot, update, screens, customMethod):
 
         elif update.message.text in info.listChapters(_userState[chat_id][1]):
             # Calls the custom method with the branch and chapter names
-            # to get the required the info
+            # to get the required info
             messages = customMethod(chapterName=update.message.text,
                                     branchName=_userState[chat_id][1],
                                     chat_id=chat_id)
@@ -334,7 +336,7 @@ def notificationsHandler(bot, update):
     screens = [_BRANCH_NOTIFICATION_SCREEN_NUMBER,
                _CHAPTER_NOTIFICATION_SCREEN_NUMBER]
     # Set the custom function/method to be called if the info is required
-    customMethod = activities.listActivities  # Replace with proper call
+    customMethod = activities.showNotificationOption
     commonHandler(bot, update, screens, customMethod)
 
 
@@ -600,7 +602,7 @@ def handleCallBack(bot, update):
         return notificationsCallBackHandler(bot, update, queryData[1:])
     else:
         # Log the error
-        _logger.warning('Error on handlecalback, "%s" inserted.', query)
+        _logger.warning('Error on handlecallback, "%s" inserted.', query)
         goToScreen(bot, chat_id, messages=[{"text": config.unrecognizedReply}])
 
 
@@ -670,7 +672,19 @@ def notificationsCallBackHandler(bot, update, params):
     Method that will be called to confirm or cancel branch and chapter
     activities notifications
     '''
-    pass
+    branchID = int(params[0])
+
+    if(params[1] == "None"): chapterID = None 
+    else: chapterID = int(params[1])
+
+    if(params[2] == "None"): chatID = None 
+    else: chatID = int(params[2])
+
+    response = activities.subscribeNotification(branchID = branchID, chapterID = chapterID, chat_id = chatID)
+
+    branchName = getBranchDataName(branchID)
+
+    goToScreen(bot, chat_id = chatID, screenNumber=_CHAPTER_NOTIFICATION_SCREEN_NUMBER, branchName=branchName, messages=[{"text": response}])
 
 
 @run_async
@@ -727,6 +741,12 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
     updater.start_polling()
     # Schedule a reminder every day at config.remindersTime
     schedule.every().day.at(config.remindersTime).do(remind, updater.bot)
+    # Schedule the activities notifications NOT WORKING
+    #schedule.every().monday.at("09:00").do(testa)
+    #schedule.every(4).seconds.do(run_threaded, job)
+
+    print (activities.sendWeeklyActivitiesNotification(updater.bot))
+
     # Loop 'till the end of the world(or interrupted)
     updater.idle()
 
@@ -734,3 +754,11 @@ TELEGRAM_API_KEY=value(or add it to the ~/.bashrc file).")
 if __name__ == '__main__':
     # If this file is run as main call the main method
     main()
+
+
+
+
+
+
+
+

@@ -6,15 +6,15 @@
 import locale
 import config
 import connection as conn
+from ieee_tec_bot import goToScreen
 from dateutil import parser
-from datetime import timezone, datetime
+from datetime import timezone, datetime, timedelta
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-locale.setlocale(locale.LC_TIME, 'es_CR.utf8')
+# locale.setlocale(locale.LC_TIME, 'es_CR.utf8') # Linux
+locale.setlocale(locale.LC_TIME, 'es-CR') # Windows
 
-
-def _getActivities(branchName=None, chapterName=None, branchID=None,
-                   chapterID=None, activityID=None):
+def _getActivities(branchName=None, chapterName=None, branchID=None, chapterID=None, activityID=None):
     activities = []
     # Get the data of the branch and chapter with their names
     try:
@@ -23,7 +23,7 @@ def _getActivities(branchName=None, chapterName=None, branchID=None,
                 branchID = conn.getBranchData(branchName)["branchID"]
             else:
                 raise ValueError("A branchID or Branch Name needs to be \
-provided")
+                provided")
         parameters = {"branchID": branchID}
         # If chaptername is defined, add the chapter id to the parameters dict
         if chapterID is None:
@@ -88,7 +88,7 @@ def listActivities(branchName, chat_id=None, chapterName=None):
         # Transform to local timezone
         date = date.replace(tzinfo=timezone.utc).astimezone(tz=None)
         dateStr = date.strftime("<b>Día:</b> %A %d de %B %Y. \
-<b>Hora:</b> %I:%M %p")
+        <b>Hora:</b> %I:%M %p")
         text = "".join([text, dateStr])
         callback_data = "".join(["register:",
                                 ":".join([str(branchID), str(chapterID),
@@ -103,8 +103,7 @@ def listActivities(branchName, chat_id=None, chapterName=None):
         message = {"text": text, "keyboard": keyboard,
                    "reply_markup": reply_markup, "photo": activity["flyer"]}
         messages.append(message)
-    messages.append({"text": "Le invitamos cordialmente a participar a \
-nuestras actividades."})
+    messages.append({"text": "Le invitamos cordialmente a participar en nuestras actividades."})
     return messages
 
 
@@ -217,3 +216,188 @@ def remindTo():
                                 result.update({user["chatID"]: text})
 
     return result
+
+def listActivitiesNotification(branchName, chat_id=None, chapterName=None):
+    '''
+    Method that gets from the api a list of activities of a branch or chapter
+    branch name is required to search the branch or chapter activities,
+    the chapterName is required only to list chapter activities
+    The connection module use cache to improve response time
+    The chat id is used for the "Registrar", "Desregistrar"
+    '''
+    try:
+        activitiesData = _getActivities(branchName=branchName,
+                                        chapterName=chapterName)
+        branchID = activitiesData["branchID"]
+        chapterID = activitiesData["chapterID"]
+        activities = activitiesData["activities"]
+    except ValueError as e:
+        raise e
+    # If no activities found then return a generic message to let the user know
+    if activities == []:
+        text = "No se encontraron actividades registradas para "
+        if not(chapterName is None):
+            text = "".join([text, "el capítulo ", chapterName, " de "])
+
+        text = "".join([text, "la rama estudiatil de la universidad ",
+                       branchName, "."])
+        return [{"text": text}]
+
+    messages = []
+    # Format the message response and append them to a list
+    # Each message response have this format message={"text":"some text",
+    # "keyboard":keyboard, "reply_markup":reply_markup,
+    # "photo":activity["flyer"]}
+    # And also a document can be sent adding the key to de dict
+    for activity in activities:
+        text = "".join(["<b>", activity["name"], "</b>\n"])
+        text = "".join([text, activity["description"], "\n"])
+        text = "".join([text, "<b>Lugar: </b>", activity["place"], "\n"])
+        date = parser.parse(activity["date"])  # Parse Date
+        # Transform to local timezone
+        date = date.replace(tzinfo=timezone.utc).astimezone(tz=None)
+        
+        # To send only the activities of next 7 days.
+        today = datetime.now(date.tzinfo) # To make it timezone aware.
+        margin = timedelta(days = 7)
+        if not(today <= date <= today + margin): continue
+
+        dateStr = date.strftime("<b>Día:</b> %A %d de %B %Y. \
+        <b>Hora:</b> %I:%M %p")
+        text = "".join([text, dateStr])
+        callback_data = "".join(["register:",
+                                ":".join([str(branchID), str(chapterID),
+                                          str(activity["activityID"])])])
+        key = "Registrarme"
+        if(isRegistered(branchID, activity["activityID"], chat_id,
+           chapterID)):
+            key = "Cancelar Registro"
+        keyboard = [[InlineKeyboardButton(key,
+                                          callback_data=callback_data)]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        message = {"text": text, "keyboard": keyboard,
+                   "reply_markup": reply_markup, "photo": activity["flyer"]}
+        messages.append(message)
+    
+    if not messages: return messages # If list is empty.
+
+    messages.append({"text": "Le invitamos cordialmente a participar en nuestras actividades."})
+    return messages
+
+def isSubscribedNotification(branchID, chapterID, chat_id):
+    parameters = {"branchID": branchID, "chatID": chat_id}
+    if chapterID != None:
+        parameters["chapterID"] = chapterID
+
+    return conn.dummyGet(config.notificationsEntryPoint, parameters = parameters)
+
+def subscribeNotification(branchID, chapterID=None, chat_id=None):
+    """
+    Method to subscribe or unsubscribe a user from a notification,
+    returns the text of the message response
+    """
+    try:
+        parameters = {"branchID": branchID}
+        if chapterID != None:
+            parameters["chapterID"] = chapterID
+
+        user = {"chatID": chat_id}
+        # if chat_id is None:
+        #    parameters.update({"chapterID": chapterID})
+        subscribeRequest = conn.apiUpdate(config.notificationsEntryPoint, parameters=parameters, body=user)
+        return subscribeRequest["message"]
+    except ValueError as e:
+        raise e
+
+def showNotificationOption(branchName, chat_id=None, chapterName=None):
+    '''
+    Method that gets from the api a list of activities of a branch or chapter
+    branch name is required to search the branch or chapter activities,
+    the chapterName is required only to list chapter activities
+    The connection module use cache to improve response time
+    The chat id is used for the "Registrar", "Desregistrar"
+    '''
+    try:
+        activitiesData = _getActivities(branchName=branchName, chapterName=chapterName)
+        branchID = activitiesData["branchID"]
+        chapterID = activitiesData["chapterID"]
+    except ValueError as e:
+        raise e
+
+    messages = []
+    # Format the message response and append them to a list
+    # Each message response have this format message={"text":"some text",
+    # "keyboard":keyboard, "reply_markup":reply_markup,
+    # "photo":activity["flyer"]}
+    # And also a document can be sent adding the key to de dict
+
+    callback_data = [str(branchID), str(chapterID)]
+
+    key = "Suscribirme a notificaciones"
+   
+    if chapterName is None: # If chapterName is none means that the user selected a Branch.
+        text = "¿Desea recibir notificaciones de " + branchName + "?"
+    else:
+        text = "¿Desea recibir notificaciones de " + chapterName + "?"
+    
+    if isSubscribedNotification(branchID = branchID, chapterID = chapterID, chat_id = chat_id) == int(chat_id):
+        key = "Cancelar notificaciones"
+
+        if (chapterName is None): # If chapterName is none means that the user selected a Branch.
+            text = "¿Desea dejar de recibir notificaciones de " + branchName + "?"
+        else:
+            text = "¿Desea dejar de recibir notificaciones de " + chapterName + "?"
+
+    callback_data = "".join(["notify:",
+                                ":".join([str(branchID), str(chapterID), str(chat_id)])])
+        
+    keyboard = [[InlineKeyboardButton(text = key, callback_data=callback_data)]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    
+
+    message = {"text": text, "keyboard": keyboard, "reply_markup": reply_markup}
+    messages.append(message)
+
+    return messages
+
+def sendWeeklyActivitiesNotification(bot):
+    """
+    Call this function when needed.
+    The schedule should take care of time to send notifications. 
+    """
+
+    # Added because dummyData.py has chatIDs that are not real.
+    # It gives an error if the chatID doesn't exist.
+    return "" # Remove for production.
+
+    branchChapterIDs = conn.getAllBranchChapterIDs() # Contains all the branchID & chapterID
+
+    messages = []
+    text = ""
+
+    # Iterating over Branches
+    for branchID in branchChapterIDs.keys():
+        # Sending Branch activities
+        for chatID in conn.getBranchChapterUsers(branchID = branchID):
+            messages = listActivitiesNotification(branchName=conn.getBranchDataName(branchID), chat_id=chatID)
+
+            if messages: # If list is not empty, so there are activities.
+                greetingMessage = "Estas son las actividades de <b>" + conn.getBranchDataName(branchID) + "</b> para la siguiente semana."
+                messages.insert(0, {"text": greetingMessage})
+                goToScreen(bot, chat_id=chatID, messages=messages)
+       
+        # Iterating over Chapters
+        for chapterID in branchChapterIDs[branchID]:
+            # Sending Chapter activities
+            for chatID in conn.getBranchChapterUsers(chapterID = chapterID):
+                messages = listActivitiesNotification(branchName=conn.getBranchDataName(branchID),
+                 chapterName=conn.getChapterDataName(chapterID), chat_id=chatID)
+
+                if messages: # If list is not empty, so there are activities.
+                    greetingMessage = "Estas son las actividades de <b>" + conn.getChapterDataName(chapterID) + "</b> para la siguiente semana."
+                    messages.insert(0, {"text": greetingMessage})
+
+                    goToScreen(bot, chat_id=chatID, messages=messages)
+
+    return "Activities notificationes sent."
